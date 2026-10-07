@@ -1,0 +1,288 @@
+.chief-checkins.settings-card {
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+  margin: 16px 0;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+}
+.chief-checkins-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+}
+.chief-checkins-head > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.chief-checkins.settings-card h3 {
+  margin: 0 0 4px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.chief-checkins-intro {
+  margin: 0;
+  color: var(--ink-2, var(--muted));
+  font-size: 13px;
+  line-height: 1.55;
+}
+.chief-checkins-about {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.chief-checkins-about summary {
+  width: fit-content;
+  color: var(--blue);
+  cursor: pointer;
+}
+.chief-checkins-about summary:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+.chief-checkins-about p {
+  max-width: 68ch;
+  margin: 6px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.chief-checkins-schedule {
+  display: grid;
+  gap: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.chief-checkins-next {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--border);
+}
+.chief-checkins-clock {
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--accent-line);
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+.chief-checkins-next > span:last-child {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+.chief-checkins-eyebrow {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.chief-checkins-next strong {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.chief-checkins-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-width: 0;
+}
+.chief-checkins-control {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 7px;
+  min-width: 0;
+  padding: 12px 16px 12px 4px;
+}
+.chief-checkins-control + .chief-checkins-control {
+  padding-right: 4px;
+  padding-left: 16px;
+  border-left: 1px solid var(--border);
+}
+.chief-checkins-control > label:first-child,
+.chief-checkins-field-label {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+.chief-checkins-control select,
+.chief-checkins-time-list input[type="time"] {
+  box-sizing: border-box;
+  min-height: 40px;
+  max-width: 100%;
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  background-color: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+}
+.chief-checkins-control select {
+  width: min(100%, 230px);
+  padding: 8px 32px 8px 12px;
+}
+.chief-checkins-control form {
+  width: 100%;
+  min-width: 0;
+}
+.chief-checkins-time-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+  min-width: 0;
+}
+.chief-checkins-time-list label {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.chief-checkins-time-list input[type="time"] {
+  width: 100%;
+  padding: 6px 8px;
+  font-family: inherit;
+}
+.chief-checkins-control form > .button {
+  min-height: 40px;
+  margin-top: 9px;
+}
+.chief-checkins.settings-card .button.secondary {
+  border-color: var(--edge);
+}
+.chief-checkins-weekdays {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+}
+.chief-checkins-weekdays input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--blue);
+}
+.chief-checkins-zone {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.chief-checkins-meta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  gap: 10px 16px;
+  padding: 12px 4px;
+  border-top: 1px solid var(--border);
+}
+.chief-checkins-meta > div {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  min-width: 0;
+}
+.chief-checkins-meta span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.chief-checkins-meta strong {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.chief-checkins-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.chief-checkins-actions .button {
+  min-height: 40px;
+}
+.chief-checkins-actions [role="status"] {
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.chief-checkins-actions [role="alert"],
+.chief-checkins-control [role="alert"] {
+  color: var(--danger);
+  font-size: 12px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+@container (max-width: 520px) {
+  .chief-checkins-head {
+    gap: 10px;
+  }
+  .chief-checkins-controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .chief-checkins-control,
+  .chief-checkins-control + .chief-checkins-control {
+    padding: 12px 0;
+    border-left: 0;
+  }
+  .chief-checkins-control + .chief-checkins-control {
+    margin-top: 0;
+    border-top: 1px solid var(--border);
+  }
+  .chief-checkins-meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .chief-checkins.settings-card {
+    padding: 16px;
+  }
+}
+@media (pointer: coarse) {
+  .chief-checkins .chief-checkins-weekdays {
+    min-height: 44px;
+  }
+  .chief-checkins .chief-checkins-weekdays input {
+    width: 20px;
+    height: 20px;
+  }
+  .chief-checkins .chief-checkins-control select,
+  .chief-checkins .chief-checkins-time-list input[type="time"],
+  .chief-checkins .button {
+    min-height: 44px;
+    font-size: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chief-checkins * {
+    transition-duration: 0.01ms !important;
+  }
+}
+.chief-checkin-message-action {
+  margin-top: 8px;
+  font-size: 0.88em;
+  color: var(--muted);
+}

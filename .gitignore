@@ -1,0 +1,13 @@
+node_modules/
+dist/
+work/
+var/
+.env
+.env.*
+!.env.example
+*.sqlite*
+playwright-report/
+test-results/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,55 @@
+.board-proposal-columns {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  counter-reset: board-column;
+}
+.board-proposal-columns > li {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  min-width: 0;
+}
+.board-proposal-columns .skill-proposal-details {
+  margin: 6px 0 0;
+}
+.board-proposal-columns .skill-proposal-details > div:last-child {
+  border-bottom: 0;
+}
+.board-proposal-column-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
+}
+.board-proposal-column-head::before {
+  counter-increment: board-column;
+  content: counter(board-column) ".";
+  color: var(--muted);
+}
+.board-proposal-columns.removed {
+  margin-bottom: 16px;
+}
+.board-proposal-column-head small {
+  color: var(--muted);
+  font-size: 12px;
+}
+.skill-proposal-review del {
+  color: var(--muted);
+}
+.chief-board-access {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.chief-board-access span {
+  flex: 1 1 220px;
+  min-width: 0;
+}

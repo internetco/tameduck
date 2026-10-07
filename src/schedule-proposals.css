@@ -1,0 +1,246 @@
+/* A duck asking to do something regularly, or to stop. The card is the one in
+   human-input.css - band, question, button, foot, and afterwards one line -
+   and this file holds only what that card has no part for: the facts, the tick
+   box, the button that deletes, and the answered line's words. */
+.schedule-ask .human-input-say {
+  white-space: pre-line;
+}
+/* When, where it lands and what it keeps costing, as plain lines in ink. They
+   used to be a form of grey labels, with the cost in grey under it. */
+.schedule-ask-facts {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.schedule-ask-facts li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.schedule-ask-facts svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--muted);
+}
+/* In Needs you a card that asks to stop one starts with its facts. */
+.inbox-open > .schedule-ask .schedule-ask-facts:first-child {
+  margin-top: 0;
+}
+/* A change: each thing that would be different, under a small label, as it
+   is now and as it would be. Labels sit over their values rather than beside
+   them, because the card is narrow and the values can be long. */
+.schedule-ask-changes {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 0;
+}
+.inbox-open > .schedule-ask .schedule-ask-changes:first-child {
+  margin-top: 0;
+}
+.schedule-ask-changes > div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.schedule-ask-changes dt {
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.schedule-ask-changes dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.schedule-ask-changes del,
+.schedule-ask-to {
+  color: var(--muted);
+}
+/* What it would be is plain ink, not underlined like a link. */
+.schedule-ask-changes ins {
+  text-decoration: none;
+  color: var(--ink);
+}
+.schedule-ask-new,
+.schedule-ask-changes .human-input-more p {
+  white-space: pre-line;
+}
+.schedule-ask-new {
+  margin: 0;
+  color: var(--ink);
+}
+/* A lasting permission, so a tick box with a name of its own. The whole box is
+   the thing to press. Two classes, to outrank the card's rule for the labels
+   of its form, which stacks them. */
+.human-input-card .schedule-ask-grant {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  background: var(--surface);
+  font-weight: 400;
+  cursor: pointer;
+  transition: border-color 0.12s;
+}
+.human-input-card .schedule-ask-grant:hover {
+  border-color: var(--ink);
+}
+.schedule-ask-grant input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  cursor: pointer;
+}
+.schedule-ask-grant b {
+  display: block;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.schedule-ask-grant b + span {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.schedule-ask .human-input-actions {
+  margin-top: 14px;
+}
+/* Stopping one deletes it with its list of past runs: the one answer here that
+   cannot be taken back looks like it. Four classes, to outrank the card's rim
+   and the themes' own colours for a button. */
+.human-input-card .human-input-actions .button.schedule-ask-stop {
+  border-color: color-mix(in srgb, var(--danger) 78%, var(--ink));
+  background: var(--danger);
+  color: var(--surface);
+}
+.human-input-card
+  .human-input-actions
+  .button.schedule-ask-stop:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 82%, var(--ink));
+}
+/* Afterwards: the card's one line, a size up, because it now carries what was
+   asked, who answered and when. */
+.human-input-done.schedule-ask-done {
+  gap: 8px;
+  max-width: 560px;
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.human-input-done.schedule-ask-done svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.human-input-done.schedule-ask-done:is(.no, .over) svg {
+  color: var(--muted);
+}
+.human-input-done.schedule-ask-done b {
+  font-weight: 650;
+  color: var(--ink);
+}
+.human-input-done.schedule-ask-done i {
+  font-style: normal;
+  color: var(--muted);
+}
+/* Whoever answered from the keyboard is left here, where the button was. */
+.schedule-ask-done:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+/* Goes somewhere, so it wears the colour of a link. 20px of words, 38px to
+   hit, the reach a layer over it so the ring hugs the words. */
+.schedule-ask-go {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border-radius: 3px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.schedule-ask-go::after {
+  content: "";
+  position: absolute;
+  inset: -9px 0;
+}
+.schedule-ask-go:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.schedule-ask-go svg {
+  flex-shrink: 0;
+}
+/* The arrow is part of the link, not a second tick: the link's colour, on its
+   line. The done line's rules for its tick reached it, and made it green and
+   2px low. */
+.human-input-done.schedule-ask-done .schedule-ask-go svg {
+  margin-top: 0;
+  color: currentColor;
+  stroke-width: 2;
+}
+/* The way out that was pressed is the one that says it is working. */
+.schedule-ask .human-input-out .spin {
+  margin-right: 5px;
+  vertical-align: -2px;
+}
+@media (max-width: 600px) {
+  /* Nothing under 13px on a phone, and a thumb gets 44px for each answer. */
+  .schedule-ask .human-input-band,
+  .schedule-ask .human-input-foot,
+  .schedule-ask-grant b + span,
+  .schedule-ask-changes dt,
+  .schedule-ask-changes .human-input-more {
+    font-size: 13px;
+  }
+  /* What it says now opens under a thumb: 44px to press, with its arrow,
+     taking no more room on the page than it did. */
+  .schedule-ask-changes .human-input-more summary {
+    padding: 13px 0;
+    margin: -13px 0;
+  }
+  .schedule-ask .human-input-actions .button {
+    min-height: 44px;
+  }
+  /* How long it stays open, then the way out under it on a line of its own. */
+  .schedule-ask .human-input-foot > span:not(.human-input-outs) {
+    flex: 1 1 100%;
+  }
+  .schedule-ask .human-input-out {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
+    font-size: 13px;
+  }
+  /* In the middle of a sentence, so its reach grows rather than the line. */
+  .schedule-ask-go::after {
+    inset: -13px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .human-input-card .schedule-ask-grant {
+    transition: none;
+  }
+}

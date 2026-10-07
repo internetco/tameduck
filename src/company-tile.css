@@ -1,0 +1,20 @@
+/* The shape every company tile shares. Size and colours are the caller's:
+   see src/CompanyTile.jsx. */
+.company-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  line-height: 1;
+  font-weight: 700;
+}
+/* A logo fills the same square the letter sat in, cropped to fit rather than
+   stretched, keeping whatever corners the caller's class already rounds. */
+.company-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+  display: block;
+}

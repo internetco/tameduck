@@ -1,0 +1,52 @@
+{
+  "name": "tameduck",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "node scripts/build-help.mjs --check && vite build",
+    "start": "node --env-file=.env server/index.mjs",
+    "setup": "node scripts/setup-community.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check:community": "node scripts/check-community.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/public-sans": "^5.3.0",
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@novnc/novnc": "^1.7.0",
+    "better-sqlite3": "^13.0.3",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "lucide-react": "^1.46.0",
+    "nodemailer": "^10.0.10",
+    "onnxruntime-node": "1.30.0",
+    "pdfmake": "0.3.11",
+    "qrcode-generator": "^2.0.4",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "sax": "1.6.1",
+    "undici": "^8.10.2",
+    "unified": "^11.0.5",
+    "web-push": "^3.6.7",
+    "ws": "^8.21.3",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "fflate": "0.8.3",
+    "prettier": "^3.9.6",
+    "sharp": "^0.35.4",
+    "vite": "^8.3.0"
+  },
+  "license": "AGPL-3.0-only"
+}

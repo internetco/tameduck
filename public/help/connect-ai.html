@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connect an AI for your Ducks — TameDuck Help</title>
+<meta name="description" content="Your Ducks need an AI to work. Sign in with a ChatGPT plan or paste an API key, pick a model, and open your workspace.">
+<meta name="theme-color" content="#FBF8F1">
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/help/help.css">
+</head>
+<body class="guide-page">
+<a class="skip" href="#content">Skip to the guide</a>
+<header class="site-header">
+<div class="wrap nav">
+<a class="brand" href="/"><img class="brand-tile" src="/brand/mark.svg" width="36" height="36" alt=""><span class="brand-name">TameDuck</span></a>
+<a class="help-tag" href="/help"><span class="sr-only">TameDuck </span>Help</a>
+<button class="search-toggle" type="button" aria-label="Search help" aria-expanded="false" aria-controls="header-search"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+<form class="search search-sm" id="header-search" role="search" action="/help" data-search>
+<label class="search-box"><svg class="icon search-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="sr-only">Search help</span><input type="search" name="q" placeholder="Search help" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="header-search-results"><kbd aria-hidden="true">/</kbd></label>
+<div class="search-results" id="header-search-results" role="listbox" aria-label="Search results" hidden></div>
+</form>
+<nav class="nav-right" aria-label="Main">
+<a href="https://tameduck.com">TameDuck Cloud</a><a href="/help" aria-current="true">Help</a>
+<a href="/login">Sign in</a>
+<a class="btn" href="/">Open TameDuck <svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+</nav>
+</div>
+</header>
+<div class="wrap guide-layout">
+<nav class="guide-nav" aria-label="Help guides">
+<a class="back" href="/help"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>All guides</a>
+<p class="nav-group">Start here</p>
+<ol class="nav-guides"><li><a class="nav-guide" href="/help/connect-ai" aria-current="page"><span class="nav-num">1</span><span>Connect an AI</span></a><ol class="nav-steps"><li><a href="#step-1" data-step="1">Pick how to connect</a></li><li><a href="#step-2" data-step="2">Connect a ChatGPT plan</a></li><li><a href="#step-3" data-step="3">Or paste an API key</a></li><li><a href="#step-4" data-step="4">If the key is rejected</a></li><li><a href="#step-5" data-step="5">Choose the model</a></li><li><a href="#step-6" data-step="6">Open your workspace</a></li></ol></li><li><a class="nav-guide" href="/help/create-first-duck"><span class="nav-num">2</span><span>Create your first Duck</span></a></li><li><a class="nav-guide" href="/help/first-task"><span class="nav-num">3</span><span>Give a first task</span></a></li></ol>
+<p class="nav-group">Everyday work</p>
+<ol class="nav-guides"><li><a class="nav-guide" href="/help/needs-you"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><span>Needs you</span></a></li><li><a class="nav-guide" href="/help/task-board"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg><span>Task board</span></a></li><li><a class="nav-guide" href="/help/files"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z"/><path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"/></svg><span>Files</span></a></li><li><a class="nav-guide" href="/help/computers"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg><span>Computers</span></a></li><li><a class="nav-guide" href="/help/team"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Team</span></a></li><li><a class="nav-guide" href="/help/webhooks"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8"/></svg><span>Webhooks</span></a></li></ol>
+<p class="nav-stuck"><strong>Still stuck?</strong> <a href="mailto:info@tameduck.com">Email info@tameduck.com</a></p>
+</nav>
+<main id="content" class="guide-main">
+<p class="crumbs"><a href="/help">Help</a><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span>Start here · Guide 1 of 3</span></p>
+<h1>Connect an AI for your Ducks</h1>
+<p class="lead">Your Ducks need an AI to work. Sign in with a ChatGPT plan or paste an API key, pick a model, and open your workspace.</p>
+<p class="meta"><span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg>6 steps</span><span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Checked against the app on 5 October 2026</span></p>
+<nav class="step-strip" aria-label="Steps in this guide"><span>Step</span><a href="#step-1" data-step="1" aria-label="Step 1: Pick how to connect">1</a><a href="#step-2" data-step="2" aria-label="Step 2: Connect a ChatGPT plan">2</a><a href="#step-3" data-step="3" aria-label="Step 3: Or paste an API key">3</a><a href="#step-4" data-step="4" aria-label="Step 4: If the key is rejected">4</a><a href="#step-5" data-step="5" aria-label="Step 5: Choose the model">5</a><a href="#step-6" data-step="6" aria-label="Step 6: Open your workspace">6</a></nav>
+<section class="before" aria-label="Before you start">
+<h2>Before you start, have one of these</h2>
+<ul><li><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span><strong>A ChatGPT Plus or Pro plan.</strong> Only the company owner can sign in with it.</span></li><li><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span><strong>Or an API key</strong> from a provider shown on the page, like OpenAI.</span></li></ul>
+<p class="where"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><span>You see this page while setting up your company. Later, it is in <strong>Settings → AI connection</strong>.</span></p>
+</section>
+<ol class="steps">
+<li class="step" id="step-1">
+<div class="step-rail" aria-hidden="true"><span class="step-num">1</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 1: </span>Pick how to connect</h2>
+<p class="do">Choose <b class="ui">Sign in</b> for a ChatGPT plan, or <b class="ui">Paste key</b> for an API key.</p>
+<p class="more">You only need one. Only the choices on your page can be connected.</p>
+<figure class="shot">
+<div class="shot-frame" style="width:561px;aspect-ratio:561 / 385"><img src="/help/screenshots/tutorial-connect-ai-options.png" width="561" height="385" alt="The Connect an AI page: a ChatGPT card with a Sign in button, and an OpenAI row with a Paste key button." loading="lazy"><span class="mark" style="left:81.105%;top:15.844%;width:12.834%;height:11.429%"></span><span class="mark-num at-left" style="left:81.105%;top:21.558%">1</span><span class="mark" style="left:80.927%;top:55.065%;width:15.686%;height:11.429%"></span><span class="mark-num at-left" style="left:80.927%;top:60.779%">2</span></div>
+<figcaption><span class="legend"><span class="mark-num">1</span>Sign in with a ChatGPT plan</span><span class="legend"><span class="mark-num">2</span>Or paste an API key</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-connect-ai-options.png" data-alt="The Connect an AI page: a ChatGPT card with a Sign in button, and an OpenAI row with a Paste key button."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+<aside class="note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg><p><strong>Good to know.</strong> A ChatGPT plan is not an API key. API keys are paid per use, to the AI company. Your TameDuck plan is a separate charge.</p></aside>
+</div>
+</li>
+<li class="step" id="step-2">
+<div class="step-rail" aria-hidden="true"><span class="step-num">2</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 2: </span>Connect a ChatGPT plan</h2>
+<p class="do">Click <b class="ui">Sign in</b> on the ChatGPT card, then sign in to the owner’s ChatGPT account.</p>
+<p class="more">Only the company owner can do this, and it uses their own plan. You don’t paste a password or a key. When you come back, TameDuck checks the connection.</p>
+<aside class="warn"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><p><strong>Watch out.</strong> If it says <strong>Could not reach OpenAI to check. Try again.</strong>, run the check again.</p></aside>
+</div>
+</li>
+<li class="step" id="step-3">
+<div class="step-rail" aria-hidden="true"><span class="step-num">3</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 3: </span>Or paste an API key</h2>
+<p class="do">Click <b class="ui">Paste key</b>, paste your key, then click <b class="ui">Connect OpenAI</b>.</p>
+<p class="more">No key yet? <strong>Get an OpenAI key</strong> opens the provider’s key page. Use a key from the same provider as the row you picked; the button is named after it.</p>
+<figure class="shot">
+<div class="shot-frame is-cropped" style="width:561px;aspect-ratio:561 / 270"><img src="/help/screenshots/tutorial-connect-ai-key.png" width="561" height="527" alt="The OpenAI key form: a key field with a hidden key, a Connect OpenAI button, and a Get an OpenAI key link." loading="lazy" style="top:-51.852%"><span class="mark" style="left:2.674%;top:44.815%;width:94.652%;height:18.889%"></span><span class="mark-num at-corner" style="left:97.326%;top:44.815%">1</span><span class="mark" style="left:3.209%;top:64.815%;width:25.847%;height:16.667%"></span><span class="mark-num at-right" style="left:29.055%;top:73.148%">2</span><span class="mark" style="left:2.674%;top:85.556%;width:26.738%;height:10%"></span><span class="mark-num at-right" style="left:29.412%;top:90.556%">3</span></div>
+<figcaption><span class="legend"><span class="mark-num">1</span>Paste the key</span><span class="legend"><span class="mark-num">2</span>Click Connect</span><span class="legend"><span class="mark-num">3</span>No key yet? Get one here</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-connect-ai-key.png" data-alt="The OpenAI key form: a key field with a hidden key, a Connect OpenAI button, and a Get an OpenAI key link."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+<aside class="note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg><p><strong>Good to know.</strong> Keys are encrypted. Ducks and teammates never see them.</p></aside>
+</div>
+</li>
+<li class="step" id="step-4">
+<div class="step-rail" aria-hidden="true"><span class="step-num">4</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 4: </span>If the key is rejected</h2>
+<p class="do">Paste the whole key again and click <b class="ui">Connect OpenAI</b>.</p>
+<p class="more">The error shows under the form, and the form stays open. Check that the key came from that provider’s key page; a ChatGPT password won’t work here. <strong>Open my workspace</strong> stays grey until one connection works.</p>
+<figure class="shot">
+<div class="shot-frame is-cropped" style="width:561px;aspect-ratio:561 / 274"><img src="/help/screenshots/tutorial-connect-ai-error.png" width="561" height="584" alt="The key form after a rejected key, with the message: OpenAI did not accept that key. Check it and paste it again." loading="lazy" style="top:-71.533%"><span class="mark" style="left:3.03%;top:60.584%;width:93.761%;height:20.438%"></span></div>
+<figcaption><span class="caption">The error appears right under the form.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-connect-ai-error.png" data-alt="The key form after a rejected key, with the message: OpenAI did not accept that key. Check it and paste it again."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+</div>
+</li>
+<li class="step" id="step-5">
+<div class="step-rail" aria-hidden="true"><span class="step-num">5</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 5: </span>Choose the model</h2>
+<p class="do">Under <strong>Model</strong>, pick the model your Ducks should use. If you change it, click <b class="ui">Save</b> and wait for <strong>Saved</strong>.</p>
+<p class="more">Every Duck uses this model unless you give one its own model in its profile. Use <strong>Refresh models</strong> if the list looks out of date.</p>
+<figure class="shot">
+<div class="shot-frame is-cropped" style="width:561px;aspect-ratio:561 / 444"><img src="/help/screenshots/tutorial-connect-ai-confirmed.png" width="561" height="850" alt="What ducks use: GPT-6 Luna picked as the model, with its reference score and prices, a Saved note and Refresh models." loading="lazy" style="top:0%"><span class="mark" style="left:6.239%;top:50.901%;width:87.344%;height:13.964%"></span><span class="mark-num at-corner" style="left:93.583%;top:50.901%">1</span><span class="mark" style="left:5.882%;top:71.396%;width:13.191%;height:6.757%"></span><span class="mark-num at-right" style="left:19.073%;top:74.775%">2</span></div>
+<figcaption><span class="legend"><span class="mark-num">1</span>The model every Duck uses</span><span class="legend"><span class="mark-num">2</span>Saved means it’s done</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-connect-ai-confirmed.png" data-alt="What ducks use: GPT-6 Luna picked as the model, with its reference score and prices, a Saved note and Refresh models."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+<aside class="note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg><p><strong>Good to know.</strong> <strong>Model intelligence</strong> is a published reference score from 0 to 60. Higher is better, but it is not a promise. Prices are per million tokens and differ per model.</p></aside>
+</div>
+</li>
+<li class="step is-last" id="step-6">
+<div class="step-rail" aria-hidden="true"><span class="step-num">6</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 6: </span>Open your workspace</h2>
+<p class="do">Click <b class="ui">Open my workspace</b>.</p>
+<p class="more">You land in your company workspace, ready to add your first Duck. Left setup early? Go to <strong>Settings → AI connection</strong>. Ducks can’t answer until an AI is connected.</p>
+<figure class="shot">
+<div class="shot-frame" style="width:1100px;aspect-ratio:1100 / 560"><img src="/help/screenshots/tutorial-connect-ai-workspace.png" width="1100" height="560" alt="The company workspace with the sidebar on the left and Chief Duck saying welcome." loading="lazy"></div>
+<figcaption><span class="caption">Your workspace, with Chief Duck saying hello.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-connect-ai-workspace.png" data-alt="The company workspace with the sidebar on the left and Chief Duck saying welcome."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+</div>
+</li>
+</ol>
+<section class="done" aria-labelledby="done-title">
+<p class="done-head" id="done-title"><svg class="icon done-check" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>All set. Your Ducks have an AI.</p>
+<a class="next" href="/help/create-first-duck"><img src="/help/screenshots/tutorial-create-first-duck-profile.png" alt="" width="790" height="592" loading="lazy"><span class="next-text"><span class="next-eyebrow">Up next · Guide 2 of 3</span><span class="next-title">Create your first Duck</span><span class="next-card">Give it a name, a role, a face and a job to do. 6 steps.</span></span><span class="next-go"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+</section>
+<div class="after">
+<div class="feedback" data-feedback><span class="feedback-q">Did this guide help?</span><button type="button" data-answer="yes"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>Yes</button><button type="button" data-answer="no"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>Not really</button><p class="feedback-thanks" data-thanks="yes" hidden>Thanks for telling us.</p><p class="feedback-thanks" data-thanks="no" hidden>Sorry it didn’t. Tell us what was missing at <a href="mailto:info@tameduck.com">info@tameduck.com</a> and we’ll fix the guide.</p></div>
+<a class="stuck-link" href="mailto:info@tameduck.com"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Still stuck? Email info@tameduck.com</a>
+</div>
+</main>
+</div>
+<footer class="site-footer">
+<div class="wrap">
+<div class="footer-grid">
+<div class="footer-about"><span class="footer-brand"><img class="brand-tile" src="/brand/mark.svg" width="34" height="34" alt=""><span>TameDuck</span></span><p>A company workspace where the AI teammates have faces, memories, and computers of their own.</p></div>
+<nav class="footer-cols" aria-label="Footer">
+<div class="footer-col"><span class="footer-head">TameDuck</span><a href="/">Open the app</a><a href="/about">About</a><a href="https://tameduck.com">TameDuck Cloud</a></div>
+<div class="footer-col"><span class="footer-head">Company</span><a class="here" href="/help">Help</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:info@tameduck.com">Contact</a><a href="https://github.com/internetco/tameduck" target="_blank" rel="noopener noreferrer">Open source ↗</a></div>
+</nav>
+</div>
+<div class="footer-bottom"><span>Some of your teammates are ducks.</span><span>tameduck.com · © 2026 TameDuck</span></div>
+</div>
+</footer>
+<dialog class="zoom-dialog" aria-label="Screenshot">
+<form method="dialog" class="zoom-bar"><span class="zoom-caption"></span><button type="submit">Close</button></form>
+<img class="zoom-img" alt="">
+</dialog>
+<script type="module" src="/help/help-search.js"></script>
+<script src="/help/help-guide.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+/* The message box in a chat, and the one bar under it.
+
+   Attach, what a duck is doing here with the way to stop it, and a Send that
+   says where the message goes: one row, in the box's own frame. Nothing sits
+   above it or below it. The strip that used to say "1 working" a screen-width
+   from its Stop is gone, and so is the nine-pixel line of slogan.
+
+   This file is bundled before style.css and themes.css, so anything here that
+   has to beat one of their rules is written under .composer-area, or against
+   the element as well as the class, to outrank it rather than hoping to come
+   last.
+
+   Every colour is a theme token. The composer was fifteen literals: in Dark
+   the working strip was 2.33:1 and its Stop 2.29:1, because nobody had ever
+   recoloured them, and in Clean, Subtle and Calm the focus ring stayed
+   purple. */
+.composer-area {
+  flex-shrink: 0;
+  padding: 12px 23px;
+  background: var(--surface);
+  /* The room this has is not the window's: on a tablet the rail and the
+     sidebar leave the chat a phone's width, so the bar folds by its own
+     width rather than by the screen's. */
+  container-type: inline-size;
+}
+
+/* ---------- the box ---------- */
+.composer-area .composer {
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--surface);
+  transition:
+    border-color 0.12s,
+    box-shadow 0.12s;
+}
+/* Focus belongs to the box, not to whichever button in the bar was pressed
+   last, so it follows the text rather than :focus-within. */
+.composer-area .composer:has(textarea:focus) {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 1px var(--blue);
+}
+.composer-area .composer textarea {
+  display: block;
+  width: 100%;
+  height: 64px;
+  min-height: 56px;
+  max-height: 200px;
+  border: 0;
+  resize: vertical;
+  padding: 12px 14px 6px;
+  border-radius: 9px 9px 0 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.composer-area .composer textarea::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+/* The box itself shows where the keyboard is, so the ring inside it would be
+   a second answer to the same question - but only where the browser can draw
+   the box's answer at all. */
+@supports selector(:has(*)) {
+  .composer-area .composer textarea:focus-visible {
+    outline: none;
+  }
+}
+/* A box nobody can type in - the flock is paused, the channel is archived,
+   the role is read-only - looked exactly like one they could: same white,
+   same placeholder. Switched off, it takes the colour of its own bar, and the
+   banner above it says why. */
+.composer-area .composer:has(textarea:disabled) {
+  background: var(--soft);
+}
+.composer-area .composer textarea:disabled {
+  cursor: not-allowed;
+  color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
+}
+
+/* How much room is left in a message, once it is worth knowing. */
+.composer-count {
+  margin: 0;
+  padding: 8px 14px 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.composer-count.over {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+/* ---------- the bar ---------- */
+.composer-bar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  padding: 6px 8px;
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 9px 9px;
+  background: var(--soft);
+}
+.composer-tool {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  color: var(--muted);
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+.composer-tool:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--soft) 55%, var(--border));
+  color: var(--ink);
+}
+/* While its list is open the button is pressed, and has to look it. A tint of
+   the bar's own colour is 1.07:1 against the bar, which is no state at all. */
+.composer-tool[aria-expanded="true"] {
+  background: var(--blue);
+  color: var(--surface);
+}
+.composer-tool:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.composer-tool:focus-visible {
+  outline-offset: 1px;
+}
+
+/* What a duck is doing here, in the bar rather than in a strip of its own. */
+.composer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding-left: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.composer-status strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+.composer-status .spin {
+  flex-shrink: 0;
+  color: var(--blue);
+}
+.composer-since {
+  color: var(--muted);
+}
+/* Stop is beside the words it belongs to. It was eleven-pixel pink text at the
+   far edge of the screen. Not .button.secondary: that one is white with a grey
+   edge in the light themes and, in Dark, #302a40 on #625572 - which on this
+   bar is 1.96:1, a button you cannot see. */
+.composer-area button.composer-stop {
+  flex-shrink: 0;
+  gap: 7px;
+  padding: 7px 13px 7px 11px;
+  background: var(--surface);
+  border-color: var(--edge);
+  color: var(--ink);
+}
+.composer-area button.composer-stop svg {
+  color: var(--danger);
+  fill: var(--danger);
+}
+.composer-area button.composer-stop:hover:not(:disabled) {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+  color: var(--danger);
+  box-shadow: none;
+}
+.composer-area button.composer-stop:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* ---------- Send, which says where the message goes ---------- */
+.composer-send {
+  display: inline-flex;
+  gap: 1px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+/* The accent from the token, not from .button's own colours: those are a
+   literal #7256d8 in Dark, which is 2.59:1 against this bar - the one button
+   on the screen that has to be seen. --surface on --blue is white on the
+   accent in the four light themes and dark ink on lavender in Dark, the same
+   pairing the AI page's lead tile uses. */
+.composer-area .composer-send > .button {
+  gap: 7px;
+  padding: 8px 14px;
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--surface);
+}
+.composer-area .composer-send > .button:hover:not(:disabled) {
+  /* Darker in the light themes, lighter in Dark, because --ink goes the other
+     way in each - and either way the words on it stay readable. */
+  background: color-mix(in srgb, var(--blue) 85%, var(--ink));
+  border-color: color-mix(in srgb, var(--blue) 85%, var(--ink));
+  box-shadow: none;
+}
+.composer-area .composer-send > .composer-go {
+  border-radius: 6px 0 0 6px;
+}
+.composer-area .composer-send > .composer-go:only-child {
+  border-radius: 6px;
+}
+.composer-area .composer-send > .composer-more {
+  width: 38px;
+  padding: 0;
+  border-radius: 0 6px 6px 0;
+}
+/* Nothing typed yet, so Send is off - but the half that opens the list still
+   works, and has to keep an edge that can be seen. */
+.composer-area button.composer-more.quiet {
+  background: var(--surface);
+  border-color: var(--edge);
+  color: var(--ink);
+}
+.composer-area button.composer-more.quiet:hover:not(:disabled) {
+  background: var(--soft);
+  border-color: var(--ink);
+  box-shadow: none;
+}
+/* A switched-off Send was a blue button at half strength: 2.45:1, and read as
+   a button somebody had broken rather than as one waiting for a message. */
+.composer-area .composer-send > .button:disabled {
+  opacity: 1;
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--muted);
+  box-shadow: none;
+}
+.composer-area .composer-send > .button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.composer-area .composer-send > .button:focus-visible {
+  outline-offset: 1px;
+  /* The two halves touch, so a ring drawn outside one is drawn under the
+     other. Lift the one being asked about. */
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- the lists the bar opens ---------- */
+.composer-list {
+  position: absolute;
+  bottom: calc(100% - 2px);
+  z-index: 3;
+  width: min(284px, calc(100% - 16px));
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 4px;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--ink) 16%, transparent);
+}
+.composer-list.at-start {
+  left: 8px;
+}
+.composer-list.at-end {
+  right: 8px;
+}
+.composer-list > button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 40px;
+  padding: 5px 10px 5px 7px;
+  border-radius: 7px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+  transition: background 0.12s;
+}
+.composer-list > button:hover {
+  background: var(--soft);
+}
+.composer-list > button:active {
+  background: color-mix(in srgb, var(--soft) 60%, var(--border));
+}
+.composer-list > button:focus-visible {
+  outline-offset: -2px;
+}
+/* Sending to nobody is a real answer, and a quieter one than a duck. */
+.composer-list > button.plain {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+/* Which one this channel is on now. A tick as well as the colour, because a
+   colour on its own is not an answer for everybody. */
+.composer-list > button[aria-pressed="true"] {
+  color: var(--blue);
+  font-weight: 700;
+}
+.composer-tick {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--blue);
+}
+.composer-line {
+  display: block;
+  height: 1px;
+  margin: 4px 6px;
+  background: var(--border);
+}
+.composer-mark {
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 42px;
+}
+.composer-faces {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+.composer-faces > .avatar + .avatar {
+  margin-left: -9px;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+.composer-tile {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  color: var(--blue);
+}
+
+/* ---------- the banners that share this space ---------- */
+/* These keep their words. What they did not have: a button 30px tall on a
+   phone, where 36 is the smallest thing worth aiming at, and in Dark the same
+   literal purple that was 2.73:1 against the banner it sits on. */
+.composer-area .button.small {
+  min-height: 36px;
+}
+.composer-area .connect-banner > .button:not(.secondary) {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--surface);
+}
+.composer-area .connect-banner > .button:not(.secondary):hover:not(:disabled) {
+  background: color-mix(in srgb, var(--blue) 85%, var(--ink));
+  box-shadow: none;
+}
+/* On a phone the banner's one button is how somebody gets from a chat whose
+   ducks cannot answer to the page that fixes it, and 36px is short of what a
+   thumb needs. */
+@media (max-width: 640px) {
+  .composer-area .connect-banner > .button {
+    min-height: 44px;
+  }
+}
+
+/* ---------- a file waiting to go with the message ---------- */
+/* The card is the Files card, but here it is part of the message box, and the
+   cross that takes the file back off the message was a 20px target - little
+   over half of what a thumb needs. */
+@media (max-width: 640px) {
+  .composer-area .draft-file {
+    padding-right: 42px;
+  }
+  .composer-area .draft-file > button {
+    top: 50%;
+    right: 3px;
+    width: 36px;
+    height: 36px;
+    transform: translateY(-50%);
+  }
+  .composer-area .draft-attachments > span {
+    padding: 4px 4px 4px 8px;
+  }
+  .composer-area .draft-attachments button {
+    width: 36px;
+    height: 36px;
+    border-radius: 7px;
+  }
+}
+
+/* ---------- narrower than one row ---------- */
+/* Too narrow to hold the working line, Stop, attach and Send side by side:
+   the words and Stop take the first row, attach and Send the second. */
+@container (max-width: 640px) {
+  .composer-status {
+    order: -3;
+    flex: 1 1 0;
+    padding: 2px 0 2px 4px;
+  }
+  .composer-area button.composer-stop {
+    order: -2;
+  }
+  .composer-bar.working::before {
+    content: "";
+    order: -1;
+    flex: 1 1 100%;
+    height: 0;
+  }
+}
+/* On a phone an open list would hang off the side of the box, so it takes the
+   top of the bar instead and fills it. */
+@container (max-width: 430px) {
+  .composer-list {
+    position: static;
+    order: -4;
+    flex: 1 1 100%;
+    width: auto;
+    max-height: 232px;
+    margin-bottom: 2px;
+    box-shadow: none;
+  }
+}
+
+/* ---------- the room the box has on the page ---------- */
+@media (min-width: 1500px) {
+  .composer-area {
+    padding-inline: 26px;
+  }
+}
+@media (max-width: 1100px) {
+  .composer-area {
+    padding: 12px 16px;
+  }
+}
+@media (max-width: 640px) {
+  .composer-area {
+    padding: 9px 11px;
+  }
+  .composer-area .composer textarea {
+    padding: 11px 12px 6px;
+  }
+  .composer-bar {
+    padding: 6px 7px;
+  }
+}

@@ -1,0 +1,201 @@
+.team-page {
+  background: var(--surface, #fff);
+}
+.team-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  /* As wide as what is under it, on either tab, so the line ends where the
+     cards and the feed end. */
+  max-width: 1100px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 22px;
+}
+.team-sections button {
+  padding: 10px 0;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+}
+.team-sections button:hover {
+  color: var(--ink);
+  border-color: var(--border);
+}
+.team-sections button[aria-selected="true"] {
+  border-color: var(--purple);
+  color: var(--purple);
+  font-weight: 600;
+}
+.team-sections button[aria-selected="true"]:hover {
+  border-color: var(--purple);
+  /* The rule above this one wins on the chosen tab - same weight, later in
+     the file - so without a colour of its own here, hovering the tab you are
+     already on does nothing at all. */
+  color: color-mix(in srgb, var(--purple) 72%, var(--ink));
+}
+.team-page .team-people .page {
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+}
+.team-activity {
+  max-width: 1100px;
+}
+.team-activity .page-heading {
+  margin-bottom: 8px;
+}
+.team-activity-scope {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0 0 20px;
+}
+.team-activity-list {
+  display: grid;
+  gap: 16px;
+}
+.team-duck-activity {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-width: 0;
+  background: var(--surface, #fff);
+}
+.team-duck-activity.focused {
+  border-color: var(--purple);
+}
+.team-duck-activity > header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--soft);
+  border-radius: 10px 10px 0 0;
+}
+.team-duck-activity > header h2 {
+  font-size: 15px;
+  line-height: 1.4;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.team-duck-activity > header span:not(.avatar) {
+  color: var(--muted);
+  font-size: 12px;
+}
+.team-task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.team-task {
+  padding: 17px 18px;
+  min-width: 0;
+}
+.team-task + .team-task {
+  border-top: 1px solid var(--border);
+}
+.team-task-main {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+}
+.team-task-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.team-task-copy h3 {
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 6px 0 5px;
+}
+.team-task-copy p {
+  font-size: 13px;
+  margin: 4px 0;
+  line-height: 1.5;
+}
+.team-task-copy .team-task-for,
+.team-task-copy .team-task-next,
+.team-task-copy time {
+  color: var(--muted);
+  font-size: 12px;
+}
+.team-task-copy time {
+  display: block;
+  margin-top: 8px;
+}
+.team-task-state {
+  display: inline-flex;
+  gap: 6px;
+  align-items: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--purple);
+}
+.team-task-state svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.team-task-state.needs_you,
+.team-task-state.waiting_approval {
+  color: var(--ink);
+}
+.team-task-state.queued {
+  color: var(--muted);
+}
+.team-task-blocker {
+  font-weight: 500;
+}
+.team-task-open {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.team-task-details {
+  margin-top: 12px;
+}
+.team-task-details > summary {
+  color: var(--blue);
+  cursor: pointer;
+  width: fit-content;
+  font-size: 13px;
+  padding: 5px 0;
+}
+.team-task-details > div {
+  padding-top: 8px;
+}
+.team-task-documents h4,
+.team-task-request h4 {
+  font-size: 13px;
+  margin: 14px 0 8px;
+}
+.team-task-documents .artifact-card {
+  max-width: 100%;
+}
+.team-duck-empty {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 16px 18px;
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .team-task-main {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .team-task-open {
+    min-height: 40px;
+  }
+  .team-duck-activity > header,
+  .team-task {
+    padding: 13px;
+  }
+  .team-task-details > summary {
+    padding: 10px 0;
+  }
+  .team-sections {
+    gap: 16px;
+  }
+}
+
+.team-task-request {
+  overflow-wrap: anywhere;
+}

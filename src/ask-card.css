@@ -1,0 +1,318 @@
+/* One card for every "may I?": a duck wanting to use a tool, Chief with a
+   skill or a board, a duck stopped at a connection. It is the card in
+   human-input.css - its surface, its soft foot, its rim on the primary button -
+   and this file holds only what that card has no part for: the tag and title,
+   the lines, the note, the bar's answers and the one line it folds to. Every
+   colour is a theme token. */
+
+/* One class, so Needs you's rule for a card inside its line (two) still takes
+   the border, the corners and the margins off. */
+.ask-card {
+  max-width: 640px;
+  margin: 10px 0 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 4%, transparent);
+  overflow: hidden;
+}
+.ask-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px 0;
+}
+/* The sidebar badge's colours, so it reads as the same "waiting on you". */
+.ask-tag {
+  padding: 2px 7px;
+  border: 1px solid var(--attn-line);
+  border-radius: 4px;
+  background: var(--attn);
+  color: var(--attn-ink);
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.ask-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+/* Goes somewhere, so it wears the colour of a link. 20px of words, 38px to
+   hit, the reach a layer over it so the ring hugs the words. */
+.ask-more,
+.ask-open {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0;
+  border-radius: 3px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.ask-more::after,
+.ask-open::after {
+  content: "";
+  position: absolute;
+  inset: -9px 0;
+}
+.ask-more:hover,
+.ask-open:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ask-more svg {
+  flex: none;
+  transition: transform 0.15s;
+}
+.ask-more[aria-expanded="true"] svg {
+  transform: rotate(90deg);
+}
+/* In Needs you the link has a row of its own, under the lines. */
+.ask-card > .ask-more {
+  margin: 6px 16px 0;
+}
+
+/* What will happen, one or two lines in ink. */
+.ask-lines {
+  display: grid;
+  gap: 5px;
+  margin: 10px 16px 0;
+  padding: 0;
+  list-style: none;
+}
+.ask-lines li {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.ask-lines svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--muted);
+}
+/* What a tool sends, folded open under the lines. Two classes, to outrank the
+   list's own margin, and its display, which would show it while hidden. */
+.ask-card .ask-sends {
+  margin: 8px 16px 0;
+}
+.ask-card .ask-sends[hidden] {
+  display: none;
+}
+/* The note. Two classes, to outrank the card's rule for its form's labels. */
+.ask-card .ask-note {
+  margin: 12px 16px 0;
+  font-size: 13px;
+  color: var(--ink);
+}
+/* The words are the person's own, not a label's. */
+.ask-note .human-input-field {
+  font-weight: 400;
+}
+.ask-card .error-box {
+  margin: 10px 16px 0;
+}
+
+/* The answers, in the card's soft foot. */
+.human-input-foot.ask-bar {
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 16px;
+}
+/* A second button has to be found by its edge (3:1). Four classes, to outrank
+   the Dark theme's own edge for one, which comes later in the bundle. */
+.ask-card .ask-bar .button.secondary {
+  border-color: var(--edge);
+}
+.ask-card .ask-bar .button.secondary:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+/* The way out: a word, not a third box. */
+.ask-decline {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 38px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.ask-decline:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.ask-decline:active:not(:disabled) {
+  transform: translateY(1px);
+}
+/* The right of the bar: the lasting permission, or how long it stays open.
+   Two classes on the box, to outrank the card's rule for its form's labels,
+   which stacks them. The whole label is the thing to press. */
+.ask-card .ask-always {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  margin: 0 0 0 auto;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.ask-always input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+.ask-until {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+/* Somebody who may not decide: who can, instead of the answers. */
+.ask-cannot {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Answered: one line that says who, what and when. */
+.ask-done {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 640px;
+  margin: 10px 0 0;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.ask-done-mark {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+.ask-done.yes .ask-done-mark {
+  color: var(--ok);
+  background: var(--ok-soft);
+}
+.ask-done:is(.no, .note, .over) .ask-done-mark {
+  color: var(--muted);
+  background: var(--soft);
+}
+.ask-done.fail .ask-done-mark {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+.ask-done-words {
+  flex: 1;
+  min-width: 0;
+}
+.ask-done b {
+  font-weight: 600;
+  color: var(--ink);
+}
+/* Whoever answered from the keyboard is left here, where the button was. */
+.ask-done:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .ask-card {
+    max-width: 100%;
+  }
+  /* The tag and the title share the first line, and the link has one of its
+     own under them. */
+  .ask-head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: baseline;
+    padding: 13px 13px 0;
+  }
+  .ask-head .ask-more {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-left: 0;
+  }
+  .ask-lines {
+    margin-inline: 13px;
+  }
+  .ask-card .ask-sends,
+  .ask-card .ask-note,
+  .ask-card .error-box,
+  .ask-card > .ask-more {
+    margin-inline: 13px;
+  }
+  .human-input-foot.ask-bar {
+    padding: 10px 13px;
+  }
+  /* A thumb gets 44px for each answer, and nothing is under 13px. */
+  .ask-bar .button {
+    width: 100%;
+    min-height: 44px;
+  }
+  .ask-decline {
+    height: auto;
+    min-height: 44px;
+  }
+  .ask-card .ask-always,
+  .ask-until {
+    flex: 1 1 100%;
+    margin-left: 0;
+  }
+  .ask-card .ask-always {
+    min-height: 44px;
+  }
+  .ask-tag,
+  .ask-until,
+  .ask-cannot,
+  .ask-card .ask-always,
+  .ask-card .ask-sends dt {
+    font-size: 13px;
+  }
+  /* In a sentence or a heading, so their reach grows rather than the line. */
+  .ask-more::after,
+  .ask-open::after {
+    inset: -13px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ask-more svg {
+    transition: none;
+  }
+  .ask-decline:active:not(:disabled) {
+    transform: none;
+  }
+}

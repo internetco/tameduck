@@ -1,0 +1,539 @@
+/* The page an invitation opens (src/Join.jsx). It sits between /login and
+   /enter, so it wears their look rather than the app's: their fonts, their
+   colours and their sizes, from public/login.html. Every colour is written
+   out rather than taken from a theme, so the page is the same whatever theme
+   this browser saved, and everything is under .join-page, so none of it
+   reaches the workspace. */
+
+/* The files /login already loaded, so the browser has them. Inter, for the
+   name beside the mark, is already in this bundle. */
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/outfit-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("/fonts/public-sans-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("/fonts/public-sans-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("/fonts/public-sans-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("/fonts/public-sans-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* The app's :root is purple, and a phone shows it when the page is bounced
+   past its edge. */
+html.joining {
+  background: #fbf8f1;
+  color-scheme: light;
+}
+.join-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: #fbf8f1;
+  color: #1a1533;
+  font-family: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  /* No word left alone on a last line: "5 / ducks" and "this / address."
+     on a phone. */
+  text-wrap: pretty;
+}
+.join-gut {
+  padding-inline: clamp(16px, 5vw, 40px);
+}
+.join-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  height: 68px;
+}
+.join-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: #1a1533;
+}
+.join-brand img {
+  display: block;
+}
+.join-brand b {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+.join-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 20px 40px;
+}
+.join-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 430px;
+  min-width: 0;
+}
+.join-page h1 {
+  margin: 0;
+  font-family: "Outfit", "Public Sans", sans-serif;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+.join-plain h1 {
+  font-size: 28px;
+}
+/* Focus is put on the heading after signing out, to say where the page now
+   starts; a ring there would look like something to press. */
+.join-page h1:focus {
+  outline: none;
+}
+
+/* Who asked. */
+.join-asked {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.join-tile {
+  width: 50px;
+  height: 50px;
+  border-radius: 13px;
+  background: #40258d;
+  color: #fff;
+  font-size: 22px;
+  box-shadow: 0 4px 0 #1a1533;
+}
+.join-by {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 14.5px;
+  color: #56506e;
+  overflow-wrap: anywhere;
+}
+.join-by strong {
+  font-weight: 600;
+  color: #1a1533;
+}
+.join-by .avatar {
+  border-radius: 6px;
+}
+/* A person's initial is written at 17px everywhere, with an !important
+   (style.css, .avatar.human), so this one needs one too. */
+.join-by .avatar.human,
+.join-faces .avatar.human {
+  background: #b79cf5;
+  color: #231a48;
+  font-size: 12px !important;
+  font-weight: 700;
+}
+
+/* The role, and who is there. */
+.join-card {
+  background: #fff;
+  border: 1px solid #e7e0cf;
+  border-radius: 16px;
+}
+.join-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 16px;
+  padding: 14px 0;
+}
+.join-row + .join-row {
+  border-top: 1px solid #efe8d8;
+}
+.join-there {
+  align-items: center;
+}
+.join-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.join-role {
+  background: #fff1c2;
+  color: #76500b;
+}
+.join-team {
+  background: #efeafd;
+  color: #4c27c9;
+}
+.join-words {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.join-words strong {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.join-words span {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #56506e;
+}
+.join-faces {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+.join-faces .avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  box-shadow: 0 0 0 2px #fff;
+}
+.join-faces .avatar + .avatar {
+  margin-left: -6px;
+}
+
+/* The name, the address, and the button. */
+.join-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.join-field,
+.join-send {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.join-send {
+  gap: 10px;
+}
+.join-field label {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.join-page input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid #d9ceb5;
+  border-radius: 12px;
+  background: #fff;
+  color: #1a1533;
+  font: inherit;
+  font-size: 15px;
+}
+.join-as {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #56506e;
+  overflow-wrap: anywhere;
+}
+.join-as svg {
+  margin-top: 2.5px;
+}
+.join-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 13px;
+  background: #1a1533;
+  color: #ffce32;
+  font: inherit;
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.join-go:hover {
+  background: #2b2350;
+}
+.join-go:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.join-note {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #56506e;
+}
+/* The terms, where somebody says yes to them, as /login and /start say it. */
+.join-consent {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #56506e;
+}
+/* A finger-sized target without moving the words: the padding is taken back
+   by the margin. */
+.join-consent a {
+  display: inline-block;
+  padding: 13px 0;
+  margin: -13px 0;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.join-page .join-consent a:hover {
+  color: #1a1533;
+  text-decoration: underline;
+}
+.join-problem {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #a5294a;
+  overflow-wrap: anywhere;
+}
+
+/* Somebody else is signed in here. */
+.join-small {
+  gap: 10px;
+}
+.join-small .join-tile {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 16px;
+  box-shadow: 0 3px 0 #1a1533;
+}
+.join-page .join-small h1 {
+  font-size: 26px;
+}
+.join-other {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid #f1dc8f;
+  border-radius: 12px;
+  background: #fff8dc;
+}
+.join-other-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffce32;
+  color: #362048;
+}
+.join-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.join-acts .join-go {
+  flex: 1 1 200px;
+  width: auto;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 14.5px;
+}
+.join-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid #d9ceb5;
+  border-radius: 12px;
+  background: #fffdf8;
+  color: #1a1533;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.join-ghost:hover {
+  background: #fff;
+  border-color: #c9bca0;
+}
+.join-col > .join-ghost {
+  align-self: flex-start;
+}
+
+/* The link does not work, or the server did not answer; or still asking. */
+.join-why {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #56506e;
+  overflow-wrap: anywhere;
+}
+.join-wait {
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  color: #56506e;
+}
+
+.join-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  min-height: 60px;
+  padding-block: 8px;
+  border-top: 1px solid #eae3d2;
+  font-size: 13.5px;
+  color: #56506e;
+}
+.join-foot > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.join-legal {
+  display: flex;
+  gap: 18px;
+}
+.join-legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #56506e;
+  text-decoration: underline;
+}
+
+/* The app underlines every link on hover and rings focus in its own blue;
+   these are the sign-in pages' instead. */
+.join-page a:hover {
+  text-decoration: none;
+}
+.join-legal a:hover {
+  color: #1a1533;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.join-brand:hover {
+  opacity: 0.76;
+}
+.join-page :focus-visible {
+  outline: 3px solid #4c27c9;
+  outline-offset: 3px;
+}
+.join-brand:focus-visible,
+.join-legal a:focus-visible {
+  border-radius: 8px;
+}
+.join-go,
+.join-ghost,
+.join-brand,
+.join-legal a {
+  transition:
+    transform 0.12s ease,
+    background-color 0.12s ease,
+    color 0.12s ease,
+    opacity 0.12s ease,
+    border-color 0.12s ease;
+}
+.join-go:active:not(:disabled),
+.join-ghost:active {
+  transform: translateY(1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .join-go,
+  .join-ghost,
+  .join-brand,
+  .join-legal a {
+    transition: none;
+  }
+  .join-go:active:not(:disabled),
+  .join-ghost:active {
+    transform: none;
+  }
+}
+
+/* A phone: the column starts at the top, and the footer stacks. */
+@media (max-width: 640px) {
+  .join-head {
+    height: 60px;
+  }
+  .join-main {
+    align-items: flex-start;
+    padding-block: 12px 28px;
+  }
+  .join-page h1 {
+    font-size: 28px;
+  }
+  .join-plain h1 {
+    font-size: 22px;
+  }
+  .join-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-block: 14px 4px;
+  }
+}
+/* Beside the words, "Robin, Sam and 5 ducks" would break over two lines, so
+   the faces go under them, lined up with them. */
+@media (max-width: 480px) {
+  .join-there {
+    flex-wrap: wrap;
+  }
+  .join-faces {
+    flex-basis: calc(100% - 44px);
+    margin-left: 44px;
+  }
+}

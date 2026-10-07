@@ -1,0 +1,247 @@
+/* A duck's Webhook tab. Every colour is a theme token. */
+.duck-webhook {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.duck-webhook h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+.duck-webhook h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.duck-webhook-intro {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.duck-webhook-strong {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.duck-webhook-strong i,
+.duck-webhook-field i {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--muted);
+}
+.duck-webhook-muted {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.duck-webhook-mono,
+.duck-webhook-code,
+.duck-webhook-copy input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.duck-webhook code {
+  font-size: 0.95em;
+}
+.duck-webhook-switch,
+.duck-webhook-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.duck-webhook-switch {
+  flex-wrap: nowrap;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.duck-webhook-switch > div {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.duck-webhook-row > div {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.duck-webhook-note {
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.duck-webhook-note ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+.duck-webhook-shown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 18px;
+  border: 1px solid color-mix(in srgb, var(--ok) 45%, var(--surface));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ok) 8%, var(--surface));
+}
+.duck-webhook-copy {
+  display: flex;
+  gap: 8px;
+}
+.duck-webhook-copy input {
+  flex: 1;
+  min-width: 0;
+  font-size: 12.5px;
+}
+.duck-webhook-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.duck-webhook-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.duck-webhook-head h4 {
+  flex: 1;
+}
+.duck-webhook-head .ok {
+  color: var(--ok);
+}
+.duck-webhook-head .warn {
+  color: var(--attn-ink, var(--muted));
+}
+.duck-webhook-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+  background: var(--soft);
+  color: var(--ink-2);
+}
+.duck-webhook-pill.ok {
+  background: color-mix(in srgb, var(--ok) 14%, var(--surface));
+  color: var(--ok);
+}
+.duck-webhook-pill.warn {
+  background: var(--attn);
+  color: var(--attn-ink);
+}
+.duck-webhook-pill.bad {
+  background: color-mix(in srgb, var(--danger, #a5294a) 12%, var(--surface));
+  color: var(--danger, #a5294a);
+}
+.duck-webhook-lock {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.duck-webhook-lock > svg {
+  margin-top: 2px;
+  color: var(--muted);
+}
+.duck-webhook-lock > div:not(.duck-webhook-buttons),
+.duck-webhook-lock > label {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.duck-webhook-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.duck-webhook-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.duck-webhook-field textarea,
+.duck-webhook-field input {
+  width: 100%;
+}
+.duck-webhook-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.duck-webhook-code {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.duck-webhook-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.duck-webhook-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.duck-webhook-list li {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 9px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.duck-webhook-list time {
+  color: var(--muted);
+  white-space: nowrap;
+}
+.duck-webhook-what {
+  overflow-wrap: anywhere;
+}
+.duck-webhook-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.duck-webhook-foot > span {
+  flex: 1;
+}
+@media (max-width: 640px) {
+  .duck-webhook-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .duck-webhook-copy {
+    flex-direction: column;
+  }
+  .duck-webhook-list li {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+  .duck-webhook-list li .duck-webhook-pill {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .duck-webhook-foot .button {
+    min-height: 44px;
+  }
+}

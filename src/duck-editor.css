@@ -1,0 +1,352 @@
+/* The duck dialog.
+
+   Its tabs say what they hold and whether it is filled in, and have a name of
+   their own: they were written beside the inbox's .tabs, which has since gone.
+   Every colour is one of the tokens at the end of themes.css, so the five
+   themes need no rule each.
+
+   This file is loaded before style.css, which wins a tie. Where a rule here
+   has to beat one there, it says so with one more class. */
+/* The cross that closes a dialog is 30px everywhere. Here it is 36, which is
+   what a thumb needs, without making the bar it sits in any taller. */
+.modal:has(.duck-tabs) .modal-head .icon-button {
+  width: 36px;
+  height: 36px;
+  margin: -3px -6px -3px 0;
+  border-radius: 8px;
+}
+/* A box you type in has to be seen. The app's field edge is 1.6:1 on white;
+   in this dialog it is --edge, which is 3:1 or better in all five themes. The
+   pickers and the Contacts form that open inside it get the same edge, so one
+   dialog does not have two kinds of box. A dropdown that has the focus keeps
+   the accent it wears everywhere else. */
+.modal:has(.duck-tabs) :is(input, textarea, select:not(:focus)),
+.modal:has(.duck-tabs) .search-field:not(:focus-within),
+.modal:has(.duck-tabs) .button.secondary {
+  border-color: var(--edge);
+}
+/* In a row the tabs share the width equally, except that none is ever
+   narrower than its own words: "What it remembers" takes a little from
+   "Profile" rather than breaking onto a second line. */
+.duck-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+.duck-tab {
+  flex: 1 1 0;
+  min-width: max-content;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  align-content: start;
+  gap: 2px 6px;
+  min-height: 60px;
+  margin-bottom: -1px;
+  padding: 10px 10px 9px;
+  border-bottom: 3px solid transparent;
+  border-radius: 8px 8px 0 0;
+  text-align: left;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.duck-tab b {
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 20px;
+  color: var(--ink);
+}
+.duck-tab small {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.duck-tab:hover {
+  background: var(--soft);
+  border-bottom-color: var(--accent-line);
+}
+.duck-tab:active {
+  background: var(--accent-soft);
+}
+.duck-tab[aria-selected="true"] {
+  background: var(--accent-soft);
+  border-bottom-color: var(--blue);
+}
+.duck-tab[aria-selected="true"] b {
+  color: var(--blue);
+}
+/* Drawn inside the tab, so the tab beside it never covers half of it. */
+.duck-tab:focus-visible {
+  outline-offset: -3px;
+}
+.duck-tab-mark {
+  display: block;
+  color: var(--muted);
+}
+.duck-tab-mark.filled {
+  color: var(--ok);
+}
+/* "Empty" on the job's tab and "Its job is still empty" beside the button that
+   makes the duck: the same words in the same colour, which is the colour the
+   sidebar already uses for something that needs you. */
+.duck-flag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--attn);
+  color: var(--attn-ink);
+  padding: 3px 7px;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.duck-tab .duck-flag {
+  padding: 0 6px;
+}
+
+/* The profile tab */
+.duck-pane .field > label i {
+  margin-left: 3px;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--muted);
+}
+.duck-look {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 12px;
+  margin-bottom: 18px;
+}
+.duck-look.open {
+  display: block;
+}
+.duck-look:not(.open) .field {
+  margin-bottom: 0;
+}
+.duck-faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-left: -5px;
+}
+.duck-faces button {
+  width: 50px;
+  height: 50px;
+  padding: 3px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    transform 0.12s;
+}
+/* The avatar is sized in its own style attribute, for every other place that
+   draws one. Here it fills the button. */
+.duck-faces .avatar {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+}
+.duck-faces button:hover:not(:disabled) {
+  background: var(--soft);
+  border-color: var(--accent-line);
+}
+.duck-faces button:active:not(:disabled) {
+  transform: scale(0.94);
+}
+.duck-faces button[aria-pressed="true"] {
+  border-color: var(--blue);
+  background: var(--accent-soft);
+}
+/* The ring round the chosen colour was a near-black written out, which is no
+   ring at all on the dark theme. */
+.duck-look .color-options button.selected {
+  outline-color: var(--ink);
+}
+/* Level with the faces beside it, and tall enough for a thumb. */
+.duck-look .button.small {
+  min-height: 36px;
+  margin-bottom: 7px;
+}
+.duck-look.open .button.small {
+  margin-bottom: 0;
+}
+.duck-look .button.small:active:not(:disabled) {
+  transform: translateY(1px);
+}
+/* The box that searches the emoji was 33px tall, a little short for a thumb. */
+.duck-look .search-field input {
+  min-height: 36px;
+}
+.duck-model-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.duck-model-row svg {
+  color: var(--muted);
+}
+.duck-model-row b {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.duck-model-row small {
+  font-size: 12px;
+  color: var(--muted);
+}
+/* "Hide" is four letters. It still has to be wide enough to press. */
+.duck-model-row .text-button {
+  justify-content: flex-end;
+  min-width: 44px;
+  min-height: 36px;
+  margin-left: auto;
+}
+.duck-model-row .text-button:active,
+.duck-actions .text-button:active {
+  opacity: 0.75;
+}
+/* The row above already says "AI model", so the picker's own heading would
+   say it twice. */
+.duck-pane .duck-model-setting {
+  margin: 10px 0 0;
+}
+.duck-pane .duck-model-setting > div:first-child {
+  display: none;
+}
+.duck-pane .duck-model-setting .ai-apply-all {
+  margin-top: 2px;
+}
+/* "Refresh models" was a line of text 16px tall. It is as tall as a thumb
+   here, and the margins take the extra back so nothing around it moves. */
+.duck-pane .model-catalog-tools .text-button {
+  min-height: 36px;
+  margin-block: -10px;
+}
+
+/* Its job, Character, Notes: a box to write in the way you would talk, where
+   there was a code editor with "# Identity" in it. It grows with what is
+   written, up to a height that leaves the button below it on screen. */
+.duck-brief label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.duck-brief p {
+  max-width: 76ch;
+  margin: 4px 0 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.duck-brief textarea {
+  display: block;
+  width: 100%;
+  min-height: 142px;
+  max-height: min(520px, 50dvh);
+  padding: 13px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.65;
+  field-sizing: content;
+  transition: border-color 0.15s;
+}
+.duck-brief textarea:hover:not(:read-only) {
+  border-color: var(--blue);
+}
+
+/* The bar at the bottom */
+.duck-actions .duck-flag,
+.duck-actions .duck-remove {
+  margin-right: auto;
+}
+.duck-actions .text-button {
+  min-height: 36px;
+}
+/* "Off the team." and "A member of…" were 10px, which nobody reads. Both
+   classes, because style.css is loaded after this file and wins a tie. */
+.modal-actions.duck-actions > small {
+  font-size: 12px;
+}
+.duck-actions .duck-remove {
+  color: var(--danger);
+}
+/* Skills has no bar, because it saves on its own. One line stands where it
+   would have been. */
+.duck-tab-foot {
+  margin: 23px -23px -23px;
+  padding: 16px 23px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Six tabs need about 780px to stand in a row. Below that they are boxes in
+   a grid, every one still in sight with its mark, rather than a strip that
+   hides the last two off the side of a phone. */
+@media (max-width: 800px) {
+  .duck-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    border-bottom: 0;
+  }
+  .duck-tabs.many {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .duck-tab {
+    min-width: 0;
+    margin-bottom: 0;
+    border: 1px solid var(--edge);
+    border-radius: 8px;
+  }
+  .duck-tab small {
+    white-space: normal;
+  }
+  .duck-tab:hover,
+  .duck-tab[aria-selected="true"] {
+    border-color: var(--blue);
+  }
+}
+@media (max-width: 640px) {
+  .duck-tabs,
+  .duck-tabs.many {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .duck-tab-foot {
+    margin: 23px -18px -18px;
+    padding: 16px 18px 18px;
+  }
+  .duck-look .color-options button {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Seven tabs do not fit a 790px dialog at their natural width, so above the
+   phone grid they share it, and their small line wraps instead. */
+@media (min-width: 801px) {
+  .duck-tabs.seven .duck-tab {
+    min-width: 0;
+    padding: 10px 8px 9px;
+  }
+  .duck-tabs.seven .duck-tab small {
+    white-space: normal;
+  }
+}

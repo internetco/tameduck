@@ -1,0 +1,63 @@
+/* Where somebody left off, and the way back down to what came in since they
+   scrolled up. Before these the only sign of a new message was a count in the
+   sidebar, on the row of the chat they were already reading. */
+.chat-new-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 25px 12px;
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 700;
+  scroll-margin-top: 16px;
+}
+.chat-new-line:before,
+.chat-new-line:after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+/* Pinned to the bottom of the view while somebody reads further up. The
+   negative margin takes back the room it would otherwise add to the end of
+   the transcript. */
+.chat-to-latest {
+  position: sticky;
+  bottom: 14px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: max-content;
+  min-height: 36px;
+  margin: -36px auto 0;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--blue);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.18);
+  cursor: pointer;
+}
+.chat-to-latest:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* The message a search result opened, marked for a moment so the eye finds it
+   among the others. */
+.message.message-found {
+  animation: message-found 2.4s ease-out;
+}
+@keyframes message-found {
+  0%,
+  45% {
+    background: color-mix(in srgb, var(--yellow) 35%, transparent);
+  }
+  100% {
+    background: transparent;
+  }
+}

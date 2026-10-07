@@ -1,0 +1,37 @@
+.browser-notification-card {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 680px;
+  background: var(--surface);
+}
+.browser-notification-card > svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--purple);
+}
+.browser-notification-card h3 {
+  margin: 0 0 10px;
+}
+.browser-notification-card p {
+  margin: 0 0 16px;
+  line-height: 1.6;
+}
+.browser-notification-card .notification-help {
+  font-size: 13px;
+  color: var(--muted);
+}
+.browser-notification-card button {
+  margin-top: 2px;
+}
+.browser-notification-card [role="status"] {
+  margin: 14px 0 0;
+}
+@media (max-width: 600px) {
+  .browser-notification-card {
+    padding: 18px;
+    gap: 12px;
+  }
+}

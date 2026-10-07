@@ -1,0 +1,429 @@
+/* The computer-use page. Same bones as the storage page, so the two settings
+   pages that show a company a number read as one product. */
+.usage-page {
+  color: var(--ink);
+}
+.usage-alert {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  background: var(--soft);
+  border-radius: 8px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.usage-alert strong {
+  color: var(--ink);
+}
+/* A limit is reached right now. There is one plan and nothing to upgrade
+   to, so it says when computers can start again and asks for nothing. */
+.usage-blocked {
+  border-left-color: var(--danger, #d64545);
+}
+.usage-blocked p {
+  margin: 0;
+}
+
+/* The big number and the facts beside it. */
+.usage-overview {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+  margin-bottom: 24px;
+}
+.usage-total {
+  padding: 28px;
+  background: var(--soft);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+}
+.usage-kicker {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 650;
+  color: var(--muted);
+}
+.usage-total > strong {
+  font-size: 48px;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  font-weight: 760;
+  color: var(--ink);
+  margin-top: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.usage-total > span:not(.usage-kicker):not(.usage-bar) {
+  font-weight: 600;
+}
+.usage-total > .usage-bar {
+  width: 100%;
+  margin-top: 8px;
+}
+.usage-total > p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 10px 0 0;
+  line-height: 1.6;
+}
+.usage-facts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 28px;
+}
+.usage-facts > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.usage-facts svg {
+  color: var(--blue);
+  flex-shrink: 0;
+}
+.usage-facts strong {
+  display: block;
+  color: var(--ink);
+  font-size: 22px;
+  margin-bottom: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* One bar per limit. */
+.usage-bar {
+  display: block;
+  height: 10px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.usage-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--blue);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .usage-bar > span {
+    transition: none;
+  }
+}
+.usage-card h3 {
+  margin: 0 0 6px;
+}
+/* In a trial: what the plan has once it starts, beside the trial's one day. */
+.usage-next-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+.usage-next-list li {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.usage-next-list strong {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 20px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.usage-card > p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 6px;
+  line-height: 1.6;
+}
+.usage-meters {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.usage-meter {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--border);
+}
+.usage-meter:last-child {
+  border-bottom: 0;
+}
+.usage-meter-text strong {
+  font-size: 14px;
+  font-weight: 650;
+}
+.usage-meter-text p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 2px 0 0;
+}
+.usage-meter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.usage-meter-bar small {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.usage-meter-bar small b {
+  color: var(--ink);
+  font-weight: 650;
+}
+.usage-total.near .usage-bar > span {
+  background: #e29313;
+}
+.usage-total.over .usage-bar > span {
+  background: var(--danger, #d64545);
+}
+.usage-total.over > span:not(.usage-kicker):not(.usage-bar) {
+  color: var(--danger, #d64545);
+}
+/* Close to the line, and past it. The words already say so; the colour
+   only makes it easier to spot in a list. */
+.usage-meter.near .usage-bar > span {
+  background: #e29313;
+}
+.usage-meter.over .usage-bar > span {
+  background: var(--danger, #d64545);
+}
+.usage-meter.over .usage-meter-bar small {
+  color: var(--danger, #d64545);
+}
+
+.usage-details summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 650;
+}
+.usage-details summary::-webkit-details-marker {
+  display: none;
+}
+.usage-details summary > span {
+  flex: 1;
+}
+.usage-details summary > svg:last-child {
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+.usage-details[open] summary > svg:last-child {
+  transform: rotate(180deg);
+}
+.usage-details summary:hover {
+  color: var(--blue);
+}
+.usage-policy {
+  margin: 14px 0 0;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.usage-policy li + li {
+  margin-top: 6px;
+}
+.usage-updated {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 4px 0 0;
+}
+
+@media (max-width: 700px) {
+  .usage-overview {
+    grid-template-columns: 1fr;
+  }
+  .usage-total > strong {
+    font-size: 42px;
+  }
+  .usage-facts {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+    padding: 20px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .usage-meter {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* Proxy traffic belongs with the other company usage numbers. It stays
+   compact because it is metered by the provider, not limited by the plan. */
+.proxy-usage-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.proxy-usage-head > div > p {
+  max-width: 620px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+.proxy-usage-head > svg {
+  flex: none;
+  color: var(--blue);
+}
+.proxy-usage-explainer {
+  max-width: 720px;
+  margin-top: 14px;
+}
+.proxy-usage-explainer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.proxy-usage-explainer p + p {
+  margin-top: 7px;
+}
+.proxy-usage-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.proxy-usage-summary > div {
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--soft);
+}
+.proxy-usage-summary dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+.proxy-usage-summary dd {
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.proxy-usage-card h4 {
+  margin: 18px 0 4px;
+  font-size: 13px;
+}
+.proxy-usage-state,
+.proxy-usage-warning {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--blue);
+  border-radius: 6px;
+  background: var(--soft);
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.proxy-usage-warning {
+  border-left-color: #e29313;
+}
+.proxy-usage-ducks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.proxy-usage-ducks li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+.proxy-usage-ducks li:last-child {
+  border-bottom: 0;
+}
+.proxy-duck-name,
+.proxy-duck-use {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.proxy-duck-name {
+  overflow-wrap: anywhere;
+}
+.proxy-duck-name strong {
+  font-size: 14px;
+}
+.proxy-duck-use {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.proxy-duck-use strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+.proxy-duck-name small,
+.proxy-duck-use small,
+.proxy-usage-note {
+  color: var(--muted);
+  font-size: 12px;
+}
+.proxy-usage-empty {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px dashed var(--border);
+  border-radius: 9px;
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 13px;
+}
+.proxy-usage-note {
+  margin: 14px 0 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .proxy-usage-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 460px) {
+  .proxy-usage-ducks li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .proxy-duck-use {
+    text-align: left;
+  }
+}
+
+/* Next to Paste text, in the row of things you can do to the screen. Quiet
+   enough not to compete with the desktop it sits above. */
+.desktop-modifier-hint {
+  margin-left: 0.75rem;
+  font-size: 0.85em;
+  color: var(--muted);
+}

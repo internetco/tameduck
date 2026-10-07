@@ -1,0 +1,1043 @@
+/* File type icons. The kind of file is told by the icon's shape: the
+   company's own documents wear the theme's accent, every uploaded file sits on
+   the plain tile. One fixed colour per type stayed purple in Clean, Subtle and
+   Calm, and the document icon was 2.0:1 against its tile in Dark. */
+.file-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 38px;
+  min-width: 34px;
+  border-radius: 7px;
+  background: var(--soft);
+  color: var(--ink-2);
+}
+.file-icon-document {
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+.file-icon-error {
+  color: var(--danger);
+}
+
+/* Files page: one row of search and kinds, then the list, edge to edge. */
+.page.files-page {
+  padding: 0;
+  color: var(--ink);
+  container-type: inline-size;
+}
+.files-page > .inline-loading,
+.files-page > .chat-load-error {
+  margin: 18px;
+}
+.files-vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* The top bar's slots (App.jsx) take no room until a page fills them. */
+.topbar-slot {
+  display: contents;
+}
+.files-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  margin-left: -8px;
+  border-radius: 6px;
+  color: var(--ink);
+}
+.files-back:hover {
+  background: var(--soft);
+}
+.files-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.files-top-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 7px 12px;
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.files-top-btn:hover,
+.files-top-btn[aria-expanded="true"] {
+  background: var(--soft);
+}
+.files-actions .files-narrow {
+  display: none;
+}
+.files-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  /* The kinds, measured while hidden, must not widen the page. */
+  overflow: clip;
+}
+.files-search {
+  position: relative;
+  display: block;
+  flex: 1 1 200px;
+  max-width: 280px;
+  min-width: 0;
+}
+.files-search svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  margin-top: -8px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.files-bar input,
+.files-bar select {
+  width: 100%;
+  min-height: 36px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 13px;
+}
+.files-search input {
+  padding-left: 33px;
+}
+.files-kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.files-views { display: flex; gap: 6px; flex: 0 0 auto; }
+.files-views .files-kind { border-radius: 6px; }
+.files-history ul { list-style: none; padding: 0; margin: 14px 0 0; }
+.files-history li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+.files-history li span { min-width: 0; display: grid; gap: 3px; }
+.files-history li strong { overflow-wrap: anywhere; }
+.files-history li small { color: var(--muted); }
+@media (max-width: 560px) { .files-history li { align-items: flex-start; flex-direction: column; } }
+
+.files-kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in srgb, var(--muted) 45%, var(--surface));
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.files-kind:hover {
+  background: var(--soft);
+}
+.files-kind .files-n {
+  font-weight: 500;
+  color: var(--muted);
+}
+.files-kind[aria-pressed="true"] {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--surface);
+}
+.files-kind[aria-pressed="true"] .files-n {
+  color: var(--surface);
+}
+.files-kind-select {
+  display: none;
+  min-width: 0;
+}
+.files-bar select {
+  font-weight: 600;
+}
+.files-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.files-list .file-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px 0 18px;
+  border-top: 1px solid var(--border);
+}
+.files-list .file-row:first-child {
+  border-top: 0;
+}
+.file-open {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 58px;
+  padding: 8px 0;
+  text-align: left;
+  color: var(--ink);
+}
+.file-open:hover .file-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.files-list .file-icon,
+.file-thumb {
+  width: 36px;
+  height: 40px;
+  min-width: 36px;
+  border-radius: 7px;
+}
+.file-thumb {
+  object-fit: cover;
+  background: var(--soft);
+}
+.file-text {
+  display: block;
+  min-width: 0;
+}
+/* A long name wraps to a second line instead of being cut. */
+.file-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  font-size: 13.5px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+.file-by {
+  display: flex;
+  align-items: center;
+  margin-top: 3px;
+  min-width: 0;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+/* Every person's letter is 17px in the app; in an 18px square it spilled out. */
+.files-list .file-by .avatar {
+  flex-shrink: 0;
+  margin-right: 6px;
+  border-radius: 5px;
+  font-size: 12px !important;
+}
+/* A long name, or a long chat, is cut short; when it was shared never is. */
+.file-who,
+.file-where {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+.file-at {
+  display: contents;
+}
+.file-when {
+  flex-shrink: 0;
+  white-space: pre;
+}
+.files-menu-at {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+.file-more,
+.file-more-gap {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+}
+.file-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--muted);
+}
+.file-more:hover,
+.file-more[aria-expanded="true"] {
+  background: var(--soft);
+  color: var(--ink);
+}
+.file-more[aria-expanded="true"] {
+  box-shadow: inset 0 0 0 1px var(--edge);
+}
+.files-menu {
+  position: absolute;
+  z-index: 30;
+  right: 0;
+  top: calc(100% + 4px);
+  width: 236px;
+  padding: 5px;
+  border: 1px solid var(--edge);
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--ink) 14%, transparent);
+}
+.files-menu.up {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+.files-menu [role="menuitem"] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+}
+.files-menu [role="menuitem"]:focus-visible {
+  outline-offset: -3px;
+}
+.files-menu [role="menuitem"]:hover {
+  background: var(--soft);
+}
+.files-menu svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+}
+.files-menu small {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.files-menu hr {
+  margin: 5px 4px;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+.files-menu .danger,
+.files-menu .danger svg {
+  color: var(--danger);
+}
+.files-menu .danger:hover {
+  background: var(--danger-soft);
+}
+.files-page .empty p {
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+.files-empty-acts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.files-empty-acts .text-button {
+  min-height: 36px;
+  padding: 0 6px;
+}
+/* The dialogs: a file this page cannot show, the question before a delete,
+   and where an upload goes. */
+.files-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.files-card .file-icon {
+  width: 44px;
+  height: 50px;
+  min-width: 44px;
+  border-radius: 9px;
+}
+.files-card strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 650;
+}
+.files-ask-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  overflow-wrap: anywhere;
+}
+.files-warn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid color-mix(in srgb, var(--danger) 75%, var(--surface));
+  border-radius: 8px;
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.files-ask > p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.files-ask .files-error,
+.modal .files-error {
+  margin-top: 12px;
+  color: var(--danger);
+  font-size: 13px;
+}
+.modal .button.files-kill {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: var(--surface);
+}
+.modal .button.files-kill:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 82%, var(--ink));
+}
+.files-picked {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 0;
+}
+.files-picked li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.files-picked li > span {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.files-picked strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 13.5px;
+}
+.files-picked small {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+/* A file that cannot go says why in red, beside a way to leave it out. */
+.files-picked .cannot small {
+  color: var(--danger);
+  font-weight: 600;
+}
+.files-drop {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: var(--ink-2);
+}
+.files-drop:hover {
+  background: var(--soft);
+  color: var(--ink);
+}
+/* The question before a delete is answered by Keep it or Delete file. */
+.modal:has(.files-ask) .modal-head .icon-button {
+  display: none;
+}
+.files-to label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.files-to select {
+  width: 100%;
+}
+.files-to .files-note {
+  margin-top: 6px;
+}
+.files-note {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.files-note:empty {
+  display: none;
+}
+/* Where the kinds would need a second row, they are one dropdown instead
+   (Files.jsx measures). The chips stay laid out, unseen, to be measured. */
+.files-bar.narrow .files-search {
+  flex: 1 1 150px;
+  max-width: 360px;
+}
+.files-bar.narrow .files-kinds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-wrap: nowrap;
+  visibility: hidden;
+}
+.files-bar.narrow .files-kind-select {
+  display: block;
+  flex: 1 1 130px;
+  max-width: 240px;
+}
+@container (max-width: 560px) {
+  .files-bar {
+    padding: 2px 12px;
+    gap: 2px 8px;
+  }
+  .files-views {
+    flex-basis: 100%;
+  }
+  .files-views .files-kind {
+    min-height: 44px;
+    padding: 5px 10px;
+  }
+  .files-bar.narrow .files-search {
+    flex: 1 1 120px;
+    max-width: none;
+  }
+  .files-bar.narrow .files-kind-select {
+    flex: 0 1 110px;
+    max-width: 130px;
+  }
+  .files-bar input,
+  .files-bar select,
+  .files-kind {
+    min-height: 44px;
+    font-size: 14px;
+  }
+  .files-list .file-row {
+    padding: 0 4px 0 12px;
+  }
+  .file-open {
+    min-height: 64px;
+  }
+  .file-more,
+  .file-more-gap {
+    width: 44px;
+    height: 44px;
+  }
+  .file-name {
+    font-size: 14px;
+  }
+  /* Who on one line, when and where under it, on any phone. */
+  .file-by {
+    flex-wrap: wrap;
+    row-gap: 1px;
+    font-size: 13px;
+  }
+  .file-who {
+    max-width: calc(100% - 24px);
+  }
+  .file-at {
+    display: block;
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  .file-when {
+    white-space: nowrap;
+  }
+  .file-where {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .file-sep {
+    display: none;
+  }
+  .files-menu {
+    width: min(250px, calc(100vw - 24px));
+  }
+}
+/* A finger needs more room than a pointer. */
+@media (hover: none), (max-width: 640px) {
+  .files-bar:has(.folder-browser.empty-root) { padding-block:2px; }
+  .files-menu [role="menuitem"] {
+    min-height: 44px;
+    font-size: 14px;
+  }
+  .files-menu small {
+    font-size: 13px;
+  }
+}
+/* Upload and New document fold into Add where the page's name needs the
+   room: with the sidebar showing, the top bar is narrow up to here too. */
+@media (max-width: 800px) {
+  .files-wide {
+    display: none;
+  }
+  .files-actions .files-narrow {
+    display: inline-flex;
+  }
+}
+@media (max-width: 640px) {
+  .files-dialog .button,
+  .files-to select,
+  .files-page .empty .button,
+  .files-empty-acts .text-button {
+    min-height: 44px;
+  }
+  .modal:has(.files-dialog) .modal-head .icon-button,
+  .files-drop {
+    width: 44px;
+    height: 44px;
+  }
+  .files-picked small {
+    font-size: 13px;
+  }
+  .files-dialog .modal-actions > * {
+    flex: 1 1 auto;
+  }
+  .topbar-title:has(.files-back) .mobile-menu {
+    display: none;
+  }
+  .files-back {
+    width: 44px;
+    height: 44px;
+    margin-left: 0;
+  }
+  .files-top-btn {
+    min-height: 44px;
+  }
+}
+.file-card a.icon-button {
+  display: grid;
+  place-items: center;
+  color: inherit;
+}
+.file-lightbox-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+.file-lightbox-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue);
+  font-size: 13px;
+}
+.text-button.danger {
+  color: var(--danger);
+}
+
+/* Files in chat */
+.file-image {
+  display: block;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--soft);
+  max-width: 100%;
+}
+.file-image:hover {
+  border-color: var(--blue);
+}
+.file-image img {
+  display: block;
+  max-width: 360px;
+  width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+}
+.artifact-card.file-card {
+  gap: 4px;
+  padding-right: 6px;
+}
+.file-card-open {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.file-card-open > span:last-child {
+  min-width: 0;
+}
+.artifact-card.file-card.deleted {
+  color: var(--muted);
+}
+.file-notices {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+  max-width: 560px;
+}
+.file-notice {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 9px 12px;
+  border: 1px solid #efc56b;
+  border-left: 3px solid #e29313;
+  border-radius: 7px;
+  background: #fff8e8;
+  color: #5b4308;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.file-notice svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #c77a00;
+}
+[data-theme="dark"] .file-notice {
+  background: #3a2f16;
+  border-color: #7a5d1d;
+  color: #f4dfae;
+}
+
+/* Composer */
+.draft-files {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 0 0;
+}
+.draft-file {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 230px;
+  max-width: 100%;
+  padding: 6px 30px 6px 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.draft-file.error {
+  border-color: #e7a39b;
+}
+.draft-file > img {
+  width: 34px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.draft-file-text {
+  min-width: 0;
+  flex: 1;
+}
+.draft-file-text strong {
+  display: block;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.draft-file-text small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.draft-file.error small {
+  color: #c0392b;
+  white-space: normal;
+}
+.draft-file-progress {
+  display: block;
+  height: 3px;
+  margin-top: 4px;
+  border-radius: 3px;
+  background: var(--soft);
+  overflow: hidden;
+}
+.draft-file-progress i {
+  display: block;
+  height: 100%;
+  background: var(--blue);
+  transition: width 0.15s;
+}
+.draft-file > button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: var(--muted);
+}
+.draft-file > button:hover {
+  background: var(--soft);
+  color: var(--ink);
+}
+.chat-layout.dragging-files {
+  position: relative;
+}
+.file-drop {
+  position: absolute;
+  inset: 8px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 2px dashed var(--blue);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: var(--ink);
+  pointer-events: none;
+}
+.file-drop svg {
+  color: var(--blue);
+}
+.file-drop span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@container (max-width: 800px) {
+  .file-image img {
+    max-width: 100%;
+  }
+}
+.folder-browser {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 18px 4px;
+  color: var(--ink);
+}
+.files-bar > .folder-browser {
+  flex: 1 0 100%;
+  padding: 0;
+}
+.folder-browser:not(.empty-root) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 12px;
+}
+.folder-browser:not(.empty-root) .folder-crumbs {
+  grid-column: 1;
+  grid-row: 1;
+}
+.folder-browser:not(.empty-root) .folder-browser-list {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.folder-browser:not(.empty-root) .folder-browser-new {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  align-self: center;
+}
+.files-bar:has(.folder-browser.empty-root) {
+  padding-block: 2px;
+}
+.folder-browser.empty-root {
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.files-bar > .folder-browser.empty-root {
+  flex: 0 0 100%;
+  width: 100%;
+}
+.folder-browser.empty-root .folder-crumbs,
+.folder-browser.empty-root .folder-browser-list {
+  display: flex;
+  align-items: center;
+}
+.folder-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  color: var(--muted);
+}
+.folder-crumbs button,
+.folder-browser-row button {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+.folder-crumbs [aria-current="location"] {
+  color: var(--ink);
+  font-weight: 650;
+}
+.folder-browser-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.folder-browser-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-height: 38px;
+  padding: 5px 7px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+}
+button.folder-browser-row {
+  color: var(--ink);
+  cursor: pointer;
+}
+.folder-browser.empty-root .folder-crumbs button,
+.folder-browser.empty-root button.folder-browser-row,
+.folder-browser.empty-root .folder-browser-new {
+  min-height: 32px;
+  padding: 5px 9px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.folder-browser.empty-root .folder-crumbs button[aria-current="location"] {
+  background: var(--soft);
+}
+.folder-browser-open {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+}
+.folder-browser-open > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.folder-browser-open small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+.folder-browser-empty {
+  margin: 0;
+  align-self: center;
+  color: var(--muted);
+}
+.folder-browser-new {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.modal.folder-create-modal {
+  width: min(460px, calc(100vw - 32px));
+}
+.folder-create-dialog {
+  width: 100%;
+  max-width: 390px;
+}
+.folder-create-destination {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.folder-create-destination strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+.folder-create-dialog > label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+}
+.folder-create-dialog > label input {
+  width: 100%;
+}
+.folder-create-dialog .modal-actions {
+  margin-top: 20px;
+}
+.folder-create-dialog .files-error {
+  margin: 10px 0 0;
+}
+.folder-move-dialog label {
+  display: grid;
+  gap: 7px;
+  font-weight: 650;
+}
+.folder-move-dialog select {
+  min-width: min(360px, 75vw);
+}
+.ticket-folder-browser {
+  padding-bottom: 8px;
+}
+.ticket-file-move {
+  margin-left: auto;
+  align-self: center;
+}
+
+@media (hover: none), (max-width: 640px) {
+  .folder-browser button,
+  .ticket-file-move,
+  .folder-browser.empty-root .folder-crumbs button,
+  .folder-browser.empty-root button.folder-browser-row,
+  .folder-browser.empty-root .folder-browser-new,
+  .folder-browser-row,
+  .folder-browser-row > button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .files-bar > .folder-browser.empty-root {
+    flex: 0 0 100%;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .folder-browser.empty-root svg {
+    display: none;
+  }
+  .folder-browser.empty-root .folder-crumbs button,
+  .folder-browser.empty-root button.folder-browser-row,
+  .folder-browser.empty-root .folder-browser-new {
+    padding: 4px;
+    font-size: 13px;
+  }
+  .files-bar:has(.folder-browser.empty-root) .files-views {
+    flex-basis: auto;
+  }
+  .folder-browser-open small {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .files-bar {
+    padding-block: 5px;
+  }
+}

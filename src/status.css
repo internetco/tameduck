@@ -1,0 +1,265 @@
+/* What TameDuck says about itself (src/StatusStrip.jsx): one strip at the top
+   of the page, and the page that opens a company. Every colour is a theme
+   token. The connection strip was #fff0b2 in all five themes, a bright bar
+   across Dark, and the opening screens were #24165b in all five. */
+
+.status-strip-live {
+  flex: 0 0 auto;
+}
+.status-strip-live:focus {
+  outline: none;
+}
+.status-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: 9px 16px;
+  border-bottom: 1px solid var(--strip-line);
+  background: var(--strip-bg);
+  color: var(--ink);
+}
+/* Trouble wears the colour of the sidebar's "Needs you" badge. News is not
+   trouble, so the update wears the plain surface. */
+.status-strip.is-off {
+  --strip-bg: var(--attn-soft);
+  --strip-line: var(--attn-line);
+}
+.status-strip.is-up {
+  --strip-bg: var(--soft);
+  --strip-line: color-mix(in srgb, var(--muted) 40%, var(--surface));
+}
+.status-strip.is-ok {
+  --strip-bg: var(--ok-soft);
+  --strip-line: color-mix(in srgb, var(--ok) 45%, var(--surface));
+}
+.status-tile {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+}
+.status-tile.is-off {
+  background: var(--attn);
+  color: var(--attn-ink);
+}
+.status-tile.is-up {
+  background: var(--nav-active);
+  color: var(--nav-selected);
+}
+.status-tile.is-ok {
+  background: var(--ok);
+  color: var(--surface);
+}
+.status-words {
+  flex: 999 1 220px;
+  min-width: 0;
+}
+.status-words b {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.status-text {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.status-acts {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+}
+/* On a phone the title and its button share a row and the sentence runs
+   under both. Two buttons do not fit beside a title, so they go under the
+   sentence, side by side. */
+@media (max-width: 640px) {
+  .status-strip {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 4px 10px;
+    padding: 8px 10px 10px 12px;
+  }
+  .status-words {
+    display: contents;
+  }
+  .status-words b {
+    font-size: 14px;
+  }
+  .status-text {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: 14px;
+  }
+  .status-acts {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .status-strip.has-two .status-acts {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 6px;
+  }
+  .status-strip.has-two .status-acts .button {
+    flex: 1;
+  }
+  .status-acts .button {
+    min-height: 44px;
+    font-size: 14px;
+  }
+}
+
+/* The page that opens a company, in the theme's own sidebar colours. Before
+   the app has drawn anything, the empty page wears the same colour, in the
+   theme public/theme.js put on it, rather than the old fixed purple. */
+html:has(#root:empty) {
+  background: var(--nav-bg);
+}
+.opening-page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--nav-bg);
+  color: var(--nav-text);
+}
+.opening-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 100%;
+  text-align: center;
+}
+/* A company's name can be a hundred characters long, with or without spaces.
+   It wraps, and so do the buttons that carry it: a button's words do not
+   wrap anywhere else (.button in src/style.css), so "Open Stichting Vrienden
+   van het Concertgebouw" pushed all three buttons out of the card and, on a
+   phone, the whole page sideways. */
+.opening-now,
+.opening-words h1,
+.opening-words p {
+  overflow-wrap: anywhere;
+}
+.opening-now {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--nav-text);
+}
+.opening-bar {
+  position: relative;
+  width: 120px;
+  height: 4px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--nav-text) 22%, var(--nav-bg));
+  overflow: hidden;
+}
+.opening-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 40%;
+  border-radius: 99px;
+  background: var(--nav-text);
+  animation: opening-bar 1.4s ease-in-out infinite;
+}
+@keyframes opening-bar {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+.opening-box.is-card {
+  width: min(330px, 100%);
+  align-items: stretch;
+  gap: 0;
+  padding: 18px;
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.opening-box.is-card .status-tile {
+  margin-bottom: 10px;
+}
+.opening-words h1 {
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.is-card .opening-words p {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.opening-foot {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.opening-acts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+.opening-acts .button {
+  width: 100%;
+  min-height: 44px;
+  font-size: 14px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+.opening-quiet {
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue);
+}
+.opening-quiet:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* Sign out that could not be done, under the button that was pressed, as a
+   failure rather than in the grey of the line that counts the tries. */
+.opening-problem {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--danger);
+}
+/* The setting-up screens fill the window and scroll inside themselves
+   (src/onboarding.css), so the strip takes its row from them rather than
+   making the window scroll. */
+.status-frame {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+.status-frame > .onboarding-page {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .opening-bar::after {
+    animation: none;
+  }
+}

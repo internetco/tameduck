@@ -1,0 +1,277 @@
+/* Settings > Your account, and the company download at the foot of
+   Settings > Company.
+
+   The page is three cards in the order people look for them: who you are, how
+   long ducks wait for you, and signing in. The wait is one list, every row the
+   same control, and the line under it is Settings > Ducks' own saved-with-Undo
+   strip (.duck-perms-undo in duck-permissions.css), so the two pages say a
+   save the same way.
+
+   This file loads before style.css and themes.css, so a rule here that has to
+   beat theirs is written more specifically than theirs rather than later.
+   Every colour is a theme token. --edge is the product's border that can be
+   seen (3:1 or better); --border is only a hairline, for card outlines and the
+   lines between rows. */
+.account-page {
+  container-type: inline-size;
+  max-width: 780px;
+}
+.account-page .settings-heading {
+  margin-bottom: 18px;
+}
+.account-page .settings-heading p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.account-page .settings-card {
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  border-radius: 10px;
+}
+.account-page .settings-card h3,
+.settings-card.account-export h3 {
+  margin-bottom: 4px;
+  font-size: 15px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.account-page .settings-card > p {
+  max-width: 60ch;
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+/* A button's edge has to be seen: .button.secondary's own is about 1.5:1. */
+.account-page .settings-card .button.secondary,
+.settings-card.account-export .button.secondary {
+  min-height: 40px;
+  border-color: var(--edge);
+}
+/* Dark's filled button is 2.9:1 against a card, so its shape is hard to find.
+   An edge mixed from the accent takes it past 4:1, as on Settings > AI
+   connection. The other four themes fill it with the accent and need nothing. */
+[data-theme="dark"] .account-page .button:not(.secondary) {
+  border-color: color-mix(in srgb, var(--blue) 55%, transparent);
+}
+
+/* Who you are: a 38px initial, not the 55px one that was the biggest thing on
+   the page, and the role in words. The initial wears the theme's own accent,
+   as in the mockup, not the one lavender every theme shared. */
+.account-page .account-you {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-block: 14px;
+}
+.account-page .account-you .avatar.human {
+  background: var(--purple);
+  color: var(--surface);
+}
+.account-you > div {
+  min-width: 0;
+}
+.account-you b {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.account-you > div > span {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+/* How long ducks wait for you: your usual on a tinted row, then each duck. */
+.account-wait-list {
+  margin-top: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.account-wait-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 8px 12px 8px 14px;
+}
+.account-wait-row + .account-wait-row {
+  border-top: 1px solid var(--border);
+}
+.account-wait-row.is-usual {
+  background: var(--soft);
+}
+.account-wait-tile {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+.account-wait-name {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.account-wait-name label {
+  display: block;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.account-wait-name small {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+/* Every list is the same width, so the times line up down the page and
+   "Your usual" is never cut short. */
+.account-page .account-wait-row select {
+  flex: 0 0 164px;
+  width: 164px;
+  min-height: 40px;
+  padding: 8px 32px 8px 12px;
+  border-color: var(--edge);
+  font-size: 13px;
+}
+/* After a pick the line is where the eye is: right under the list, or, while
+   the list runs on past the bottom of the screen, held at the bottom of it.
+   On a phone even five ducks put it out of sight, and a slip saves too, so
+   Undo has to be seen. */
+.account-wait-said {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background: var(--surface);
+}
+.account-wait-said:not(:empty) {
+  padding-block: 12px;
+  margin-bottom: -12px;
+}
+/* A held line stops at the pane's padding, and the rows scrolling under it
+   showed through that gap, so the page keeps the space at its foot instead.
+   And the keyboard never stops on a list hidden behind the line. */
+.settings-content:has(> .account-page) {
+  padding-bottom: 0;
+}
+.account-page {
+  padding-bottom: 12px;
+}
+.settings-content:has(.account-wait-said:not(:empty)) {
+  scroll-padding-bottom: 112px;
+}
+/* Beside the words, not under them: the words wrap first. */
+.account-wait-said .duck-perms-undo > span {
+  flex: 1 1 150px;
+  min-width: 0;
+}
+.account-wait-said .duck-perms-undo.is-failed svg {
+  color: var(--danger);
+}
+
+/* Signing in: one row per way in, each with what it costs beside it. */
+.account-signin-row {
+  padding: 14px 0;
+}
+.account-signin-row + .account-signin-row {
+  border-top: 1px solid var(--border);
+}
+.account-signin h3 + .account-signin-row {
+  padding-top: 10px;
+}
+.account-signin-row:last-child {
+  padding-bottom: 0;
+}
+.account-signin-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+.account-signin-line > div {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.account-signin-line h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.account-signin-line p {
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+/* Two-step sign-in is a row here too (two-step.css): what opens under it,
+   such as the backup codes left, reads like the rows' own words. */
+.account-signin .two-step > p {
+  max-width: 60ch;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.account-signin .two-step-head .pill {
+  font-size: 13px;
+}
+
+/* Settings > Company: the download, at the foot. */
+.settings-card.account-export {
+  container-type: inline-size;
+}
+.settings-card.account-export > p {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* A phone: the list runs edge to edge inside its card, and everything a
+   finger presses is at least 44px tall. */
+@container (max-width: 560px) {
+  .account-page .settings-card {
+    padding: 16px;
+  }
+  .account-page .account-you {
+    padding-block: 14px;
+  }
+  .account-wait-list {
+    margin-top: 10px;
+    border: 0;
+    border-radius: 0;
+    overflow: visible;
+  }
+  .account-wait-row {
+    padding: 8px 0;
+  }
+  .account-wait-row.is-usual {
+    margin: 0 -16px;
+    padding: 10px 16px;
+  }
+  .account-page .account-wait-row select {
+    flex-basis: 136px;
+    width: 136px;
+    min-height: 44px;
+  }
+  .account-page .settings-card .button,
+  .account-page .settings-card .button.secondary,
+  .account-wait-said .duck-perms-undo button,
+  .settings-card.account-export .button.secondary {
+    min-height: 44px;
+  }
+}

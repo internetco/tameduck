@@ -1,0 +1,73 @@
+.skill-proposal-ducks small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 3px;
+}
+.skill-proposal-review {
+  min-width: 0;
+}
+.skill-proposal-details {
+  margin: 18px 0;
+}
+.skill-proposal-details > div {
+  display: grid;
+  grid-template-columns: minmax(125px, 1fr) minmax(0, 2fr);
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.skill-proposal-details dt {
+  color: var(--muted);
+}
+.skill-proposal-details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.skill-proposal-review h3 {
+  margin: 24px 0 12px;
+}
+.skill-proposal-instructions {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.7;
+  font-family: inherit;
+}
+.skill-proposal-ducks {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.skill-proposal-ducks li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.skill-proposal-ducks li > div {
+  flex: 1;
+  min-width: 110px;
+  overflow-wrap: anywhere;
+}
+.skill-proposal-effect {
+  line-height: 1.7;
+  background: var(--soft);
+  padding: 14px;
+  border-radius: 8px;
+}
+@media (max-width: 600px) {
+  .skill-proposal-details > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

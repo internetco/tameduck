@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="/analytics.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign in to TameDuck</title>
+    <link rel="icon" href="/favicon.svg" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #fbf8f1;
+        color: #1a1533;
+        font:
+          16px/1.5 system-ui,
+          sans-serif;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+      .card {
+        width: min(480px, calc(100% - 40px));
+        background: #fff;
+        border: 1px solid #e7e0cf;
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 5px 0 #1a1533;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 25px;
+      }
+      p {
+        color: #56506e;
+        overflow-wrap: anywhere;
+      }
+      .code {
+        font:
+          bold 28px ui-monospace,
+          monospace;
+        letter-spacing: 0.12em;
+        color: #1a1533;
+        background: #fbf8f1;
+        border-radius: 10px;
+        padding: 12px;
+        text-align: center;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      button,
+      a {
+        padding: 11px 16px;
+        border-radius: 10px;
+        font: inherit;
+        font-weight: 600;
+      }
+      button {
+        background: #1a1533;
+        color: #ffce32;
+        border: 0;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      a {
+        color: #4c27c9;
+      }
+      .error {
+        color: #9d332c;
+      }
+      .hide {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card" aria-live="polite">
+      <h1>Sign in to the TameDuck app</h1>
+      <p id="message">Checking your sign-in request…</p>
+      <div id="account" class="hide">
+        <p id="user"></p>
+        <p>
+          <span id="code-instructions"
+            >When you are ready, get a one-time code for your app.</span
+          >
+        </p>
+        <div id="code" class="code hide"></div>
+        <div class="actions">
+          <button id="approve" type="button">Get sign-in code</button
+          ><a href="/" id="cancel">Cancel</a>
+        </div>
+      </div>
+      <p id="problem" class="error hide" role="alert"></p>
+    </main>
+    <script src="/desktop-signin.js?v=browser-code-2" defer></script>
+  </body>
+</html>

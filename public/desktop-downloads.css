@@ -1,0 +1,72 @@
+.dd-downloads{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.dd-downloads a{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:11px 18px;border-radius:12px;text-decoration:none;font-weight:700;transition:transform .12s ease,filter .12s ease}
+.dd-downloads a:hover{filter:brightness(.96);transform:translateY(-1px)}
+.dd-downloads a:active{transform:translateY(1px)}
+.dd-downloads a:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.dd-downloads .dd-mac{background:var(--yellow);color:var(--ink);box-shadow:0 4px 0 var(--ink)}
+.dd-downloads .dd-windows{border:1px solid #8b77bf;color:#24165b}
+.dd-downloads svg{width:17px;height:17px}
+.dd-footer-intro{padding-bottom:26px;margin-bottom:27px;border-bottom:1px solid #433270}
+.dd-footer-intro h2{font-family:var(--font-display);font-size:clamp(28px,3vw,38px);line-height:1.06;color:#fbf8f1;max-width:11em}
+.dd-footer-intro .dd-downloads{margin-top:20px}
+.dd-footer-intro .dd-small{margin:12px 0 0;color:#c4b9e6;font-size:13px}
+.dd-footer-intro .dd-windows{color:#fbf8f1}
+@media(max-width:600px){.dd-downloads{align-items:stretch;flex-direction:column}.dd-downloads a{justify-content:center;width:100%}}
+
+/* One closing invitation combines workspace signup and desktop downloads. */
+.dd-closing {
+  padding: clamp(28px, 4.4vw, 64px);
+  border-radius: var(--r-panel);
+  background: var(--purple);
+  color: var(--cream);
+}
+.dd-closing-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+}
+.dd-closing .eyebrow { color: #bda1fc; margin-bottom: 16px; }
+.dd-closing h2 { color: var(--cream); }
+.dd-closing-flock { display: flex; align-items: center; padding-right: 12px; }
+.dd-closing-flock img {
+  width: clamp(64px, 7vw, 96px);
+  height: auto;
+  border: 4px solid var(--purple);
+  border-radius: 28%;
+  margin-right: -12px;
+  transform: rotate(-8deg);
+}
+.dd-closing-flock img:nth-child(2) { transform: translateY(-18px) rotate(4deg); }
+.dd-closing-flock img:nth-child(3) { transform: rotate(12deg); }
+.dd-closing-copy { max-width: 38em; margin-top: 24px; color: #d2c8e5; }
+.dd-closing-start { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 32px; }
+.dd-closing-note { font-size: 14px; line-height: 1.6; color: #cfc3e2; }
+.dd-closing-apps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 38px;
+  padding-top: 30px;
+  border-top: 1px solid #564076;
+}
+.dd-closing-apps h3 { margin: 0; font: 600 22px/1.25 var(--font-display); letter-spacing: -.02em; }
+.dd-closing-apps p { margin-top: 6px; font-size: 14px; color: #c5b4dc; }
+.dd-closing .dd-downloads { gap: 12px; }
+.dd-closing .dd-downloads a {
+  background: var(--purple-tint);
+  color: var(--cream);
+  border: 1px solid #7e639f;
+  box-shadow: none;
+  font-size: 14px;
+}
+@media (max-width: 600px) {
+  .dd-closing-top { grid-template-columns: 1fr; gap: 30px; }
+  .dd-closing-flock { padding-top: 8px; }
+  .dd-closing-start { align-items: flex-start; gap: 18px; }
+  .dd-closing .dd-downloads { flex-direction: row; width: 100%; gap: 10px; }
+  .dd-closing .dd-downloads a { flex: 1; min-width: 0; width: auto; padding: 11px; gap: 7px; }
+  .dd-closing .dd-downloads svg { width: 15px; height: 15px; flex: none; }
+}

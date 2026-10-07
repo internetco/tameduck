@@ -1,0 +1,2005 @@
+[
+  {
+    "id": "connect-ai",
+    "title": "Connect an AI for your Ducks",
+    "nav": "Connect an AI",
+    "group": "start",
+    "icon": "plug",
+    "card": "Sign in with a ChatGPT plan or paste an API key, then pick a model.",
+    "summary": "Your Ducks need an AI to work. Sign in with a ChatGPT plan or paste an API key, pick a model, and open your workspace.",
+    "done": "All set. Your Ducks have an AI.",
+    "checked": "2026-10-05",
+    "tags": [
+      "AI",
+      "ChatGPT",
+      "API key",
+      "key",
+      "OpenAI",
+      "provider",
+      "model",
+      "connection",
+      "sign in",
+      "setup",
+      "billing"
+    ],
+    "quick": [
+      2,
+      3,
+      4
+    ],
+    "before": {
+      "title": "Before you start, have one of these",
+      "items": [
+        "**A ChatGPT Plus or Pro plan.** Only the company owner can sign in with it.",
+        "**Or an API key** from a provider shown on the page, like OpenAI."
+      ],
+      "where": "You see this page while setting up your company. Later, it is in **Settings → AI connection**."
+    },
+    "steps": [
+      {
+        "title": "Pick how to connect",
+        "do": "Choose [[Sign in]] for a ChatGPT plan, or [[Paste key]] for an API key.",
+        "more": "You only need one. Only the choices on your page can be connected.",
+        "image": {
+          "src": "/help/screenshots/tutorial-connect-ai-options.png",
+          "width": 561,
+          "height": 385,
+          "alt": "The Connect an AI page: a ChatGPT card with a Sign in button, and an OpenAI row with a Paste key button.",
+          "marks": [
+            {
+              "x": 455,
+              "y": 61,
+              "w": 72,
+              "h": 44,
+              "badge": "left",
+              "label": "Sign in with a ChatGPT plan"
+            },
+            {
+              "x": 454,
+              "y": 212,
+              "w": 88,
+              "h": 44,
+              "badge": "left",
+              "label": "Or paste an API key"
+            }
+          ]
+        },
+        "note": "A ChatGPT plan is not an API key. API keys are paid per use, to the AI company. Your TameDuck plan is a separate charge."
+      },
+      {
+        "title": "Connect a ChatGPT plan",
+        "do": "Click [[Sign in]] on the ChatGPT card, then sign in to the owner’s ChatGPT account.",
+        "more": "Only the company owner can do this, and it uses their own plan. You don’t paste a password or a key. When you come back, TameDuck checks the connection.",
+        "warn": "If it says **Could not reach OpenAI to check. Try again.**, run the check again."
+      },
+      {
+        "title": "Or paste an API key",
+        "do": "Click [[Paste key]], paste your key, then click [[Connect OpenAI]].",
+        "more": "No key yet? **Get an OpenAI key** opens the provider’s key page. Use a key from the same provider as the row you picked; the button is named after it.",
+        "image": {
+          "src": "/help/screenshots/tutorial-connect-ai-key.png",
+          "width": 561,
+          "height": 527,
+          "crop": {
+            "top": 140,
+            "height": 270
+          },
+          "alt": "The OpenAI key form: a key field with a hidden key, a Connect OpenAI button, and a Get an OpenAI key link.",
+          "marks": [
+            {
+              "x": 15,
+              "y": 261,
+              "w": 531,
+              "h": 51,
+              "badge": "corner",
+              "label": "Paste the key"
+            },
+            {
+              "x": 18,
+              "y": 315,
+              "w": 145,
+              "h": 45,
+              "badge": "right",
+              "label": "Click Connect"
+            },
+            {
+              "x": 15,
+              "y": 371,
+              "w": 150,
+              "h": 27,
+              "badge": "right",
+              "label": "No key yet? Get one here"
+            }
+          ]
+        },
+        "note": "Keys are encrypted. Ducks and teammates never see them."
+      },
+      {
+        "title": "If the key is rejected",
+        "do": "Paste the whole key again and click [[Connect OpenAI]].",
+        "more": "The error shows under the form, and the form stays open. Check that the key came from that provider’s key page; a ChatGPT password won’t work here. **Open my workspace** stays grey until one connection works.",
+        "image": {
+          "src": "/help/screenshots/tutorial-connect-ai-error.png",
+          "width": 561,
+          "height": 584,
+          "crop": {
+            "top": 196,
+            "height": 274
+          },
+          "alt": "The key form after a rejected key, with the message: OpenAI did not accept that key. Check it and paste it again.",
+          "caption": "The error appears right under the form.",
+          "marks": [
+            {
+              "x": 17,
+              "y": 362,
+              "w": 526,
+              "h": 56
+            }
+          ]
+        }
+      },
+      {
+        "title": "Choose the model",
+        "do": "Under **Model**, pick the model your Ducks should use. If you change it, click [[Save]] and wait for **Saved**.",
+        "more": "Every Duck uses this model unless you give one its own model in its profile. Use **Refresh models** if the list looks out of date.",
+        "image": {
+          "src": "/help/screenshots/tutorial-connect-ai-confirmed.png",
+          "width": 561,
+          "height": 850,
+          "crop": {
+            "top": 0,
+            "height": 444
+          },
+          "alt": "What ducks use: GPT-6 Luna picked as the model, with its reference score and prices, a Saved note and Refresh models.",
+          "marks": [
+            {
+              "x": 35,
+              "y": 226,
+              "w": 490,
+              "h": 62,
+              "badge": "corner",
+              "label": "The model every Duck uses"
+            },
+            {
+              "x": 33,
+              "y": 317,
+              "w": 74,
+              "h": 30,
+              "badge": "right",
+              "label": "Saved means it’s done"
+            }
+          ]
+        },
+        "note": "**Model intelligence** is a published reference score from 0 to 60. Higher is better, but it is not a promise. Prices are per million tokens and differ per model."
+      },
+      {
+        "title": "Open your workspace",
+        "do": "Click [[Open my workspace]].",
+        "more": "You land in your company workspace, ready to add your first Duck. Left setup early? Go to **Settings → AI connection**. Ducks can’t answer until an AI is connected.",
+        "image": {
+          "src": "/help/screenshots/tutorial-connect-ai-workspace.png",
+          "width": 1100,
+          "height": 560,
+          "alt": "The company workspace with the sidebar on the left and Chief Duck saying welcome.",
+          "caption": "Your workspace, with Chief Duck saying hello."
+        }
+      }
+    ]
+  },
+  {
+    "id": "create-first-duck",
+    "title": "Create your first Duck",
+    "nav": "Create your first Duck",
+    "group": "start",
+    "icon": "duck",
+    "card": "Give it a name, a role, a face and a job to do.",
+    "summary": "Give your new teammate a name, a role, a face and a job, all in one window.",
+    "done": "Your first Duck is ready.",
+    "checked": "2026-10-05",
+    "tags": [
+      "add a duck",
+      "new duck",
+      "duck",
+      "name",
+      "role",
+      "face",
+      "job",
+      "character",
+      "notes",
+      "model",
+      "colours"
+    ],
+    "quick": [
+      1,
+      3,
+      6
+    ],
+    "before": {
+      "title": "Before you start",
+      "items": [
+        "**An AI connected to your company.** Without one, your Duck can’t answer. [Connect an AI](/help/connect-ai)",
+        "**Permission to make new Ducks.** Ask your company owner if you don’t have it."
+      ]
+    },
+    "steps": [
+      {
+        "title": "Open Add a duck",
+        "do": "In the sidebar, click [[Add a duck]] under **Direct messages**.",
+        "more": "The **Welcome a new duck** window opens on **Profile**. Its tabs are **Profile**, **Its job**, **Character** and **Notes**.",
+        "image": {
+          "src": "/help/screenshots/tutorial-create-first-duck-profile.png",
+          "width": 790,
+          "height": 592,
+          "alt": "The Welcome a new duck window on Profile, with Name, Role, faces, the AI model and Create duck.",
+          "caption": "One window, four tabs. You can switch between them before you create the Duck.",
+          "marks": [
+            {
+              "x": 18,
+              "y": 194,
+              "w": 752,
+              "h": 50
+            }
+          ]
+        }
+      },
+      {
+        "title": "Name it and pick a face",
+        "do": "Type a **Name** and a short **Role in a few words**, then click a face.",
+        "more": "Both a name and a role are needed. For more choices, click [[More faces and colours]]; **Fewer faces and colours** folds them away again.",
+        "image": {
+          "src": "/help/screenshots/tutorial-create-first-duck-faces.png",
+          "width": 790,
+          "height": 852,
+          "crop": {
+            "top": 255,
+            "height": 395
+          },
+          "alt": "Profile with the name Research Duck, the role Product research, and twenty faces to pick from.",
+          "marks": [
+            {
+              "x": 20,
+              "y": 295,
+              "w": 368,
+              "h": 40,
+              "badge": "corner",
+              "label": "Name"
+            },
+            {
+              "x": 398,
+              "y": 295,
+              "w": 372,
+              "h": 40,
+              "badge": "corner",
+              "label": "Role in a few words"
+            },
+            {
+              "x": 22,
+              "y": 440,
+              "w": 746,
+              "h": 190,
+              "badge": "corner",
+              "label": "Pick a face"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Give it a job",
+        "do": "Click [[Its job]] and write what it looks after.",
+        "more": "Write it like a brief for a new colleague: what it looks after, what it may do on its own, and when it must ask you.",
+        "image": {
+          "src": "/help/screenshots/tutorial-create-first-duck-job.png",
+          "width": 790,
+          "height": 578,
+          "crop": {
+            "top": 185,
+            "height": 235
+          },
+          "alt": "Its job: Compare product and customer insights. Write concise findings with source links. Ask me before contacting anyone or spending money.",
+          "marks": [
+            {
+              "x": 205,
+              "y": 194,
+              "w": 187,
+              "h": 48,
+              "badge": "corner",
+              "label": "Its job"
+            },
+            {
+              "x": 22,
+              "y": 330,
+              "w": 746,
+              "h": 68,
+              "badge": "corner",
+              "label": "Write the job here"
+            }
+          ]
+        },
+        "note": "You can create a Duck with an empty job, but the window warns **Its job is still empty**. A clear job gives it direction."
+      },
+      {
+        "title": "Set its character",
+        "nav": "Set its character",
+        "do": "Click [[Character]] and describe how it should behave.",
+        "more": "Its manner, what it cares about, and how it makes up its mind. This is optional: there may be starter text already, which you can change.",
+        "image": {
+          "src": "/help/screenshots/tutorial-create-first-duck-character.png",
+          "width": 790,
+          "height": 578,
+          "crop": {
+            "top": 185,
+            "height": 200
+          },
+          "alt": "Character: Be curious and concise. Separate evidence from guesses, and explain uncertainty.",
+          "caption": "Character is how it behaves.",
+          "marks": [
+            {
+              "x": 390,
+              "y": 194,
+              "w": 190,
+              "h": 48
+            }
+          ]
+        }
+      },
+      {
+        "title": "Add notes and check the model",
+        "nav": "Notes and model",
+        "do": "Click [[Notes]] and add what it should remember, like your preferences or decisions.",
+        "more": "The Duck adds to these notes as it learns, and **everyone in your company can read them**. Back on **Profile**, **AI model** says **Same as the company**. Click [[Change]] to give this Duck its own model.",
+        "image": {
+          "src": "/help/screenshots/tutorial-create-first-duck-notes.png",
+          "width": 790,
+          "height": 578,
+          "crop": {
+            "top": 185,
+            "height": 200
+          },
+          "alt": "Notes: It adds to these notes itself as it learns. Everyone in your company can read them.",
+          "caption": "Notes are what it remembers.",
+          "marks": [
+            {
+              "x": 578,
+              "y": 194,
+              "w": 190,
+              "h": 48
+            }
+          ]
+        },
+        "warn": "If you pick a provider but no model, the window goes back to **Profile** and opens the model picker. Finish your choice there."
+      },
+      {
+        "title": "Create the Duck",
+        "do": "Click [[Create duck]].",
+        "more": "The window closes. Your new Duck shows up under **Direct messages**, with its chat open.",
+        "image": {
+          "src": "/help/screenshots/tutorial-create-first-duck-created.png",
+          "width": 1100,
+          "height": 560,
+          "alt": "The workspace with the new Product Research Duck picked in the sidebar and its empty chat open.",
+          "caption": "Your new Duck, with its chat open.",
+          "marks": [
+            {
+              "x": 14,
+              "y": 366,
+              "w": 222,
+              "h": 38
+            }
+          ]
+        },
+        "warn": "If **Name** or **Role** is missing, the window goes back to **Profile** and marks it. Fill it in and click **Create duck** again."
+      }
+    ]
+  },
+  {
+    "id": "first-task",
+    "title": "Give a Duck its first task",
+    "nav": "Give a first task",
+    "group": "start",
+    "icon": "chat",
+    "card": "Write a clear request, add what it needs, and send it.",
+    "summary": "Open your Duck’s chat, ask for one clear thing, and send it.",
+    "done": "Your Duck is on it.",
+    "checked": "2026-10-05",
+    "tags": [
+      "first task",
+      "message",
+      "chat",
+      "request",
+      "attach",
+      "attachment",
+      "file",
+      "send",
+      "new line"
+    ],
+    "quick": [
+      2,
+      3,
+      5
+    ],
+    "before": {
+      "title": "Before you start",
+      "items": [
+        "**A Duck.** No Duck yet? [Create your first Duck](/help/create-first-duck)",
+        "**An AI connected to your company.** [Connect an AI](/help/connect-ai)"
+      ]
+    },
+    "steps": [
+      {
+        "title": "Open your Duck’s chat",
+        "do": "In the sidebar, click your Duck under **Direct messages**.",
+        "more": "**Messages** is the chat. **Files** and **Tasks** show its files and work, and **Duck profile** shows its role and job. The message box is at the bottom.",
+        "image": {
+          "src": "/help/screenshots/tutorial-first-task-empty-chat.png",
+          "width": 861,
+          "height": 443,
+          "alt": "Research Duck’s chat, with Messages, Files and Tasks tabs and an empty message box.",
+          "caption": "The message box is at the bottom of the chat.",
+          "marks": [
+            {
+              "x": 14,
+              "y": 318,
+              "w": 834,
+              "h": 108
+            }
+          ]
+        }
+      },
+      {
+        "title": "Ask for one clear thing",
+        "do": "Click the message box and say what you want, and what the result should be.",
+        "more": "For example a comparison, a draft or a short recommendation. Start with one focused task, so you can see whether it understood.",
+        "image": {
+          "src": "/help/screenshots/tutorial-first-task-draft.png",
+          "width": 861,
+          "height": 141,
+          "alt": "A first request typed in the message box, with Send ready.",
+          "caption": "One focused request, ready to send."
+        }
+      },
+      {
+        "title": "Add what it needs to know",
+        "nav": "Add what it needs",
+        "do": "Add the files, notes, audience or deadline it needs, and say when it must stop and ask you.",
+        "more": "To attach something, click the paperclip, then **A file from this computer** or **A company document**. Up to 10 files per message, 25 MB each.",
+        "example": "Compare the three product ideas in the notes above. Give me a short recommendation with reasons and links. Ask me if a source is missing; do not contact anyone.",
+        "note": "Ask it to check with you before it contacts anyone or spends money. Press **Shift+Enter** for a new line; on a phone, Return starts a new line."
+      },
+      {
+        "title": "Send it",
+        "do": "Click [[Send]].",
+        "more": "Your message shows up in the chat, and the Duck starts working or replies when it can. Not quite right? Reply in the same chat with what to change.",
+        "image": {
+          "src": "/help/screenshots/tutorial-first-task-sent.png",
+          "width": 861,
+          "height": 228,
+          "alt": "The request now shows in the chat as a message from you.",
+          "caption": "Your message, in the chat.",
+          "marks": [
+            {
+              "x": 14,
+              "y": 6,
+              "w": 820,
+              "h": 78
+            }
+          ]
+        }
+      },
+      {
+        "title": "If the Duck can’t start",
+        "do": "If the chat says **Ready when you are**, click [[Connect AI]], connect an AI, and send your message again.",
+        "more": "It means no AI is connected yet. If an AI that worked before is down, a banner says who can fix it: an owner can try again in **Settings → AI connection**, and an admin can connect another one. Can’t manage AI connections? Ask your owner or admin.",
+        "image": {
+          "src": "/help/screenshots/tutorial-first-task-recovery.png",
+          "width": 861,
+          "height": 298,
+          "alt": "The chat says Ready when you are, with a Connect AI button.",
+          "caption": "No AI yet: Connect AI takes you to the AI settings.",
+          "marks": [
+            {
+              "x": 716,
+              "y": 110,
+              "w": 120,
+              "h": 40
+            }
+          ]
+        },
+        "note": "If the Duck asks you a question, answer it in the chat so it can carry on."
+      }
+    ]
+  },
+  {
+    "id": "needs-you",
+    "title": "Handle something that needs you",
+    "nav": "Needs you",
+    "group": "everyday",
+    "icon": "inbox",
+    "card": "Answer questions, approve requests and clear what is waiting.",
+    "summary": "Questions, approvals and requests from your Ducks wait on one page. Here is how to answer each kind.",
+    "checked": "2026-10-07",
+    "tags": [
+      "needs you",
+      "waiting",
+      "question",
+      "approve",
+      "approval",
+      "decline",
+      "form",
+      "screen",
+      "proposal",
+      "board",
+      "skill",
+      "schedule",
+      "repeat",
+      "connection",
+      "access",
+      "ticket",
+      "unfinished",
+      "continue",
+      "error",
+      "expired",
+      "say no",
+      "refuse",
+      "decline screen",
+      "not now"
+    ],
+    "quick": [
+      2,
+      5,
+      10
+    ],
+    "steps": [
+      {
+        "title": "Find what’s waiting",
+        "do": "Click [[Needs you]] in the sidebar.",
+        "more": "**Waiting for you** holds questions, approvals, blocked connections, screen requests, proposals, tickets that are your turn, and unfinished work. **To read when you like** holds updates that hold nobody up. Click a row to open it.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-overview.png",
+          "width": 720,
+          "height": 711,
+          "alt": "Needs you with nine items waiting and one update to read later.",
+          "marks": [
+            {
+              "x": 8,
+              "y": 50,
+              "w": 108,
+              "h": 26,
+              "badge": "right",
+              "label": "Waiting for you"
+            },
+            {
+              "x": 8,
+              "y": 624,
+              "w": 146,
+              "h": 26,
+              "badge": "right",
+              "label": "To read when you like"
+            }
+          ]
+        },
+        "note": "The number in the sidebar counts both lists, so not everything is urgent. Screen requests with a countdown come first; the rest is newest first."
+      },
+      {
+        "title": "Answer a question",
+        "do": "Open the question, click [[Reply]], and answer in the chat.",
+        "more": "Reply opens the chat, and the thread, the question came from. Give the missing choice, like “Start with the Netherlands, small businesses.” If it shows **Open the ticket**, answer on the ticket instead.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-question.png",
+          "width": 718,
+          "height": 239,
+          "alt": "Research Duck asks which market to focus on, with Reply and Take off my list.",
+          "caption": "Reply takes you to the chat the question came from.",
+          "marks": [
+            {
+              "x": 56,
+              "y": 148,
+              "w": 72,
+              "h": 40
+            }
+          ]
+        },
+        "warn": "**Take off my list** only hides the message. It doesn’t answer anything."
+      },
+      {
+        "title": "Fill in a form for a Duck",
+        "nav": "Fill in a form",
+        "do": "Fill in the fields and click **Send to [Duck]**.",
+        "more": "TameDuck types the values into the website for the Duck; they are not kept in chat. For a login or a code only you can enter, click **Do it on [Duck]’s screen instead**, finish it, and hand the screen back.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-form.png",
+          "width": 718,
+          "height": 237,
+          "alt": "Ops Duck needs a payment reference, with a field, a Send to Ops Duck button and 20 minutes left.",
+          "marks": [
+            {
+              "x": 57,
+              "y": 96,
+              "w": 240,
+              "h": 42,
+              "badge": "corner",
+              "label": "Fill it in"
+            },
+            {
+              "x": 299,
+              "y": 95,
+              "w": 147,
+              "h": 43,
+              "badge": "right",
+              "label": "Send it"
+            },
+            {
+              "x": 533,
+              "y": 15,
+              "w": 100,
+              "h": 28,
+              "badge": "left",
+              "label": "Time left"
+            }
+          ]
+        },
+        "warn": "When the countdown ends, the Duck carries on without you, and what you typed is **not sent**. Click **I’m back, try again** if you see it, or ask the Duck again.",
+        "note": "**Tell [Duck] to stop** stops that run. See [Let a Duck use a computer](/help/computers) for the screen controls."
+      },
+      {
+        "title": "Say no to a screen request",
+        "nav": "Say no to a screen",
+        "do": "Click [[Say no]], pick a quick reason or write your own, and click **Send to [Duck]**.",
+        "more": "The Duck doesn’t get your screen and carries on another way. Your reason helps it choose, and it won’t ask for the screen again in that task. If it can’t finish without you, it says what’s left. Clicking [[Back]] closes the form without answering.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-say-no.png",
+          "width": 560,
+          "height": 398,
+          "alt": "Say no to Sign in to Exact Online, with three quick reasons, a Why not box and Send to Chief Duck.",
+          "marks": [
+            {
+              "x": 17,
+              "y": 135,
+              "w": 526,
+              "h": 34,
+              "badge": "corner",
+              "label": "Quick reason"
+            },
+            {
+              "x": 17,
+              "y": 203,
+              "w": 526,
+              "h": 85,
+              "badge": "corner",
+              "label": "Why not (optional)"
+            },
+            {
+              "x": 17,
+              "y": 303,
+              "w": 155,
+              "h": 38,
+              "badge": "right",
+              "label": "Send it"
+            }
+          ]
+        },
+        "warn": "**Say no** and **Tell [Duck] to stop** are different. Say no only refuses the screen, and the Duck keeps working. Stop ends the whole task.",
+        "note": "Afterwards the chat shows **You said no**, with your reason."
+      },
+      {
+        "title": "Approve a tool action",
+        "do": "Click [[See what it sends]], check every value, then click [[Approve]].",
+        "more": "Check where it goes, who gets it, amounts and content. Approving runs exactly that action.",
+        "list": [
+          "[[Ask for changes]] lets you write a note, then send it to the Duck. **Back** returns without sending.",
+          "[[Decline]] says no."
+        ],
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-approval.png",
+          "width": 718,
+          "height": 363,
+          "alt": "Research Duck wants to publish a summary to the team wiki, with See what it sends, Approve, Ask for changes and Decline.",
+          "marks": [
+            {
+              "x": 52,
+              "y": 264,
+              "w": 146,
+              "h": 30,
+              "badge": "right",
+              "label": "See what it sends"
+            },
+            {
+              "x": 58,
+              "y": 314,
+              "w": 112,
+              "h": 42,
+              "badge": "left",
+              "label": "Approve"
+            }
+          ]
+        },
+        "warn": "Typing “yes” in the chat does not approve. Use the buttons on the card.",
+        "note": "Once you decide, the item leaves this page and the chat records it. If the service fails, read the result before you assume it worked."
+      },
+      {
+        "title": "Review a new task board",
+        "nav": "Review a new board",
+        "do": "Click [[See all settings]], read everything, then click [[Approve]].",
+        "more": "Chief Duck can propose a new board, or changes to one. Check its steps, who works on each, the instructions, who approves, and whether work starts or moves on by itself. [[Ask for changes]] sends a note back; [[Decline]] says no.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-board.png",
+          "width": 718,
+          "height": 208,
+          "alt": "Chief Duck proposes a Customer research board with three stages, See all settings, Approve, and Always let Chief change this board.",
+          "marks": [
+            {
+              "x": 51,
+              "y": 110,
+              "w": 126,
+              "h": 30,
+              "badge": "right",
+              "label": "See all settings"
+            },
+            {
+              "x": 60,
+              "y": 160,
+              "w": 110,
+              "h": 42,
+              "badge": "left",
+              "label": "Approve"
+            },
+            {
+              "x": 452,
+              "y": 160,
+              "w": 258,
+              "h": 38,
+              "badge": "left",
+              "label": "Lets Chief change it without asking"
+            }
+          ]
+        },
+        "warn": "Changing a step’s Duck, instructions or approvers starts a new attempt for the tickets in that step.",
+        "note": "Leave **Always let Chief change this board** off to check every change yourself. The card says how long the proposal stays open. See [Track work on the task board](/help/task-board)."
+      },
+      {
+        "title": "Check a new skill",
+        "do": "Click [[See all settings]] to read the instructions and which Ducks get it, then click [[Approve]].",
+        "more": "Approving lets those Ducks use the skill the next time they work. It doesn’t start a task. A skill saved as turned off can’t be used until it is turned on.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-skill.png",
+          "width": 718,
+          "height": 208,
+          "alt": "Chief Duck proposes a skill, Research source check, for Research Duck.",
+          "marks": [
+            {
+              "x": 51,
+              "y": 110,
+              "w": 126,
+              "h": 30,
+              "badge": "right",
+              "label": "See all settings"
+            },
+            {
+              "x": 60,
+              "y": 160,
+              "w": 110,
+              "h": 42,
+              "badge": "left",
+              "label": "Approve"
+            }
+          ]
+        },
+        "warn": "Expired or replaced? Ask Chief Duck for a new proposal instead of approving the old one.",
+        "note": "Deciding needs permission to manage skills, Ducks and approvals. If the card says you can’t decide, ask your company owner."
+      },
+      {
+        "title": "Approve work that repeats",
+        "do": "Check how often it runs and where results go, then click [[Set it up]], or **No, don’t set it up**.",
+        "more": "The card shows the first run, the time zone, where results appear and about how many runs a month. More runs means more AI use. Afterwards, **Open scheduled tasks** shows the schedule. Asked to change one? The card lists only what would be different, as it is now and as it would be: **Change it** applies it from the next run, **Keep it as it is** leaves it as it was.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-schedule.png",
+          "width": 718,
+          "height": 346,
+          "alt": "Ops Duck asks to do the weekly supplier summary every Monday at 09:00, with Set it up.",
+          "marks": [
+            {
+              "x": 64,
+              "y": 186,
+              "w": 350,
+              "h": 30,
+              "badge": "right",
+              "label": "Optional: let it schedule without asking"
+            },
+            {
+              "x": 60,
+              "y": 256,
+              "w": 90,
+              "h": 38,
+              "badge": "right",
+              "label": "Set it up"
+            }
+          ]
+        },
+        "note": "Only tick **Also let [Duck] schedule work without asking** if it may start, change and stop regular work by itself. You can turn that off in **Settings → Ducks**.",
+        "warn": "Asked to remove a schedule? **Stop it** deletes the schedule and its list of runs; messages and tickets stay. **Keep it** leaves it running. A paused schedule stays paused after you fix the AI connection: open it and turn it back on."
+      },
+      {
+        "title": "Fix a connection or give access",
+        "nav": "Fix a connection",
+        "do": "Click [[Allow]] to let the Duck use that service, or [[Reconnect]] to fix a broken sign-in or key.",
+        "more": "**Allow** gives the Duck access to the whole service, not just one action. **Not now** dismisses the request. **Reconnect** opens **Settings → Connections**, and **Connect an AI** opens **Settings → AI connection**.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-connection.png",
+          "width": 718,
+          "height": 201,
+          "alt": "Ops Duck wants to use Shared drive, with Allow and Not now.",
+          "caption": "Allow gives Ops Duck access to Shared drive.",
+          "marks": [
+            {
+              "x": 58,
+              "y": 152,
+              "w": 96,
+              "h": 40
+            }
+          ]
+        },
+        "note": "Some fixes need an owner or admin. The card says when."
+      },
+      {
+        "title": "Do your step on a ticket",
+        "nav": "Your step on a ticket",
+        "do": "Click [[Open the ticket]] and do what its step asks.",
+        "list": [
+          "**Your step:** do the work, write a handover in **Your note**, then click [[Finish your step]]. A review step offers **Approve** instead.",
+          "**Stuck** or **Changes requested:** fix the cause, add guidance in **Your note**, then click [[Start a new attempt]].",
+          "**Ready to move on:** check the result, then click **Move to …** or **Approve, move to …**."
+        ],
+        "more": "**Send back to …** returns work to an earlier step, with a note. **Post note only** adds a comment and moves nothing.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-ticket.png",
+          "width": 718,
+          "height": 164,
+          "alt": "Your step: Review research findings, with Open the ticket.",
+          "caption": "Your step is done on the ticket itself.",
+          "marks": [
+            {
+              "x": 58,
+              "y": 73,
+              "w": 132,
+              "h": 40
+            }
+          ]
+        },
+        "note": "Replying in another chat, or taking the message off your list, doesn’t move the ticket. See [Track work on the task board](/help/task-board#step-4)."
+      },
+      {
+        "title": "Pick up unfinished work",
+        "do": "Click [[Open the chat]] or [[Open the ticket]] to see what got done and what’s left.",
+        "more": "The card says why the work stopped and how many automatic retries were used. Fix what is missing, check what was already done, then click [[Continue]] if you see it.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-recovery.png",
+          "width": 718,
+          "height": 226,
+          "alt": "Needs attention: three attempts could not finish the comparison, with Continue and Open the chat.",
+          "marks": [
+            {
+              "x": 60,
+              "y": 136,
+              "w": 120,
+              "h": 38,
+              "badge": "right",
+              "label": "See the saved work"
+            },
+            {
+              "x": 588,
+              "y": 80,
+              "w": 100,
+              "h": 36,
+              "badge": "corner",
+              "label": "Try again"
+            }
+          ]
+        },
+        "note": "**Waiting to resume** or **Resuming soon** means a retry is on its way. **Stop automatic resume** puts retries on hold; the saved work stays."
+      },
+      {
+        "title": "Read updates and clear your list",
+        "nav": "Read and clear updates",
+        "do": "Open an update, then click [[Take off my list]] when you’re done with it.",
+        "more": "Click [[Reply]] to talk about it in its chat. Taking it off your list leaves the message in its chat. It doesn’t delete anything, finish work or stop a Duck.",
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-message.png",
+          "width": 718,
+          "height": 187,
+          "alt": "An update from Research Duck with Reply and Take off my list.",
+          "marks": [
+            {
+              "x": 58,
+              "y": 98,
+              "w": 68,
+              "h": 38,
+              "badge": "right",
+              "label": "Reply in its chat"
+            },
+            {
+              "x": 600,
+              "y": 150,
+              "w": 114,
+              "h": 34,
+              "badge": "left",
+              "label": "Done with it"
+            }
+          ]
+        },
+        "note": "**Nothing waiting on you** means your own list is empty, not that all company work is done."
+      },
+      {
+        "title": "If something goes wrong",
+        "nav": "If something goes wrong",
+        "do": "Read the message on the card first. It says what happened.",
+        "list": [
+          "**The server could not be reached:** your answer wasn’t confirmed. Check your connection and try again. A note you wrote is kept.",
+          "**Expired, replaced or already answered:** open the newest version and act on that.",
+          "**The countdown ended:** your form answer was not sent. Click **I’m back, try again**, or ask the Duck again.",
+          "**No buttons to decide:** you don’t have that permission. Ask your company owner, on **Team**.",
+          "**Still there after you acted:** wait for it to finish, then check the chat or ticket."
+        ],
+        "image": {
+          "src": "/help/screenshots/tutorial-needs-you-error.png",
+          "width": 718,
+          "height": 360,
+          "alt": "The server could not be reached. Check your connection and try again. The note to Research Duck is still there.",
+          "caption": "The error shows on the card, and your note is kept.",
+          "marks": [
+            {
+              "x": 60,
+              "y": 220,
+              "w": 440,
+              "h": 36
+            }
+          ]
+        },
+        "note": "An item is done when its answer, decision or work is accepted, not when you open or hide it."
+      }
+    ]
+  },
+  {
+    "id": "task-board",
+    "title": "Track work on the task board",
+    "nav": "Task board",
+    "group": "everyday",
+    "icon": "board",
+    "card": "Boards, tickets, and whose turn it is.",
+    "summary": "The task board shows all work as tickets. Find yours, add new ones, and set up boards with steps.",
+    "checked": "2026-10-05",
+    "tags": [
+      "task board",
+      "board",
+      "ticket",
+      "tickets",
+      "your turn",
+      "step",
+      "stage",
+      "approve",
+      "send back",
+      "new ticket",
+      "scheduled",
+      "archive",
+      "order"
+    ],
+    "quick": [
+      5,
+      2,
+      4
+    ],
+    "steps": [
+      {
+        "title": "Pick a board",
+        "do": "Click [[Task board]] in the sidebar, then pick a board under **TASK BOARDS**.",
+        "more": "**General** has three columns: **Open tasks**, **Being worked on** and **Done**. Other boards have their own steps, left to right. The line under the board’s name says if work starts by itself, is paused, or waits for a person.",
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board.png",
+          "width": 1173,
+          "height": 445,
+          "alt": "The General board with Open tasks, Being worked on and Done, and buttons for Board view, New board, Scheduled and New ticket.",
+          "caption": "Switch boards here.",
+          "marks": [
+            {
+              "x": 14,
+              "y": 40,
+              "w": 126,
+              "h": 36,
+              "badge": "right"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Find a ticket or your turn",
+        "nav": "Find your turn",
+        "do": "Type in [[Find a ticket…]], or pick a Duck under [[All ducks]].",
+        "more": "The count next to the filters updates as you go. When **Your turn** shows, click it to see tickets waiting for you. **Show older Done tickets** shows hidden finished ones; they were never deleted.",
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board.png",
+          "width": 1173,
+          "height": 445,
+          "alt": "The search box and the All ducks filter above the columns.",
+          "marks": [
+            {
+              "x": 16,
+              "y": 120,
+              "w": 244,
+              "h": 38,
+              "badge": "corner",
+              "label": "Search"
+            },
+            {
+              "x": 264,
+              "y": 120,
+              "w": 142,
+              "h": 38,
+              "badge": "corner",
+              "label": "Filter by Duck"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Open a ticket",
+        "do": "Click a ticket to see its brief, priority, who has it, its activity and files.",
+        "more": "On **General**, move a ticket between the columns as the work changes. On other boards, tickets move one step at a time, and can wait for a Duck, another step or an approval.",
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board.png",
+          "width": 1173,
+          "height": 445,
+          "alt": "A ticket in Open tasks: Confirm autumn delivery dates, high priority, with Writer Duck on it.",
+          "caption": "Each card shows the priority, the work and who has it.",
+          "marks": [
+            {
+              "x": 32,
+              "y": 220,
+              "w": 352,
+              "h": 166
+            }
+          ]
+        }
+      },
+      {
+        "title": "Finish your step or hand work back",
+        "nav": "Finish or hand work back",
+        "do": "Write in **Your note**, then click [[Finish your step]].",
+        "more": "A checker clicks **Approve** instead. Click a step at the top to read its instructions and work; **Everything on this ticket** shows its whole history.",
+        "list": [
+          "**Stuck?** Write what went wrong and click **Start a new attempt**.",
+          "**Send back** returns the work to an earlier step. It needs a note.",
+          "**Post note only** adds a comment and moves nothing."
+        ],
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board-ticket-stage.png",
+          "width": 877,
+          "height": 259,
+          "alt": "A ticket’s Review step: Your note, Post note only and Finish your step.",
+          "marks": [
+            {
+              "x": 12,
+              "y": 128,
+              "w": 852,
+              "h": 60,
+              "badge": "corner",
+              "label": "Your note"
+            },
+            {
+              "x": 698,
+              "y": 202,
+              "w": 162,
+              "h": 42,
+              "badge": "left",
+              "label": "Finish your step"
+            }
+          ]
+        },
+        "note": "These need task permissions. Missing a button? Ask an owner to check your access on **Team**."
+      },
+      {
+        "title": "Add a ticket",
+        "do": "Click [[New ticket]]. Say what needs doing, add a **Brief** with what “done” looks like, and pick a **Priority**. Then click [[Create ticket]].",
+        "more": "On **General** you can also pick an **Assigned duck**, or leave it for a person. New tickets start in the left column; on a board that runs by itself, its first Duck can start right away.",
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board-new-ticket.png",
+          "width": 540,
+          "height": 620,
+          "alt": "New ticket in General: What needs doing, Brief, Priority, Assigned duck and Create ticket.",
+          "marks": [
+            {
+              "x": 21,
+              "y": 110,
+              "w": 498,
+              "h": 42,
+              "badge": "corner",
+              "label": "What needs doing"
+            },
+            {
+              "x": 400,
+              "y": 554,
+              "w": 120,
+              "h": 44,
+              "badge": "left",
+              "label": "Create ticket"
+            }
+          ]
+        },
+        "note": "You need permission to edit tasks."
+      },
+      {
+        "title": "Make or change a board",
+        "do": "Click [[New board]] or [[Edit board]], name it, and add its steps. Then click [[Save board]].",
+        "more": "For each step, pick who does it (a Duck or a person), add instructions, and add a checker if someone must approve it.",
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board-setup.png",
+          "width": 1173,
+          "height": 710,
+          "alt": "Editing the Blog articles board: four steps from Brief to Ready to publish, and Save board.",
+          "marks": [
+            {
+              "x": 20,
+              "y": 118,
+              "w": 1140,
+              "h": 94,
+              "badge": "corner",
+              "label": "Its steps, left to right"
+            },
+            {
+              "x": 1024,
+              "y": 36,
+              "w": 126,
+              "h": 38,
+              "badge": "left",
+              "label": "Save board"
+            }
+          ]
+        },
+        "note": "Under **More options**, **Ducks start their steps on their own** and **Tickets move on when a step is done** switch the automatic parts on or off. **Wait for other work first** lets a step wait for chosen Ducks."
+      },
+      {
+        "title": "Archive or bring back a board",
+        "nav": "Archive a board",
+        "do": "In **Edit board**, click [[Archive board]].",
+        "more": "Its tickets stay on it. To bring it back, open the board picker, click **Archived boards**, then **Bring back**.",
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board-setup.png",
+          "width": 1173,
+          "height": 710,
+          "alt": "The board editor with Archive board next to Cancel and Save board.",
+          "caption": "Archive board is at the top of the editor.",
+          "marks": [
+            {
+              "x": 806,
+              "y": 36,
+              "w": 138,
+              "h": 38,
+              "badge": "left"
+            }
+          ]
+        },
+        "warn": "If a Duck is still working on the board, let that finish first."
+      },
+      {
+        "title": "Change how the board looks",
+        "nav": "Board view",
+        "do": "Click [[Board view]], pick the order and whether to hide old **Done** tickets, then click [[Save board view]].",
+        "more": "Order can be **Newest first**, **Oldest first**, **Recently updated** or **Priority (high first)**. This changes the board for everyone. Hidden tickets are not deleted.",
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board-view.png",
+          "width": 540,
+          "height": 390,
+          "alt": "Board view: Ticket order Newest first, Hide older Done tickets, and Save board view.",
+          "marks": [
+            {
+              "x": 18,
+              "y": 155,
+              "w": 504,
+              "h": 44,
+              "badge": "corner",
+              "label": "Ticket order"
+            },
+            {
+              "x": 384,
+              "y": 327,
+              "w": 134,
+              "h": 38,
+              "badge": "corner",
+              "label": "Save"
+            }
+          ]
+        }
+      },
+      {
+        "title": "See scheduled work",
+        "do": "Click [[Scheduled]] at the top of the board.",
+        "more": "It lists work set to run later. Click an item for its details. Don’t see **Scheduled**? Ask an owner to check your **Team** permissions.",
+        "image": {
+          "src": "/help/screenshots/tutorial-task-board.png",
+          "width": 1173,
+          "height": 445,
+          "alt": "The Scheduled button next to New board and New ticket.",
+          "caption": "Scheduled is next to New ticket.",
+          "marks": [
+            {
+              "x": 918,
+              "y": 22,
+              "w": 110,
+              "h": 36,
+              "badge": "left"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "files",
+    "title": "Find and organize your files",
+    "nav": "Files",
+    "group": "everyday",
+    "icon": "files",
+    "card": "Folders, uploads, documents and the archive.",
+    "summary": "Everything your Ducks and teammates share ends up in Files. Find it, sort it into folders, and tidy up.",
+    "checked": "2026-10-05",
+    "tags": [
+      "files",
+      "folder",
+      "upload",
+      "document",
+      "download",
+      "archive",
+      "restore",
+      "delete",
+      "move",
+      "search",
+      "history"
+    ],
+    "quick": [
+      3,
+      4,
+      6
+    ],
+    "steps": [
+      {
+        "title": "Open Files",
+        "do": "Click [[Files]] in the sidebar.",
+        "more": "You see files shared in chats and documents your Ducks wrote. **All files** shows everything; **Unfiled** holds what isn’t in a folder yet. Click a folder to look inside, and use the path at the top to go back.",
+        "image": {
+          "src": "/help/screenshots/tutorial-files-overview.png",
+          "width": 1173,
+          "height": 360,
+          "alt": "Files with All files, Unfiled, a Supplier records folder, and two files.",
+          "marks": [
+            {
+              "x": 15,
+              "y": 8,
+              "w": 68,
+              "h": 28,
+              "badge": "right",
+              "label": "All files"
+            },
+            {
+              "x": 16,
+              "y": 44,
+              "w": 92,
+              "h": 28,
+              "badge": "corner",
+              "label": "Unfiled"
+            }
+          ]
+        },
+        "note": "Files opened from a chat or a Duck only show that chat’s or that Duck’s files."
+      },
+      {
+        "title": "Make folders",
+        "do": "Click [[New folder]], type a name, then click [[Create folder]].",
+        "more": "Inside a folder, **New folder here** makes one inside it. The pencil renames a folder. The bin deletes a folder, but only an empty one.",
+        "image": {
+          "src": "/help/screenshots/tutorial-files-folder.png",
+          "width": 1173,
+          "height": 320,
+          "alt": "Inside the Invoices folder, with the path All files, Supplier records, Invoices and New folder here.",
+          "marks": [
+            {
+              "x": 15,
+              "y": 8,
+              "w": 300,
+              "h": 28,
+              "badge": "right",
+              "label": "Where you are"
+            },
+            {
+              "x": 1022,
+              "y": 6,
+              "w": 142,
+              "h": 30,
+              "badge": "left",
+              "label": "New folder here"
+            }
+          ]
+        },
+        "note": "Folders only sort files. Deleting a folder never deletes files."
+      },
+      {
+        "title": "Upload a file or write a document",
+        "nav": "Upload or write",
+        "do": "Click [[Upload]] (or [[Add]] → **Upload a file**), pick the files, choose the chat under **Share it in**, and upload.",
+        "more": "Everyone in that chat can open them. Up to 10 files at once, 25 MB each; empty files are refused. To write one here, click **New document** (or **Add** → **New document**)."
+      },
+      {
+        "title": "Find a file",
+        "do": "Type in [[Find a file]], or click a file type to narrow the list.",
+        "more": "**Archived** shows files archived from this view; open one and click **Restore file** to bring it back. **No files match**? Change the search or the folder, or click **Show all files**.",
+        "image": {
+          "src": "/help/screenshots/tutorial-files-overview.png",
+          "width": 1173,
+          "height": 360,
+          "alt": "Files with Current and Archived, Find a file, and file types with counts.",
+          "marks": [
+            {
+              "x": 17,
+              "y": 85,
+              "w": 164,
+              "h": 34,
+              "badge": "corner",
+              "label": "Current or Archived"
+            },
+            {
+              "x": 186,
+              "y": 84,
+              "w": 282,
+              "h": 36,
+              "badge": "corner",
+              "label": "Find a file"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Open a file and its menu",
+        "do": "Click a file to see it, then click its [[•••]] button for more.",
+        "more": "What you can do depends on the file and your access: **Show in chat**, **Show in ticket**, **Download**, **Move to folder…**, and for shared files **View history**.",
+        "image": {
+          "src": "/help/screenshots/tutorial-files-actions.png",
+          "width": 1173,
+          "height": 400,
+          "alt": "A file’s menu: Show in chat with Writer Duck, Download, Move to folder and Delete file.",
+          "marks": [
+            {
+              "x": 1124,
+              "y": 128,
+              "w": 38,
+              "h": 34,
+              "badge": "left",
+              "label": "More"
+            },
+            {
+              "x": 930,
+              "y": 172,
+              "w": 236,
+              "h": 184,
+              "badge": "left",
+              "label": "What you can do"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Move, archive or delete",
+        "do": "Click **Move to folder…** to file it, or **Archive file** to take it out of **Current**.",
+        "more": "Archived files wait under **Archived**; **Restore file** brings them back.",
+        "image": {
+          "src": "/help/screenshots/tutorial-files-actions.png",
+          "width": 1173,
+          "height": 400,
+          "alt": "A file’s menu with Move to folder and Delete file.",
+          "marks": [
+            {
+              "x": 930,
+              "y": 272,
+              "w": 150,
+              "h": 36,
+              "badge": "left",
+              "label": "Move to folder"
+            },
+            {
+              "x": 930,
+              "y": 322,
+              "w": 132,
+              "h": 36,
+              "badge": "left",
+              "label": "Delete, for good"
+            }
+          ]
+        },
+        "warn": "**Delete file…** is permanent: the file also disappears from the chat or ticket it was shared in. Click **Keep it** if you’re not sure."
+      }
+    ]
+  },
+  {
+    "id": "computers",
+    "title": "Let a Duck use a computer",
+    "nav": "Computers",
+    "group": "everyday",
+    "icon": "monitor",
+    "card": "Start its computer, watch the screen and step in.",
+    "summary": "A Duck can get a computer of its own. Start it, watch the screen, and step in when it needs you.",
+    "checked": "2026-10-05",
+    "tags": [
+      "computer",
+      "computers",
+      "screen",
+      "watch",
+      "take control",
+      "start",
+      "stop",
+      "idle",
+      "controls",
+      "access"
+    ],
+    "quick": [
+      2,
+      3,
+      4
+    ],
+    "steps": [
+      {
+        "title": "See which Ducks have a computer",
+        "nav": "The computer list",
+        "do": "Click [[Computers]] in the sidebar.",
+        "more": "Ducks are grouped under **On** and **Off**. **No computer yet** means the Duck hasn’t needed one. **Off** means its saved computer is stopped. A running one says whether it is working, idle, waiting for you or stopping.",
+        "image": {
+          "src": "/help/screenshots/tutorial-computers-list.png",
+          "width": 392,
+          "height": 377,
+          "alt": "Computers: Writer Duck is on and idle; Finance Duck is off; Chief Duck and Ops Duck have no computer yet.",
+          "marks": [
+            {
+              "x": 14,
+              "y": 46,
+              "w": 38,
+              "h": 24,
+              "badge": "right",
+              "label": "On"
+            },
+            {
+              "x": 12,
+              "y": 136,
+              "w": 40,
+              "h": 26,
+              "badge": "right",
+              "label": "Off"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Start a computer",
+        "do": "Click [[Start]] next to a Duck that is **Off**.",
+        "more": "It takes about a minute. Then its saved workspace appears, and you can watch or take control.",
+        "image": {
+          "src": "/help/screenshots/tutorial-computers-list.png",
+          "width": 392,
+          "height": 377,
+          "alt": "Computers, with a Start button next to Finance Duck.",
+          "caption": "Start brings back the Duck’s saved computer.",
+          "marks": [
+            {
+              "x": 292,
+              "y": 172,
+              "w": 76,
+              "h": 36
+            }
+          ]
+        },
+        "warn": "Start greyed out? Read the reason: computers may be paused for the company, or not allowed for that Duck. An owner or admin can change that in **Controls**. Starting also needs a connected AI."
+      },
+      {
+        "title": "Watch the screen",
+        "do": "Click the Duck’s name, then click [[Watch the screen]].",
+        "more": "You see the live screen without taking over, and watching keeps the computer on. **Go to screen** means it is already waiting for you. To act yourself, click [[Take control]] on the screen; that pauses the Duck.",
+        "image": {
+          "src": "/help/screenshots/tutorial-computers-overview-main.png",
+          "width": 1173,
+          "height": 560,
+          "alt": "A computer’s page with its screen area and the Watch the screen and Stop buttons.",
+          "caption": "Watching shows the screen without taking over.",
+          "marks": [
+            {
+              "x": 410,
+              "y": 274,
+              "w": 154,
+              "h": 44,
+              "badge": "left"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Hand the screen back",
+        "do": "Do what’s needed, then click **Done, hand back to [Duck]**.",
+        "more": "While you have the screen, **Paste text** lets you put text or a password in it. In the browser view, **Address bar**, **Tab** and **Enter** send those keys. **Close** leaves the screen when you were only watching."
+      },
+      {
+        "title": "Stop a computer",
+        "do": "Click [[Stop]] when the computer should be off.",
+        "more": "Read the warning first: stopping disconnects anybody on the screen, and a waiting Duck will have to ask again. Stopping saves the workspace, but unsaved work on the screen can be lost.",
+        "image": {
+          "src": "/help/screenshots/tutorial-computers-overview-main.png",
+          "width": 1173,
+          "height": 560,
+          "alt": "A computer’s page with the Stop button.",
+          "caption": "Stop saves the workspace and turns the computer off.",
+          "marks": [
+            {
+              "x": 570,
+              "y": 274,
+              "w": 80,
+              "h": 44,
+              "badge": "right"
+            }
+          ]
+        },
+        "note": "Computers stop by themselves after a while idle. Having the list open doesn’t keep them on."
+      },
+      {
+        "title": "Choose which Ducks may use computers",
+        "nav": "Choose who may use one",
+        "do": "Click [[Controls]], tick the Ducks under **Ducks with computer access**, then click [[Save controls]].",
+        "more": "**Allow computers for this company** switches computers on or off for everyone. The window also shows the running limit, the idle time and the longest session.",
+        "image": {
+          "src": "/help/screenshots/tutorial-computers-controls.png",
+          "width": 540,
+          "height": 606,
+          "alt": "Computer controls: Allow computers for this company, the Ducks with computer access, and Save controls.",
+          "marks": [
+            {
+              "x": 18,
+              "y": 82,
+              "w": 246,
+              "h": 34,
+              "badge": "right",
+              "label": "For the whole company"
+            },
+            {
+              "x": 16,
+              "y": 126,
+              "w": 190,
+              "h": 26,
+              "badge": "right",
+              "label": "Per Duck"
+            },
+            {
+              "x": 396,
+              "y": 544,
+              "w": 118,
+              "h": 36,
+              "badge": "left",
+              "label": "Save"
+            }
+          ]
+        },
+        "warn": "Taking access away stops that Duck’s computer. These computers can change settings, install software and manage files.",
+        "note": "Only owners and admins with company control can do this."
+      },
+      {
+        "title": "If something doesn’t work",
+        "nav": "If something doesn’t work",
+        "do": "Find what you see below.",
+        "list": [
+          "**No Start button, or it’s greyed out:** ask an owner or admin to allow company computers and add the Duck under **Ducks with computer access**. Teammates may also need **Use the company computers** on the **Team** page.",
+          "**Desktop did not start:** click **Stop**, then **Start** again.",
+          "**The Duck asks you for a step:** see [Handle something that needs you](/help/needs-you)."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "team",
+    "title": "See and manage your team",
+    "nav": "Team",
+    "group": "everyday",
+    "icon": "users",
+    "card": "Ducks, people, invites, and who can do what.",
+    "summary": "See your Ducks and people, check what they are doing, invite teammates, and choose what they may do.",
+    "checked": "2026-10-05",
+    "tags": [
+      "team",
+      "people",
+      "ducks",
+      "invite",
+      "invitation",
+      "role",
+      "member",
+      "viewer",
+      "admin",
+      "permissions",
+      "access",
+      "activity",
+      "profile",
+      "put back"
+    ],
+    "quick": [
+      4,
+      5,
+      3
+    ],
+    "steps": [
+      {
+        "title": "See your Ducks and people",
+        "nav": "Ducks and people",
+        "do": "Click [[Team]] in the sidebar.",
+        "more": "**Ducks & people** shows every Duck with its role and what it is doing, and every person with their role. **Message** opens a Duck’s chat; it says **Answer** when the Duck is waiting for you.",
+        "image": {
+          "src": "/help/screenshots/tutorial-team-people.png",
+          "width": 1100,
+          "height": 511,
+          "alt": "Team: four Ducks with their roles and Message and Profile buttons, and two people.",
+          "marks": [
+            {
+              "x": 16,
+              "y": 150,
+              "w": 78,
+              "h": 36,
+              "badge": "corner",
+              "label": "Message"
+            },
+            {
+              "x": 96,
+              "y": 150,
+              "w": 64,
+              "h": 36,
+              "badge": "corner",
+              "label": "Profile"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Look at a Duck’s profile",
+        "nav": "A Duck’s profile",
+        "do": "Click [[Profile]] on a Duck.",
+        "more": "Its tabs: **Profile** (name and face), **Its job**, **Character**, **Notes**, **Skills** and **Contacts**, the Ducks it can ask. Skills save as soon as you tick them; other changes need [[Save changes]].",
+        "image": {
+          "src": "/help/screenshots/tutorial-team-profile.png",
+          "width": 790,
+          "height": 592,
+          "alt": "Meet Writer Duck: six tabs from Profile to Contacts, and Save changes.",
+          "marks": [
+            {
+              "x": 18,
+              "y": 194,
+              "w": 752,
+              "h": 50,
+              "badge": "corner",
+              "label": "Its tabs"
+            },
+            {
+              "x": 622,
+              "y": 530,
+              "w": 150,
+              "h": 40,
+              "badge": "left",
+              "label": "Save changes"
+            }
+          ]
+        }
+      },
+      {
+        "title": "See what everyone is working on",
+        "nav": "Activity",
+        "do": "Click [[Activity]].",
+        "more": "Work you can see, grouped by Duck. Each item has a button like **Open ticket**, **Open chat**, **Answer** or **Review request**; **View activity** shows handovers, approvals and shared files.",
+        "image": {
+          "src": "/help/screenshots/tutorial-team-activity.png",
+          "width": 1117,
+          "height": 300,
+          "alt": "Live activity: Writer Duck is working on Confirm autumn delivery dates, with Open ticket.",
+          "caption": "Each piece of work opens where it lives.",
+          "marks": [
+            {
+              "x": 966,
+              "y": 216,
+              "w": 122,
+              "h": 36,
+              "badge": "left"
+            }
+          ]
+        },
+        "note": "**No work to show** means nothing is active that you can see right now."
+      },
+      {
+        "title": "Invite a teammate",
+        "do": "Click [[Invite a teammate]], enter their email, pick a role, and click [[Create invitation link]].",
+        "more": "**Member** can chat, work on tasks and use documents. **Viewer** can only look. Only the owner can invite an **Admin**. The link works for that email address for seven days.",
+        "image": {
+          "src": "/help/screenshots/tutorial-team-invite.png",
+          "width": 540,
+          "height": 440,
+          "alt": "Invite a human teammate: email address, company role Member, and Create invitation link.",
+          "marks": [
+            {
+              "x": 21,
+              "y": 110,
+              "w": 498,
+              "h": 42,
+              "badge": "corner",
+              "label": "Their email"
+            },
+            {
+              "x": 330,
+              "y": 378,
+              "w": 192,
+              "h": 38,
+              "badge": "left",
+              "label": "Create the link"
+            }
+          ]
+        },
+        "note": "New teammates share your company’s Ducks, knowledge and AI connection. There is nothing for them to set up."
+      },
+      {
+        "title": "Change what someone may do",
+        "nav": "Change someone’s access",
+        "do": "Click a person’s [[Permissions]], change the switches, then click [[Save changes]].",
+        "more": "The role fills in the switches, and you can change any line, like **Put work on the board** or **Use the company computers**. Picked another role by mistake? Click **Put them back** right away.",
+        "image": {
+          "src": "/help/screenshots/tutorial-team-permissions.png",
+          "width": 540,
+          "height": 952,
+          "crop": {
+            "top": 90,
+            "height": 320
+          },
+          "alt": "What Sam de Vries may do: the role Member, and switches such as Chat with the ducks and Put work on the board.",
+          "marks": [
+            {
+              "x": 58,
+              "y": 122,
+              "w": 424,
+              "h": 40,
+              "badge": "corner",
+              "label": "The role"
+            },
+            {
+              "x": 390,
+              "y": 240,
+              "w": 112,
+              "h": 40,
+              "badge": "left",
+              "label": "One switch per thing"
+            }
+          ]
+        },
+        "note": "Only the owner can do this."
+      },
+      {
+        "title": "Bring back a Duck, or manage invites",
+        "nav": "Bring back a Duck",
+        "do": "Under **Off the team**, click [[Put back]] to return a Duck to the flock.",
+        "more": "Ducks off the team get no work, but their writing stays, and **Read the chat** opens it. Under **Waiting to join**, an invite can offer **Copy link**, **Send again** and **Revoke**.",
+        "warn": "**Send again** makes a new link, and the old one stops working."
+      }
+    ]
+  },
+  {
+    "id": "webhooks",
+    "title": "Start a Duck from another app",
+    "nav": "Webhooks",
+    "group": "everyday",
+    "icon": "webhook",
+    "card": "Let Zapier, a form or a script send a Duck tasks.",
+    "summary": "Give a Duck a private webhook link, lock it down, and let other apps send it tasks.",
+    "done": "Your Duck takes tasks from your other app.",
+    "checked": "2026-10-07",
+    "tags": [
+      "webhook",
+      "zapier",
+      "make",
+      "n8n",
+      "api",
+      "api key",
+      "ip address",
+      "automation",
+      "integration",
+      "trigger",
+      "reply_url",
+      "signing secret"
+    ],
+    "quick": [
+      2,
+      3,
+      7
+    ],
+    "before": {
+      "title": "Before you start",
+      "items": [
+        "**Permission to change Ducks.** Only people who may change Ducks see the Webhook tab. Ask your company owner if you don’t have it.",
+        "**A connected AI.** Without one, tasks that arrive are refused. [Connect an AI](/help/connect-ai)"
+      ]
+    },
+    "steps": [
+      {
+        "title": "Open the Duck’s Webhook tab",
+        "nav": "Open the Webhook tab",
+        "do": "Click [[Team]], click [[Profile]] on the Duck, then click [[Webhook]].",
+        "more": "Webhooks are off for every Duck until someone turns one on, so the tab says **Off**.",
+        "image": {
+          "src": "/help/screenshots/tutorial-webhook-tab.png",
+          "width": 790,
+          "height": 812,
+          "crop": {
+            "top": 150,
+            "height": 330
+          },
+          "alt": "Meet Chief Duck on the Webhook tab, with the switch Let other apps send Chief Duck tasks turned off.",
+          "marks": [
+            {
+              "x": 663,
+              "y": 193,
+              "w": 103,
+              "h": 75,
+              "badge": "left",
+              "label": "Webhook tab"
+            },
+            {
+              "x": 24,
+              "y": 378,
+              "w": 742,
+              "h": 72,
+              "badge": "corner",
+              "label": "The switch"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Turn it on and copy the link",
+        "nav": "Turn it on",
+        "do": "Switch on **Let other apps send [Duck] tasks**, then click [[Copy]] next to the link.",
+        "more": "Tasks run as you, the person who turned it on, and land in your chat with the Duck.",
+        "image": {
+          "src": "/help/screenshots/tutorial-webhook-link.png",
+          "width": 790,
+          "height": 812,
+          "crop": {
+            "top": 380,
+            "height": 240
+          },
+          "alt": "The webhook is on since today, tasks run as Robin Bakker, and the new link is shown with a Copy button.",
+          "caption": "The link is shown only this once. Keep it somewhere safe.",
+          "marks": [
+            {
+              "x": 24,
+              "y": 468,
+              "w": 742,
+              "h": 126
+            }
+          ]
+        },
+        "warn": "Anyone who has the link can give the Duck work. Treat it like a password. Lost it, or shared it by mistake? Click [[Make a new link]]: the old one stops working at once."
+      },
+      {
+        "title": "Add the two extra locks",
+        "nav": "Add the extra locks",
+        "do": "Click [[Add an API key]] and copy the key. Then list the addresses your app sends from under **Allowed IP addresses** and click [[Save]].",
+        "more": "The app sends the key in an **Authorization: Bearer** header, or as **X-TameDuck-Key**. Calls without the right key, or from another address, are refused and listed.",
+        "image": {
+          "src": "/help/screenshots/tutorial-webhook-locks.png",
+          "width": 742,
+          "height": 342,
+          "alt": "Extra locks, 2 of 2 set: an API key and two allowed IP addresses.",
+          "marks": [
+            {
+              "x": 494,
+              "y": 88,
+              "w": 136,
+              "h": 38,
+              "badge": "left",
+              "label": "API key"
+            },
+            {
+              "x": 45,
+              "y": 237,
+              "w": 678,
+              "h": 89,
+              "badge": "corner",
+              "label": "Allowed addresses"
+            }
+          ]
+        },
+        "note": "We recommend setting both: then a link that leaks is not enough on its own. One address per line; ranges like 203.0.113.0/24 work. Your other app’s documentation lists the addresses it sends from."
+      },
+      {
+        "title": "Tell the Duck what it may do",
+        "nav": "Standing instructions",
+        "do": "Write **Standing instructions** and click [[Save]].",
+        "more": "The Duck reads them before every webhook task. What an app sends is treated as a request from outside, so it can’t overrule them.",
+        "example": "Only handle new orders. Never refund, cancel or delete anything. Ask me before you email a customer about a delay of more than a week.",
+        "image": {
+          "src": "/help/screenshots/tutorial-webhook-rules.png",
+          "width": 742,
+          "height": 268,
+          "alt": "Standing instructions next to an example request with the task and from fields.",
+          "marks": [
+            {
+              "x": 0,
+              "y": 68,
+              "w": 362,
+              "h": 156,
+              "badge": "corner",
+              "label": "Standing instructions"
+            },
+            {
+              "x": 380,
+              "y": 22,
+              "w": 362,
+              "h": 199,
+              "badge": "corner",
+              "label": "What the app sends"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Send a task from your other app",
+        "nav": "Send a task",
+        "do": "In your other app, send a POST to the link with a **task** in JSON, or the task as plain text.",
+        "more": "Add **from** to name the app. A request can be up to 20 KB. The app gets **202** back when the task starts. To try it first, click [[Send a test task]].",
+        "list": [
+          "**task**: what the Duck should do.",
+          "**from**: the app’s name, shown in the chat.",
+          "**reply_url**: where to send the answer (see the last step)."
+        ],
+        "image": {
+          "src": "/help/screenshots/tutorial-webhook-test.png",
+          "width": 742,
+          "height": 54,
+          "alt": "The Send a test task and Save buttons at the bottom of the Webhook tab.",
+          "marks": [
+            {
+              "x": 0,
+              "y": 4,
+              "w": 168,
+              "h": 46,
+              "badge": "right",
+              "label": "Try it"
+            }
+          ]
+        },
+        "note": "At most 20 tasks an hour by default. Change it under **At most**. More are refused and listed."
+      },
+      {
+        "title": "Follow the work",
+        "nav": "Follow the work",
+        "do": "Open your chat with the Duck.",
+        "more": "Each task shows the app’s name and **WEBHOOK**. The Duck answers there, as it does for anything you ask.",
+        "image": {
+          "src": "/help/screenshots/tutorial-webhook-message.png",
+          "width": 1013,
+          "height": 62,
+          "alt": "A message from Shopify marked WEBHOOK: New order 4512, email the customer a delivery date.",
+          "caption": "A task that came in through the webhook."
+        }
+      },
+      {
+        "title": "See what came in, and what was refused",
+        "nav": "Recent calls",
+        "do": "On the Webhook tab, look under **Recent**.",
+        "more": "It lists the last 7 days: what started, what was refused and why, and whether an answer was sent back.",
+        "image": {
+          "src": "/help/screenshots/tutorial-webhook-recent.png",
+          "width": 742,
+          "height": 142,
+          "alt": "Recent: a started task from Shopify and a call refused for a missing or wrong API key.",
+          "caption": "A refused call says why, so you can fix the other app."
+        }
+      },
+      {
+        "title": "Get answers sent back",
+        "nav": "Get answers back",
+        "do": "Under **Send answers back to**, enter your app’s HTTPS address and click [[Save]].",
+        "more": "When the Duck finishes, TameDuck posts its answer there as JSON. A task can name its own **reply_url**, but only on that same host. Click [[Show signing secret]] and give it to your app, so it can check the **X-TameDuck-Signature** header.",
+        "warn": "Answers can only go to the host you set here. A request that names another host is refused."
+      }
+    ]
+  }
+]

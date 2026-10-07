@@ -1,0 +1,337 @@
+/* The two setting-up screens.
+   They sit on .auth-page, the same brand-yellow full-height shell the sign-up
+   pages use, so opening the link in your email and answering these reads as
+   one continuous thing rather than two products. Only the grid and the card
+   differ, because this card holds a form on one screen and the whole AI
+   connection panel on the next.
+   Fixed colours rather than theme tokens, deliberately: this runs before
+   anybody has chosen a theme, and the shell it sits on is brand yellow in
+   every one of them. */
+/* The page scrolls inside itself rather than the window scrolling it, so
+   that the way out below can stick to the bottom of the screen: a sticky
+   footer in a box that never scrolls never sticks, and on a phone Open my
+   workspace was five rows down. */
+.onboarding-page {
+  height: 100dvh;
+  /* What is scrolled into view stops above that footer, not under it. */
+  scroll-padding-bottom: 120px;
+}
+/* With both classes. This page is an .auth-page too, whose overflow: hidden
+   comes later in the built stylesheet (style.css is imported after the app),
+   so a plain .onboarding-page { overflow-y: auto } lost: nothing a wheel or a
+   finger did moved the page, only scrolling from a script did. */
+.auth-page.onboarding-page {
+  overflow-y: auto;
+}
+/* Held at their own height, or the column squeezes the header to fit. */
+.onboarding-page > * {
+  flex-shrink: 0;
+}
+.onboarding-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+  gap: 5vw;
+  max-width: 1220px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 6vw 7vh;
+  align-items: start;
+}
+.onboarding-story {
+  padding-top: 4vh;
+  max-width: 470px;
+}
+.onboarding-story .eyebrow {
+  color: #6b4b00;
+}
+.onboarding-story h1 {
+  font-size: clamp(34px, 4.4vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin: 14px 0 18px;
+  color: #201c42;
+  text-wrap: balance;
+}
+.onboarding-story p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #453a63;
+  margin: 0 0 12px;
+  max-width: 34ch;
+}
+.onboarding-story .onboarding-aside {
+  font-size: 13px;
+  color: #5c4a2e;
+  border-top: 1px solid #00000016;
+  padding-top: 12px;
+  margin-top: 18px;
+}
+
+.onboarding-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 18px 44px #2f210033;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 4vh;
+}
+.onboarding-card h2 {
+  font-size: 19px;
+  margin: 0 0 3px;
+}
+.onboarding-card .button {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+.onboarding-card textarea {
+  resize: vertical;
+  min-height: 88px;
+}
+/* The AI panel brings its own rows, so this one only holds it. --pad is
+   there so the lines across the card can reach both edges. */
+.onboarding-card--wide {
+  --pad: 22px;
+  padding: 20px var(--pad) 0;
+  gap: 0;
+}
+/* Two parts: the plan you sign in to, in a box of its own, then a line
+   across the card and one row per key. */
+.ai-page.setup .ai-setup h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+/* Only the line under each part's heading. Written without the >, it also
+   pulled every row's own line 6px up into its name. */
+.ai-page.setup .ai-setup > p {
+  margin: -6px 0 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.ai-page.setup .ai-setup + .ai-setup {
+  margin: 18px calc(-1 * var(--pad)) 0;
+  padding: 18px var(--pad) 0;
+  border-top: 1px solid var(--border);
+}
+.ai-page.setup .plan .ai-list {
+  border: 1.5px solid var(--blue);
+  border-radius: 12px;
+  background: var(--accent-soft);
+}
+.ai-page.setup .plan .ai-row {
+  gap: 14px;
+  padding: 12px 14px;
+}
+.ai-page.setup .plan .ai-row.can-open:hover {
+  background: color-mix(in srgb, var(--blue) 6%, var(--accent-soft));
+}
+.ai-page.setup .keys .ai-list {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  overflow: visible;
+}
+.ai-page.setup .keys .ai-row {
+  gap: 14px;
+  padding: 10px 0;
+}
+.ai-page.setup .keys .ai-row.can-open:hover {
+  background: none;
+}
+.ai-page.setup .keys .ai-tile {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+/* An open row is a tinted box, a little wider than the rows, so the box for
+   the key does not touch the words around it. */
+.ai-page.setup .keys .ai-item.open {
+  margin: 0 -10px;
+  border-radius: 10px;
+  background: var(--soft);
+}
+.ai-page.setup .keys .ai-item.open > .ai-row {
+  padding: 10px;
+}
+.ai-page.setup .keys .ai-row-body {
+  padding: 0 10px 16px;
+}
+/* The words take what the button leaves, so the button stays on the line
+   and a long label wraps under the name instead. */
+.ai-page.setup .ai-row-main {
+  flex: 1 1 0;
+}
+.ai-page.setup .ai-row-name h3 {
+  font-size: 15px;
+}
+.ai-page.setup .ai-row-what {
+  margin-top: 4px;
+  font-size: 13px;
+}
+/* A phone has no room for the letter beside each key: with it, "Claude", its
+   red label and "Key from platform.claude.com" broke into four or five short
+   lines. The name says which company it is on its own. */
+@media (max-width: 480px) {
+  .ai-page.setup .keys .ai-tile {
+    display: none;
+  }
+}
+.ai-page.setup .ai-tag {
+  font-size: 12px;
+}
+.ai-page.setup .ai-fine {
+  align-items: center;
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+.ai-page.setup .ai-fine svg {
+  margin-top: 0;
+}
+.onboarding-card--wide > .error-box {
+  margin: 14px 0 0;
+}
+
+/* The one control that leaves. Kept out of the panel above it so that it reads
+   as the end of the screen rather than one more setting, and pinned to the
+   bottom of the card because the panel above it is taller than a laptop
+   screen: the way out was below the fold, under five provider rows. */
+.onboarding-done {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background: #fff;
+  margin: 16px calc(-1 * var(--pad)) 0;
+  padding: 14px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  /* It is the bottom of the card, so it has the card's round corners. */
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+/* Sized from nothing, so the line beside the button wraps rather than
+   pushing Back onto a line of its own. */
+.onboarding-go {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+.onboarding-done .button {
+  min-height: 40px;
+}
+/* Greyed, not faded: the app's disabled button is its blue at half
+   strength, which still reads as the thing to press. */
+.onboarding-done .button.locked:disabled {
+  opacity: 1;
+  background: #e4e4ec;
+  color: #56576b;
+  box-shadow: none;
+}
+.onboarding-ok,
+.onboarding-waiting {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  text-wrap: balance;
+}
+.onboarding-ok {
+  color: #157a4a;
+  font-weight: 650;
+}
+.onboarding-waiting {
+  color: var(--muted);
+}
+
+/* Two dots and a count: enough to say there is an end to this, without a
+   progress bar pretending to measure something. */
+.onboarding-step {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 650;
+  color: #6b4b00;
+}
+.onboarding-step i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00000024;
+}
+.onboarding-step i.on {
+  background: #201c42;
+}
+
+@media (max-width: 900px) {
+  .onboarding-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding-bottom: 6vh;
+  }
+  .onboarding-story {
+    padding-top: 2vh;
+    max-width: none;
+  }
+  .onboarding-story h1 {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  .onboarding-card {
+    margin-top: 0;
+    padding: 22px;
+  }
+  .onboarding-card--wide {
+    padding: 20px var(--pad) 0;
+  }
+}
+@media (max-width: 480px) {
+  .onboarding-grid {
+    padding-inline: 18px;
+  }
+  .onboarding-card {
+    padding: 18px;
+    border-radius: 13px;
+  }
+  .onboarding-card--wide {
+    --pad: 18px;
+    padding: 18px var(--pad) 0;
+  }
+  /* The reason on its own line, then Back beside the way out. */
+  .onboarding-done {
+    gap: 8px 14px;
+  }
+  .onboarding-go {
+    display: contents;
+  }
+  .onboarding-ok,
+  .onboarding-waiting {
+    order: -1;
+    flex-basis: 100%;
+  }
+  .onboarding-done .button {
+    flex: 1;
+  }
+}
+/* A finger needs more than a pointer does. */
+@media (max-width: 480px), (pointer: coarse) {
+  .ai-page.setup .button.small,
+  .ai-page.setup .text-button,
+  .ai-page.setup .text-link,
+  .onboarding-done .text-button,
+  .onboarding-done .button {
+    min-height: 44px;
+  }
+}

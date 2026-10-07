@@ -1,0 +1,268 @@
+/* One card for the moment a duck stops before it is done: the quieter twin of
+   the "Needs you" card, with the same band, body and foot in the warning
+   colour instead of the badge colour.
+
+   The colour sits on the word and nowhere else. The rim is the neutral --edge,
+   because a red rectangle in Calm - a sage theme where nothing else is red -
+   would be the loudest thing on the screen, which is exactly what the old pink
+   wash was. That wash also repainted the duck's own sentence, so the duck's
+   words and the machine's warning came out the same colour and nobody could
+   tell which was which; the words keep --ink now.
+
+   Every colour here is a theme token, so all five themes are right. The old
+   rules were hand-typed pink, and only Dark was ever corrected. */
+.run-failure {
+  margin: 9px 0 0;
+  max-width: 560px;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent);
+  overflow: hidden;
+}
+/* Solid, never a tint: a tint of --danger measured 1.199:1 against the card,
+   and a band you cannot see is not a band. --surface is --danger's counterpart
+   in every theme - 8.2:1 in the four light ones, 7.5:1 in Dark. */
+.run-failure-band {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 7px 16px;
+  background: var(--danger);
+  color: var(--surface);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.run-failure-band svg {
+  flex-shrink: 0;
+  stroke-width: 2.2;
+}
+/* Trying again: nothing needs a person now, so the colour drains out of the
+   band and the card stops standing off the page. */
+.run-failure.again {
+  box-shadow: none;
+}
+.run-failure.again .run-failure-band {
+  background: var(--soft);
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--border);
+}
+.run-failure-main {
+  padding: 13px 16px 14px;
+}
+.run-failure-title {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.run-failure-said {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+/* The trying-again card has no headline for this to sit under. */
+.run-failure.again .run-failure-said {
+  margin-top: 0;
+}
+/* A page of output rather than a sentence, handed over the way the "Needs
+   you" card hands over what the duck last saved. Folded away the card keeps
+   its shape; opened, the whole thing is there with its lines intact, because
+   a traceback run together into a paragraph tells nobody anything. */
+.run-failure-more {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+/* 18px of words with 9px of air each side, which is both the 36px a thumb
+   needs and the room the ring below needs. The usual trick of taking that air
+   back with a negative margin put the line 2px over the sentence above it, and
+   the ring then ran straight through that sentence's tails. */
+.run-failure-more summary {
+  width: fit-content;
+  padding: 9px 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.run-failure-more summary:hover {
+  color: var(--ink);
+}
+.run-failure-more summary:active {
+  opacity: 0.7;
+}
+/* A summary is not one of the five things the page-wide rule covers, so
+   without this the keyboard lands on it and leaves no mark. */
+.run-failure-more summary:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 1px;
+}
+.run-failure-more p {
+  margin: 5px 0 0;
+  color: var(--ink-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.run-failure-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  margin: 13px 0 0;
+}
+/* A button has to be found by its edge (3:1) as well as by its words, and in
+   Dark the violet fill sinks into the violet-grey card. Two classes, so this
+   outranks the Dark theme's rule for every button. */
+.run-failure .button:not(.secondary) {
+  border-color: var(--blue);
+}
+.run-failure .button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+/* The other way in, kept quiet so there is only ever one obvious thing to
+   press: 12px of words with 36px to hit. */
+.run-failure-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 2px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--muted);
+  transition: color 0.12s;
+}
+.run-failure-open svg {
+  flex-shrink: 0;
+}
+.run-failure-open:hover:not(:disabled) {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.run-failure-open:active:not(:disabled) {
+  opacity: 0.7;
+}
+/* What it means for the person, and the way out. */
+.run-failure-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 16px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--soft);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.run-failure-foot > span {
+  text-wrap: pretty;
+}
+/* A quiet underlined sentence: 18px of words under a layer that reaches 36px,
+   so the focus ring hugs the words rather than being cut off by the card's
+   rounded corner. */
+.run-failure-out {
+  position: relative;
+  padding: 0;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-color: var(--edge);
+  text-underline-offset: 3px;
+  text-align: left;
+  transition: color 0.12s;
+}
+.run-failure-out::after {
+  content: "";
+  position: absolute;
+  inset: -9px 0;
+}
+.run-failure-out:hover:not(:disabled) {
+  color: var(--ink);
+  text-decoration-color: var(--ink);
+}
+/* At the usual 3px the ring ran through the tails of the sentence above it,
+   which then looked underlined. */
+.run-failure-out:focus-visible {
+  outline-offset: 1px;
+}
+.run-failure-out.stop:hover:not(:disabled) {
+  color: var(--danger);
+  text-decoration-color: var(--danger);
+}
+.run-failure-out:active:not(:disabled) {
+  opacity: 0.7;
+}
+/* Left for now: the card folds to the one line that can bring it back. Five
+   failures in a morning is five cards down the chat, and this is the way to
+   put them away without pretending the work succeeded. */
+.run-failure-quiet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin: 9px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+@media (max-width: 600px) {
+  .run-failure {
+    max-width: 100%;
+  }
+  .run-failure-band {
+    padding-inline: 13px;
+  }
+  .run-failure-main {
+    padding: 12px 13px 14px;
+  }
+  /* The one obvious control takes the row; the quiet one keeps its own width,
+     so they never read as two equals. */
+  .run-failure-row > .button {
+    flex: 1 1 100%;
+  }
+  /* Each way out is 36px to hit, which is room enough around it. With the
+     foot's own 10px as well, a foot holding one sentence and one way out stood
+     72px tall around two lines of words. */
+  .run-failure-foot {
+    padding: 3px 13px;
+  }
+  .run-failure-foot > span {
+    padding: 6px 0 0;
+  }
+  .run-failure-out {
+    padding: 9px 0;
+  }
+  .run-failure-out::after {
+    content: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .run-failure-open,
+  .run-failure-out {
+    transition: none;
+  }
+  .run-failure .button:active:not(:disabled) {
+    transform: none;
+  }
+  .run-failure-band .spin {
+    animation: none;
+  }
+}

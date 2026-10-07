@@ -1,0 +1,462 @@
+/* Needs you, as two short lists. A band in the colours of the sidebar's "Needs
+   you" badge over the ducks that cannot carry on until somebody acts, a plain
+   one over everything else, and one line per thing: the face, what is needed,
+   then who and when. A line opens where it stands and the real control is
+   inside it.
+
+   Every colour here is a theme token. The page this replaces had a white card,
+   a #ffbf00 stripe and a #ffedac tile written out, so four of the five themes
+   showed a colour that was not theirs, and Dark had to undo three of them. */
+.inbox-col {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  max-width: 720px;
+  min-width: 0;
+}
+.inbox-col > * {
+  min-width: 0;
+}
+.inbox-heading {
+  font-size: 23px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.inbox-group {
+  border: 1px solid var(--attn-line);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent);
+  overflow: hidden;
+}
+/* Nothing in here is stuck, so the band stays and the colour goes. */
+.inbox-group.calm {
+  border-color: var(--border);
+  box-shadow: none;
+}
+.inbox-band {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: var(--attn);
+  color: var(--attn-ink);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.inbox-group.calm .inbox-band {
+  background: var(--surface);
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--border);
+}
+.inbox-band b {
+  flex: 1;
+  min-width: 0;
+  font-weight: 700;
+}
+.inbox-count {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.inbox-item + .inbox-item {
+  border-top: 1px solid var(--border);
+}
+/* The whole line is the control. It is a summary, so opening and shutting it
+   with a keyboard, and saying so to a screen reader, come for free. */
+.inbox-row {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 2px 12px;
+  padding: 10px 14px 10px 16px;
+  list-style: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.inbox-row::-webkit-details-marker {
+  display: none;
+}
+.inbox-row:hover {
+  background: var(--soft);
+}
+.inbox-row:active {
+  background: color-mix(in srgb, var(--soft) 70%, var(--border));
+}
+/* The app's ring sits 3px outside what it rings, which on the first line would
+   be cut off by the list's rounded corner. This one sits inside. */
+.inbox-row:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: -3px;
+  border-radius: 9px;
+}
+.inbox-item[open] > .inbox-row {
+  background: var(--soft);
+}
+.inbox-what {
+  min-width: 0;
+}
+.inbox-ask {
+  display: block;
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 650;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.inbox-who {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+/* How much longer the duck waits. The only thing on this page with a clock
+   running, so it is the only thing that gets a mark of its own. */
+.inbox-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: 1px solid var(--attn-line);
+  border-radius: 999px;
+  background: var(--attn-soft);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.4;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+/* Not a control: the line is one. It is the mark that says the line opens, so
+   it answers the line's own hover and never takes a press of its own. */
+.inbox-mark {
+  min-width: 62px;
+  min-height: 36px;
+  pointer-events: none;
+}
+/* Its edge is all there is of it, so the edge has to be seen: 3:1, not the
+   1.4:1 hairline the app's second button wears. Four classes, because Dark
+   states that hairline again later in the bundle. */
+.inbox-row .button.secondary.inbox-mark {
+  border-color: var(--edge);
+}
+.inbox-row:hover .button.secondary.inbox-mark {
+  background: var(--soft);
+  border-color: var(--ink);
+}
+/* A line that is open keeps room under whatever it holds. Most of the cards in
+   here end in a foot, which reaches the bottom edge itself and carries its own
+   room; the ones that end in a button or a sentence had none, and sat on the
+   line below them. */
+.inbox-open {
+  padding: 2px 16px 12px 60px;
+  background: var(--soft);
+}
+.inbox-sub {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+.inbox-said {
+  padding-top: 2px;
+}
+.inbox-said .markdown {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.inbox-do {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 12px;
+}
+/* A button has to be found by its edge as well as by its words: in Dark the
+   violet one sinks into the violet-grey it sits on. Same rim the "Needs you"
+   card wears, for the same reason. */
+.inbox-open .button:not(.secondary) {
+  border-color: var(--blue);
+}
+.inbox-open .button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+/* The cards these lines open carry plain text buttons of their own, 16px tall
+   with nothing around them. On a phone that is half a thumb, so in here they
+   get the reach everything else on the page has. They are sentences rather than
+   buttons, so when one is too long for its line it reads on from the left, the
+   way the words around it do, instead of sitting centred. */
+.inbox-open .text-button {
+  min-height: 36px;
+  text-align: left;
+}
+/* Reply goes somewhere, so it wears the colour of a link. 18px of words, 36px
+   to hit. */
+.inbox-reply {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 2px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+}
+.inbox-reply:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.inbox-reply:active {
+  opacity: 0.7;
+}
+/* What it will really do, for whoever wants to look. Folded, because the line
+   above already says it in words. */
+.inbox-detail {
+  margin-top: 8px;
+}
+.inbox-detail > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 36px;
+  list-style: none;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+}
+.inbox-detail > summary::-webkit-details-marker {
+  display: none;
+}
+.inbox-detail > summary:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.inbox-detail > summary:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+.inbox-detail > summary svg {
+  transition: transform 0.15s;
+}
+.inbox-detail[open] > summary svg {
+  transform: rotate(90deg);
+}
+.inbox-facts {
+  display: grid;
+  max-width: 440px;
+  margin: 2px 0 4px;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.inbox-facts > div {
+  display: grid;
+  grid-template-columns: minmax(72px, auto) minmax(0, 1fr);
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.inbox-facts > div + div {
+  border-top: 1px solid var(--border);
+}
+.inbox-facts dt {
+  padding-top: 1px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.inbox-facts dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+/* A value with parts of its own says them as the same named lines, one step in
+   and under its name rather than beside it, so however deep it goes there are
+   never more than a name and a value to fit across a phone. The box around the
+   whole action is enough, so these have none, and no rules between them: they
+   are one value, read together. */
+.inbox-facts > div.deep {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+}
+.inbox-facts-in {
+  max-width: none;
+  margin: 0;
+  padding: 0 0 0 14px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+.inbox-facts-in > div {
+  padding: 3px 0;
+}
+.inbox-facts-in > div + div {
+  border-top: 0;
+}
+/* The foot belongs to the line, not to the words, so it runs the full width of
+   the line above it, and down to its bottom edge: it brings room of its own,
+   over the room the line keeps for a card that ends without one. */
+.inbox-foot,
+.inbox-open > .human-input-card > .human-input-foot {
+  margin: 14px -16px -12px -60px;
+  padding: 10px 16px 10px 60px;
+}
+.inbox-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 16px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.inbox-foot > span {
+  text-wrap: pretty;
+}
+/* The way out: a quiet underlined sentence. 18px of words, 36px to hit, and
+   the reach is a layer over it rather than padding, so the ring hugs the words
+   and the list's corner cannot cut it. */
+.inbox-out {
+  position: relative;
+  padding: 0;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: var(--edge);
+  text-underline-offset: 3px;
+  transition: color 0.12s;
+}
+.inbox-out::after {
+  content: "";
+  position: absolute;
+  inset: -9px 0;
+}
+.inbox-out:hover:not(:disabled) {
+  color: var(--ink);
+  text-decoration-color: var(--ink);
+}
+.inbox-out.no:hover:not(:disabled) {
+  color: var(--danger);
+  text-decoration-color: var(--danger);
+}
+.inbox-out:focus-visible {
+  outline-offset: 1px;
+}
+.inbox-out:active:not(:disabled) {
+  opacity: 0.7;
+}
+/* The cards a line opens are the shipped ones, unchanged. Inside a line the
+   list is the card: the band above carries the colour and the line's own edges
+   hold it, so each one sheds its border, its corners and its margins. */
+.inbox-open > .human-input-card {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  /* It had rounded corners to keep, and hid whatever left them. Its foot is
+     meant to leave them now: it runs the full width of the line. */
+  overflow: visible;
+}
+.inbox-open > .human-input-card > .human-input-main {
+  padding: 6px 0 0;
+}
+.inbox-open > .human-input-card .human-input-say {
+  margin-top: 0;
+}
+.inbox-open > .human-input-card > .human-input-foot {
+  background: none;
+}
+/* An ask card in its line: the line is its head, and the line's own edges
+   hold it, so its parts lose their side margins. */
+.inbox-open > .ask-card .ask-lines {
+  margin: 6px 0 0;
+}
+.inbox-open > .ask-card .ask-sends,
+.inbox-open > .ask-card .ask-note,
+.inbox-open > .ask-card .error-box,
+.inbox-open > .ask-card > .ask-more {
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (max-width: 600px) {
+  .inbox-heading {
+    font-size: 20px;
+  }
+  .inbox-band {
+    padding-inline: 13px;
+  }
+  /* The line runs out of width before it runs out of things to say, so the
+     countdown drops under the words and the way in keeps the right. */
+  .inbox-row {
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    gap: 4px 10px;
+    padding: 10px 12px 10px 13px;
+  }
+  .inbox-left {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+  }
+  .inbox-mark {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .inbox-open {
+    padding: 2px 13px 12px;
+  }
+  .inbox-foot,
+  .inbox-open > .human-input-card > .human-input-foot {
+    margin: 14px -13px -12px;
+    padding: 10px 13px;
+  }
+  /* One under the other, each with its own 36px to hit. Side by side, a thumb
+     aiming for Reply could land on the one that takes it off the list. */
+  .inbox-foot {
+    justify-content: flex-start;
+    padding-block: 3px;
+  }
+  .inbox-foot > span {
+    flex: 1 1 100%;
+    padding: 6px 0 0;
+  }
+  .inbox-out {
+    padding: 9px 0;
+  }
+  .inbox-out::after {
+    content: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .inbox-row,
+  .inbox-mark,
+  .inbox-out,
+  .inbox-detail > summary svg {
+    transition: none;
+  }
+  .inbox-open .button:active:not(:disabled) {
+    transform: none;
+  }
+}

@@ -1,0 +1,374 @@
+/* A duck's run, on its own message: one card while it works, one line once it
+   is done. Every colour is a theme token, so all five themes are right. */
+.work-card {
+  container-type: inline-size;
+  width: 100%;
+  max-width: 680px;
+  margin: 2px 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--ink) 7%, transparent);
+  /* clip, not hidden: hidden makes the card a scroll box of its own, and the
+     header below could then stick only inside a card that never scrolls. */
+  overflow: clip;
+}
+/* Held at the top of the chat while the rest of a tall card scrolls under it.
+   On a phone a working card with its steps and picture is taller than the
+   chat, which follows the newest line, so Working and Stop scrolled away
+   above the screen while the duck was still at it. */
+.work-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 6px 6px 14px;
+  background: var(--accent-soft);
+}
+/* A sticky top of 0 stops under the chat's own top padding, which left a
+   strip where steps scrolling past showed above the bar, cut in half. So it
+   sticks that much higher, at the chat's very edge: 24px, 21px on a phone,
+   14px in a thread (style.css and threads.css). */
+.chat-scroll .work-head {
+  top: -24px;
+}
+.thread-pane .chat-scroll .work-head {
+  top: -14px;
+}
+@media (max-width: 640px) {
+  .chat-scroll .work-head {
+    top: -21px;
+  }
+  /* Held on screen, it must stay short: a long progress note made it five
+     lines, half of a phone's chat. Two lines; the steps below say the rest. */
+  .work-head p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+}
+.work-head:not(:last-child) {
+  border-bottom: 1px solid var(--accent-line);
+}
+.work-head > .spin {
+  flex-shrink: 0;
+  color: var(--blue);
+}
+.work-head p {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.work-head strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.work-dot {
+  color: var(--muted);
+}
+/* Stop is beside the words it belongs to, as it was in the message box. Not
+   .button.secondary: in Dark that edge is 1.96:1, a button you cannot see. */
+.work-card button.work-stop {
+  flex-shrink: 0;
+  align-self: flex-start;
+  gap: 7px;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--surface);
+  border-color: var(--edge);
+  color: var(--ink);
+  font-size: 13px;
+}
+.work-card button.work-stop svg {
+  color: var(--danger);
+  fill: var(--danger);
+}
+.work-card button.work-stop:hover:not(:disabled) {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+  color: var(--danger);
+  box-shadow: none;
+}
+.work-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 14px 14px 14px 16px;
+}
+.work-steps {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin: 0;
+  padding: 4px 0 0;
+  list-style: none;
+}
+.work-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.work-steps li > svg {
+  margin-top: 1px;
+}
+.work-steps li.done > svg {
+  color: var(--ok);
+}
+.work-steps li.now {
+  color: var(--ink);
+  font-weight: 600;
+}
+.work-steps li.now > svg circle:first-child {
+  stroke: var(--blue);
+}
+.work-steps li.now > svg circle:last-child {
+  fill: var(--blue);
+}
+.work-steps li.left > svg {
+  color: var(--muted);
+}
+/* A step whose action failed is not ticked: a green column of ticks told
+   somebody watching a duck that could not reach its desktop that it had. */
+.work-steps li.failed > svg {
+  color: var(--danger);
+}
+/* A link-blue control, underlined: in grey bold it read as a heading, and
+   nobody taps a heading. */
+.work-more button {
+  min-height: 32px;
+  padding: 0;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.work-more button:hover {
+  color: var(--ink);
+}
+.work-lost {
+  font-size: 13px;
+  color: var(--muted);
+}
+.work-empty {
+  flex: 1;
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.work-empty.solo {
+  padding: 12px 16px;
+}
+/* For a screen reader only: whether a step is done is a tick to the eye. */
+.work-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* The picture is the one way in to the screen. It used to have a second
+   button right under it that went to the same place. */
+.work-picture {
+  flex: none;
+  width: 226px;
+}
+.work-picture .chat-screen-shot {
+  max-width: none;
+  border-color: var(--edge);
+  background: var(--soft);
+}
+.work-picture .chat-screen-shot:hover {
+  border-color: var(--blue);
+}
+.work-picture .chat-screen-shot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background: rgba(32, 32, 53, 0.9);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.work-picture .button {
+  width: 100%;
+}
+.work-picture small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+}
+/* The commands, for whoever wants them, in the card's own colours. The black
+   terminal bar above the answer was the loudest thing on the message, and
+   what it printed was pale grey on pale grey. */
+.work-details {
+  border-top: 1px solid var(--border);
+  padding: 2px 8px;
+}
+.work-details summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  min-height: 32px;
+  padding: 0 6px;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+}
+.work-details summary::-webkit-details-marker {
+  display: none;
+}
+.work-details summary:hover {
+  color: var(--ink);
+}
+.work-details summary:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: -2px;
+}
+.work-details summary svg {
+  transition: transform 160ms ease;
+}
+.work-details[open] summary svg {
+  transform: rotate(90deg);
+}
+.work-details .chat-terminal-body {
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 2px 6px 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--soft);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.work-details .chat-terminal-command {
+  margin: 10px 0 2px;
+  color: var(--ink);
+  word-break: break-all;
+}
+.work-details .chat-terminal-command:first-child {
+  margin-top: 0;
+}
+.work-details .chat-terminal-command span {
+  color: var(--ok);
+  user-select: none;
+}
+.work-details .chat-terminal-output {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.work-details .chat-terminal-state {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-style: italic;
+}
+.work-details .chat-terminal-state.failed {
+  color: var(--danger);
+  font-style: normal;
+}
+.work-details > .chat-terminal-state {
+  margin: 0 6px 8px;
+  font-size: 12px;
+}
+/* Once the run is over: one line, sitting with the answer, that opens to the
+   same steps. */
+.work-done {
+  margin: 2px 0 8px;
+}
+.work-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  min-height: 28px;
+  padding: 3px 10px 3px 8px;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: left;
+}
+.work-chip:hover {
+  border-color: var(--blue);
+  color: var(--ink);
+}
+.work-chip > svg:first-child {
+  color: var(--muted);
+}
+.work-chip.done > svg:first-child {
+  color: var(--ok);
+}
+.work-chevron {
+  color: var(--muted);
+  transition: transform 160ms ease;
+}
+.work-chip[aria-expanded="true"] .work-chevron {
+  transform: rotate(90deg);
+}
+.work-card-open {
+  margin: 8px 0 0;
+}
+/* A phone, or anything held by a finger: everything to press is 44px, and the
+   picture goes under the steps rather than squeezing them into a column. */
+@media (max-width: 640px), (pointer: coarse) {
+  .work-card button.work-stop,
+  .work-details summary,
+  .work-more button,
+  .work-chip {
+    min-height: 44px;
+  }
+}
+@container (max-width: 520px) {
+  .work-body {
+    flex-direction: column;
+    gap: 14px;
+  }
+  /* Small still: on a phone a full-width picture pushed Details and the answer
+     a screen further down, and at 240px the card was tall enough on a 667px
+     phone to push its own Working line and Stop up under the tabs. */
+  .work-picture {
+    width: 100%;
+    max-width: 160px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-details summary svg,
+  .work-chevron {
+    transition: none;
+  }
+}

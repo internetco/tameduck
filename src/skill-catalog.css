@@ -1,0 +1,713 @@
+/* The Skills library: one page for the skills in use and the topics to add
+   from, a page per topic, and a page per skill. Colours are theme tokens only.
+   --line   a quiet edge for a container whose words already say what it is
+   --dedge  the danger colour, kept above 3:1 on a surface as a border */
+.skills-page {
+  --line: color-mix(in srgb, var(--muted) 38%, var(--surface));
+  --dedge: color-mix(in srgb, var(--danger) 75%, var(--surface));
+}
+.skills-wrap {
+  container-type: inline-size;
+  max-width: 1100px;
+  color: var(--ink);
+}
+.skills-page .skills-heading {
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-bottom: 0;
+}
+.skills-page .skills-heading p {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.skills-page h2:focus {
+  outline: none;
+}
+.skills-page h2:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+.skills-title {
+  font-size: 23px;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.skills-lede {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+/* A name, a search or a web address with no spaces in it wraps rather than
+   pushing the page sideways. */
+.skills-title,
+.skills-lede,
+.skills-found p,
+.skills-own b,
+.skills-who,
+.skills-rows b,
+.skills-rows i,
+.skills-tile b,
+.skill-check span,
+.skill-holders span,
+.skill-off span,
+.skill-remove-ask p,
+.skill-facts span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.skills-note {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.skills-sec + .skills-sec {
+  margin-top: 28px;
+}
+.skills-heading + .skills-sec,
+.skills-lede + .skills-sec {
+  margin-top: 20px;
+}
+.skills-sec > h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.skills-sec > h3 span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.skills-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.skills-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Where you are */
+.skills-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px 4px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.skills-crumbs button {
+  min-height: 32px;
+  padding: 0 2px;
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.skills-crumbs button:hover {
+  text-decoration-thickness: 2px;
+}
+.skills-crumbs svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+/* In use */
+.skills-own,
+.skills-rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.skills-own li + li,
+.skills-rows li + li {
+  border-top: 1px solid var(--border);
+}
+.skills-own button,
+.skills-rows button {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 12px 10px 14px;
+  text-align: left;
+  color: var(--ink);
+  transition: background 0.12s;
+}
+.skills-own button:hover,
+.skills-rows button:hover {
+  background: var(--soft);
+}
+.skills-own button:focus-visible,
+.skills-rows button:focus-visible,
+.skills-tile:focus-visible {
+  outline-offset: -3px;
+}
+.skills-own b {
+  flex: 1 1 220px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.skills-who {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.skills-go {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--muted);
+}
+.skills-faces {
+  display: inline-flex;
+}
+.skills-faces .avatar {
+  border-radius: 999px;
+}
+.skills-faces .avatar + .avatar {
+  margin-left: -6px;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+/* Add a skill */
+.skills-search {
+  position: relative;
+  display: block;
+}
+.skills-search svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+.skills-page .skills-search input {
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 12px 9px 38px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.skills-page .skills-search input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+.skills-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.skills-lede + .skills-tiles {
+  margin-top: 20px;
+}
+.skills-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-height: 114px;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  transition: border-color 0.15s;
+}
+.skills-tile:hover {
+  border-color: var(--blue);
+}
+.skills-tile b {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.skills-tile-n {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.skills-tile-n.ready {
+  color: var(--ok);
+}
+.skills-tile-ex {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.skills-tile.soft {
+  border-style: dashed;
+  border-color: var(--edge);
+  background: var(--soft);
+}
+.skills-tile.soft:hover {
+  border-color: var(--blue);
+}
+.skills-found {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 12px 0 8px;
+}
+.skills-found p {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+/* Waiting for a search: nothing to say yet, and no room taken. */
+.skills-found.idle {
+  margin: 0;
+}
+/* Words, then what it needs, then the arrow; on a phone what it needs goes
+   under the words and the arrow stays at the side. */
+.skills-rows button {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 4px 14px;
+}
+.skills-row-words {
+  min-width: 0;
+}
+.skills-rows b {
+  display: block;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+/* Two lines of what a skill does is enough to choose by; its page has the
+   rest. Some are keyword lists many lines long, written for software. */
+.skills-rows i {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.skills-row-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.skills-row-tag.ready {
+  color: var(--ok);
+}
+.skills-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+.skills-problem {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+/* A skill's page: the text down the middle, who gets it at the side. */
+.skill-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 268px;
+  gap: 30px;
+  align-items: start;
+  margin-top: 18px;
+}
+/* --side-top is set by the page: 12px, or less than nothing for a card
+   taller than the window, which then stays with its foot in view. */
+.skill-side {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  top: var(--side-top, 12px);
+}
+.skill-doc {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  max-width: 64ch;
+}
+.skill-give {
+  padding: 14px 14px 15px;
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.skill-give h3 {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.skill-give-say {
+  margin: 2px 0 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.skill-off {
+  display: flex;
+  gap: 8px;
+  margin: -2px -4px 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--soft);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.skill-off svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--muted);
+}
+.skill-check,
+.skill-holders li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 4px 6px;
+  margin: 0 -6px;
+  border-radius: 8px;
+}
+.skill-check {
+  cursor: pointer;
+}
+.skill-check:hover {
+  background: var(--soft);
+}
+.skill-check input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--blue);
+}
+.skill-check b,
+.skill-holders b {
+  display: block;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.skill-check i,
+.skill-holders i {
+  display: block;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.skill-holders {
+  margin: 4px 0;
+  padding: 0;
+  list-style: none;
+}
+.skill-give .skill-add {
+  width: 100%;
+  margin-top: 10px;
+}
+.skill-give-foot {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.skill-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid var(--dedge);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+.skill-remove:hover:not(:disabled) {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+.skills-page .button.skill-remove.go {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: var(--surface);
+}
+.skills-page .button.skill-remove.go:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--danger) 86%, var(--ink));
+  background: color-mix(in srgb, var(--danger) 86%, var(--ink));
+}
+.skill-remove-ask {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--dedge);
+  border-radius: 10px;
+  background: var(--danger-soft);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.skill-remove-q {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.skill-remove-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+}
+.skill-facts {
+  display: grid;
+  gap: 9px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.skill-facts li {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.skill-facts svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--muted);
+}
+.skill-facts li.ok svg {
+  color: var(--ok);
+}
+/* A link in a sentence stays in the sentence. Its padding makes it a finger's
+   height without making the line any taller. */
+.skill-facts .skills-link {
+  display: inline;
+  min-height: 0;
+  padding: 14px 0;
+}
+.skill-doc-cap {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+/* The text reads like a document: one scroll, the page's own, and nothing
+   inside it scrolls sideways - a wide table or line wraps instead. */
+.skills-page .markdown.skill-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+.skills-page .markdown.skill-text p {
+  line-height: 1.7;
+}
+.skills-page .markdown.skill-text p + p {
+  margin-top: 8px;
+}
+.skills-page .markdown.skill-text strong,
+.skills-page .markdown.skill-text b {
+  color: var(--ink);
+}
+.skills-page .markdown.skill-text h3 {
+  margin: 20px 0 6px;
+  font-size: 17px;
+  color: var(--ink);
+}
+.skills-page .markdown.skill-text h4,
+.skills-page .markdown.skill-text h5,
+.skills-page .markdown.skill-text h6 {
+  margin: 12px 0 3px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.skills-page .markdown.skill-text ul,
+.skills-page .markdown.skill-text ol {
+  padding-left: 20px;
+}
+.skills-page .markdown.skill-text code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.skills-page .markdown.skill-text pre {
+  border-color: var(--border);
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 13px;
+}
+.skills-page .markdown.skill-text pre code {
+  padding: 0;
+  background: none;
+}
+.skills-page .markdown.skill-text table {
+  display: table;
+  width: 100%;
+  table-layout: auto;
+  font-size: 13px;
+}
+.skills-page .markdown.skill-text th,
+.skills-page .markdown.skill-text td {
+  overflow-wrap: anywhere;
+}
+.skills-page .markdown.skill-text th {
+  background: var(--soft);
+  color: var(--ink);
+}
+.skills-page .markdown.skill-text blockquote {
+  border-left-color: var(--line);
+  color: var(--ink-2);
+}
+.skills-page .markdown.skill-text a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Tablets and phones: the card comes first, then the text, in one column. */
+@container (max-width: 720px) {
+  .skills-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .skill-cols {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .skill-side,
+  .skill-doc {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .skill-side {
+    position: static;
+  }
+  .skill-side {
+    max-width: 420px;
+  }
+}
+@container (max-width: 520px) {
+  .skills-rows button {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .skills-row-tag {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .skills-rows .skills-go {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .skills-tiles {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .skills-tile {
+    min-height: 0;
+  }
+  .skill-side {
+    max-width: none;
+  }
+}
+/* A finger needs more room than a pointer. */
+@media (max-width: 800px) {
+  .skills-page .skills-heading > .button,
+  .skills-page .button,
+  .skill-remove,
+  .skills-link,
+  .skills-crumbs button,
+  .skills-page .skills-search input {
+    min-height: 44px;
+  }
+  .skills-page .skills-heading > .button {
+    font-size: 13px;
+    padding: 9px 15px;
+  }
+  .skills-page .skills-heading p {
+    font-size: 14px;
+  }
+  .skills-page .skills-search input {
+    font-size: 16px;
+  }
+  .skill-facts .skills-link {
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skills-own button,
+  .skills-rows button,
+  .skills-tile {
+    transition: none;
+  }
+}
+
+/* Where a library skill came from, in its editor. */
+.skill-provenance {
+  padding: 13px 15px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 12px;
+  margin: 16px 0;
+  color: var(--muted);
+}
+.skill-provenance a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--purple);
+}

@@ -1,0 +1,85 @@
+.duck-consultations {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+  min-width: 0;
+}
+.duck-consultation {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface, var(--soft));
+  min-width: 0;
+}
+.duck-consultation-item {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.duck-consultation-content .chat-terminal {
+  max-width: 100%;
+}
+.duck-consultation > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+.duck-consultation > summary::-webkit-details-marker {
+  display: none;
+}
+.duck-consultation > summary::after {
+  content: "⌄";
+  margin-left: auto;
+}
+.duck-consultation[open] > summary::after {
+  content: "⌃";
+}
+.duck-consultation > summary > svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.duck-consultation > summary > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.duck-consultation small {
+  display: block;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.duck-consultation-content {
+  border-top: 1px solid var(--border);
+  padding: 14px;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  max-height: 420px;
+  overflow-y: auto;
+}
+.duck-consultation-content h4 {
+  font-size: 0.9rem;
+  margin: 0 0 8px;
+}
+.duck-consultation-content h4:not(:first-child) {
+  margin-top: 16px;
+}
+.duck-consultation-content pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.duck-consultation-content p:last-child {
+  margin-bottom: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .duck-consultation .spin {
+    animation: none;
+  }
+}
+
+.duck-consultation-progress {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}

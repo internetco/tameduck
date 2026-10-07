@@ -1,0 +1,375 @@
+/* The dialog a company document is written in. The document's own name at the
+   top, edited where it sits; under it one row of two named modes, Writing and
+   Finished; then the words; then one foot with who can read this, one quiet
+   way to put a copy on your computer, and Save.
+
+   What this replaces: a heading that said "Company document" with the
+   document's real name filed 66px below it as a form field, a bar that spread
+   a switch and two 15px links across 790px so "Export PDF" floated in the
+   middle of it, prose typed into a code font, and a 10px line about who can
+   read this. Everything here is a theme token, so all five themes are right
+   without any of them having to undo the others.
+
+   The old .editor-toolbar, .segmented, .document-editor and .document-preview
+   rules stay in style.css: Skills, the skill catalogue and the file list all
+   still use them. */
+
+/* The dialog's edge was #ddd7eb whatever the theme, which in Dark draws a
+   near-white line around a dark box. */
+.modal:has(.doc-editor) {
+  border-color: var(--border);
+}
+
+/* The form is where the cursor lands when a saved document opens: a resting
+   place, not something to press, so it shows no ring of its own. */
+.doc-editor:focus {
+  outline: none;
+}
+
+/* ---------- the name, in the head ---------- */
+/* The name and the two modes read as one band at the top of the dialog, so
+   the head hands its own rule to the row below it and wears the same tint.
+   The padding is the name field's own inner padding taken off the dialog's
+   edge, so the name, the pair and the words all start on one line down the
+   left: 23px in, 18px on a phone. */
+.modal.wide .modal-head:has(.doc-name) {
+  gap: 10px;
+  padding: 12px 17px 12px 14px;
+  border-bottom: 0;
+  background: var(--soft);
+}
+/* The head is a row, and the heading in it holds the name field, so the
+   heading is the part that has to grow. */
+.modal-head h2:has(.doc-name) {
+  flex: 1;
+  min-width: 0;
+}
+/* The shared close button is 30px square, which is under the 36px a thumb
+   needs. This dialog is the one somebody closes with a draft in it. */
+.modal-head:has(.doc-name) .icon-button {
+  width: 36px;
+  height: 36px;
+}
+.modal-head .doc-name {
+  width: 100%;
+  margin: 0;
+  padding: 6px 9px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+/* Nothing says a heading can be typed into, so the field answers the pointer
+   and the keyboard by showing its own edge. */
+.modal-head .doc-name:hover,
+.modal-head .doc-name:focus {
+  background: var(--soft);
+  border-color: var(--edge);
+}
+.modal-head .doc-name[readonly]:hover,
+.modal-head .doc-name[readonly]:focus {
+  background: transparent;
+  border-color: transparent;
+}
+/* Lighter than the name itself, so an unnamed document asks for a name
+   rather than looking as though somebody called it "Name this document". */
+.modal-head .doc-name::placeholder {
+  color: var(--muted);
+  opacity: 1;
+  font-weight: 500;
+}
+/* The shared ring stands 3px clear of what it is around, which on a field
+   this size steps over the head's own edges. */
+.modal-head .doc-name:focus-visible {
+  outline-offset: 1px;
+}
+
+/* ---------- Writing and Finished ---------- */
+/* One row, flush under the head and reaching both edges of the dialog: the
+   body's own 23px of padding is handed back so the rule underneath is a line
+   across the dialog and not a line across the middle of it. */
+.doc-editor .doc-modes {
+  display: flex;
+  margin: -23px -23px 0;
+  padding: 0 9px;
+  border-bottom: 1px solid var(--border);
+  background: var(--soft);
+}
+.doc-editor .doc-mode {
+  display: grid;
+  gap: 2px;
+  justify-items: start;
+  padding: 10px 14px 11px;
+  border-bottom: 3px solid transparent;
+  text-align: left;
+  color: var(--muted);
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+.doc-editor .doc-mode b {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.doc-editor .doc-mode span {
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+.doc-editor .doc-mode:hover {
+  background: color-mix(in srgb, var(--muted) 13%, var(--soft));
+  color: var(--ink-2);
+}
+.doc-editor .doc-mode:active {
+  background: var(--accent-soft);
+}
+.doc-editor .doc-mode[aria-pressed="true"] {
+  border-bottom-color: var(--blue);
+  color: var(--blue);
+}
+.doc-editor .doc-mode[aria-pressed="true"] span {
+  color: var(--muted);
+}
+
+/* ---------- the words ---------- */
+/* A line of running text stops being easy to read somewhere around 80
+   characters, and the dialog is 790px wide, so the words keep their own
+   column against the dialog's left edge rather than filling it. Both modes
+   use the same one, so nothing slides sideways when you change mode. */
+/* The box is pulled 12px left by exactly its own inner padding, so the first
+   letter in Writing sits where the first letter in Finished sits and the
+   words do not jump sideways when you change mode. */
+.doc-editor .doc-write {
+  margin-left: -12px;
+  padding: 16px 0 4px;
+}
+.doc-editor .doc-words {
+  display: block;
+  width: 100%;
+  max-width: 672px;
+  min-height: 330px;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-2);
+  /* The product's own font. In a code font a person's own sentences came back
+     looking like something that had gone wrong. */
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.75;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+.doc-editor .doc-words:hover,
+.doc-editor .doc-words:focus {
+  border-color: var(--edge);
+}
+.doc-editor .doc-words[readonly]:hover,
+.doc-editor .doc-words[readonly]:focus {
+  border-color: transparent;
+}
+.doc-editor .doc-words::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+.doc-editor .doc-read {
+  min-height: 330px;
+  padding: 20px 0 6px;
+}
+.doc-editor .doc-read .markdown {
+  max-width: 648px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+.doc-editor .doc-read .markdown p {
+  margin: 0 0 12px;
+  line-height: 1.75;
+}
+.doc-editor .doc-read .markdown p:last-child {
+  margin-bottom: 0;
+}
+.doc-editor .doc-note {
+  max-width: 648px;
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ---------- the foot ---------- */
+.doc-editor .doc-foot {
+  flex-wrap: wrap;
+  gap: 10px 12px;
+}
+/* Who can read this was the smallest type in the product at 10px, on the one
+   line in the dialog that tells you the thing you cannot undo. */
+.doc-editor .doc-readers {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  flex: 1 1 230px;
+  min-width: 0;
+  margin-right: auto;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.doc-editor .doc-readers svg {
+  margin-top: 1px;
+  color: var(--muted);
+}
+.doc-editor .doc-foot-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* ---------- one quiet way to take a copy away ---------- */
+.doc-editor .doc-copy {
+  position: relative;
+}
+.doc-editor .doc-copy-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.doc-editor .doc-copy-open:hover,
+.doc-editor .doc-copy-open[aria-expanded="true"] {
+  background: color-mix(in srgb, var(--muted) 16%, var(--surface));
+  color: var(--ink);
+}
+.doc-editor .doc-copy-open:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.doc-editor .doc-copy-chevron {
+  margin-left: -2px;
+}
+/* Upwards, because this control lives in the foot and the foot is pinned to
+   the bottom of the dialog. */
+.doc-editor .doc-copy-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 6px);
+  z-index: 3;
+  min-width: 252px;
+  padding: 6px;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 12px 35px color-mix(in srgb, var(--ink) 25%, transparent);
+}
+.doc-editor .doc-copy-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 38px;
+  padding: 9px 10px;
+  border-radius: 7px;
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.doc-editor .doc-copy-menu button svg {
+  color: var(--muted);
+}
+.doc-editor .doc-copy-menu button:hover {
+  background: var(--soft);
+  color: var(--ink);
+}
+.doc-editor .doc-copy-menu button:hover svg {
+  color: var(--ink);
+}
+.doc-editor .doc-copy-menu button:active {
+  background: var(--accent-soft);
+}
+
+@media (max-width: 640px) {
+  /* The body's padding is 18px here, so the full-width row gives back 18px. */
+  .doc-editor .doc-modes {
+    margin: -18px -18px 0;
+    padding: 0 7px;
+  }
+  .doc-editor .doc-mode {
+    padding: 9px 11px 10px;
+  }
+  .modal.wide .modal-head:has(.doc-name) {
+    padding: 10px 12px 10px 10px;
+  }
+  .modal-head .doc-name {
+    font-size: 17px;
+    padding: 7px 8px;
+  }
+  .doc-editor .doc-write {
+    padding: 12px 0 2px;
+  }
+  .doc-editor .doc-words {
+    min-height: 320px;
+  }
+  .doc-editor .doc-read {
+    min-height: 220px;
+    padding: 16px 0 4px;
+  }
+  .doc-editor .doc-readers {
+    flex-basis: 100%;
+  }
+  /* Shaved just enough that this and Save share one row on a phone instead of
+     adding another row of chrome above the words. */
+  .doc-editor .doc-copy-open {
+    padding: 7px 8px;
+    gap: 6px;
+  }
+  /* There is not enough room beside the button here for a menu wide enough
+     to read, so it hangs off the foot instead and takes the whole column. */
+  .doc-editor .doc-copy {
+    position: static;
+  }
+  .doc-editor .doc-copy-menu {
+    left: 18px;
+    right: 18px;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-head .doc-name,
+  .doc-editor .doc-mode,
+  .doc-editor .doc-words,
+  .doc-editor .doc-copy-open,
+  .doc-editor .doc-copy-menu button {
+    transition: none;
+  }
+  .doc-editor .doc-copy-open:active:not(:disabled) {
+    transform: none;
+  }
+}

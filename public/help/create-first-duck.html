@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Create your first Duck — TameDuck Help</title>
+<meta name="description" content="Give your new teammate a name, a role, a face and a job, all in one window.">
+<meta name="theme-color" content="#FBF8F1">
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/help/help.css">
+</head>
+<body class="guide-page">
+<a class="skip" href="#content">Skip to the guide</a>
+<header class="site-header">
+<div class="wrap nav">
+<a class="brand" href="/"><img class="brand-tile" src="/brand/mark.svg" width="36" height="36" alt=""><span class="brand-name">TameDuck</span></a>
+<a class="help-tag" href="/help"><span class="sr-only">TameDuck </span>Help</a>
+<button class="search-toggle" type="button" aria-label="Search help" aria-expanded="false" aria-controls="header-search"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+<form class="search search-sm" id="header-search" role="search" action="/help" data-search>
+<label class="search-box"><svg class="icon search-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="sr-only">Search help</span><input type="search" name="q" placeholder="Search help" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="header-search-results"><kbd aria-hidden="true">/</kbd></label>
+<div class="search-results" id="header-search-results" role="listbox" aria-label="Search results" hidden></div>
+</form>
+<nav class="nav-right" aria-label="Main">
+<a href="https://tameduck.com">TameDuck Cloud</a><a href="/help" aria-current="true">Help</a>
+<a href="/login">Sign in</a>
+<a class="btn" href="/">Open TameDuck <svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+</nav>
+</div>
+</header>
+<div class="wrap guide-layout">
+<nav class="guide-nav" aria-label="Help guides">
+<a class="back" href="/help"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>All guides</a>
+<p class="nav-group">Start here</p>
+<ol class="nav-guides"><li><a class="nav-guide" href="/help/connect-ai"><span class="nav-num">1</span><span>Connect an AI</span></a></li><li><a class="nav-guide" href="/help/create-first-duck" aria-current="page"><span class="nav-num">2</span><span>Create your first Duck</span></a><ol class="nav-steps"><li><a href="#step-1" data-step="1">Open Add a duck</a></li><li><a href="#step-2" data-step="2">Name it and pick a face</a></li><li><a href="#step-3" data-step="3">Give it a job</a></li><li><a href="#step-4" data-step="4">Set its character</a></li><li><a href="#step-5" data-step="5">Notes and model</a></li><li><a href="#step-6" data-step="6">Create the Duck</a></li></ol></li><li><a class="nav-guide" href="/help/first-task"><span class="nav-num">3</span><span>Give a first task</span></a></li></ol>
+<p class="nav-group">Everyday work</p>
+<ol class="nav-guides"><li><a class="nav-guide" href="/help/needs-you"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><span>Needs you</span></a></li><li><a class="nav-guide" href="/help/task-board"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg><span>Task board</span></a></li><li><a class="nav-guide" href="/help/files"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z"/><path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"/></svg><span>Files</span></a></li><li><a class="nav-guide" href="/help/computers"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg><span>Computers</span></a></li><li><a class="nav-guide" href="/help/team"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Team</span></a></li><li><a class="nav-guide" href="/help/webhooks"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8"/></svg><span>Webhooks</span></a></li></ol>
+<p class="nav-stuck"><strong>Still stuck?</strong> <a href="mailto:info@tameduck.com">Email info@tameduck.com</a></p>
+</nav>
+<main id="content" class="guide-main">
+<p class="crumbs"><a href="/help">Help</a><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span>Start here · Guide 2 of 3</span></p>
+<h1>Create your first Duck</h1>
+<p class="lead">Give your new teammate a name, a role, a face and a job, all in one window.</p>
+<p class="meta"><span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg>6 steps</span><span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Checked against the app on 5 October 2026</span></p>
+<nav class="step-strip" aria-label="Steps in this guide"><span>Step</span><a href="#step-1" data-step="1" aria-label="Step 1: Open Add a duck">1</a><a href="#step-2" data-step="2" aria-label="Step 2: Name it and pick a face">2</a><a href="#step-3" data-step="3" aria-label="Step 3: Give it a job">3</a><a href="#step-4" data-step="4" aria-label="Step 4: Set its character">4</a><a href="#step-5" data-step="5" aria-label="Step 5: Notes and model">5</a><a href="#step-6" data-step="6" aria-label="Step 6: Create the Duck">6</a></nav>
+<section class="before" aria-label="Before you start">
+<h2>Before you start</h2>
+<ul><li><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span><strong>An AI connected to your company.</strong> Without one, your Duck can’t answer. <a href="/help/connect-ai">Connect an AI</a></span></li><li><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span><strong>Permission to make new Ducks.</strong> Ask your company owner if you don’t have it.</span></li></ul>
+</section>
+<ol class="steps">
+<li class="step" id="step-1">
+<div class="step-rail" aria-hidden="true"><span class="step-num">1</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 1: </span>Open Add a duck</h2>
+<p class="do">In the sidebar, click <b class="ui">Add a duck</b> under <strong>Direct messages</strong>.</p>
+<p class="more">The <strong>Welcome a new duck</strong> window opens on <strong>Profile</strong>. Its tabs are <strong>Profile</strong>, <strong>Its job</strong>, <strong>Character</strong> and <strong>Notes</strong>.</p>
+<figure class="shot">
+<div class="shot-frame" style="width:790px;aspect-ratio:790 / 592"><img src="/help/screenshots/tutorial-create-first-duck-profile.png" width="790" height="592" alt="The Welcome a new duck window on Profile, with Name, Role, faces, the AI model and Create duck." loading="lazy"><span class="mark" style="left:2.278%;top:32.77%;width:95.19%;height:8.446%"></span></div>
+<figcaption><span class="caption">One window, four tabs. You can switch between them before you create the Duck.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-create-first-duck-profile.png" data-alt="The Welcome a new duck window on Profile, with Name, Role, faces, the AI model and Create duck."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+</div>
+</li>
+<li class="step" id="step-2">
+<div class="step-rail" aria-hidden="true"><span class="step-num">2</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 2: </span>Name it and pick a face</h2>
+<p class="do">Type a <strong>Name</strong> and a short <strong>Role in a few words</strong>, then click a face.</p>
+<p class="more">Both a name and a role are needed. For more choices, click <b class="ui">More faces and colours</b>; <strong>Fewer faces and colours</strong> folds them away again.</p>
+<figure class="shot">
+<div class="shot-frame is-cropped" style="width:790px;aspect-ratio:790 / 395"><img src="/help/screenshots/tutorial-create-first-duck-faces.png" width="790" height="852" alt="Profile with the name Research Duck, the role Product research, and twenty faces to pick from." loading="lazy" style="top:-64.557%"><span class="mark" style="left:2.532%;top:10.127%;width:46.582%;height:10.127%"></span><span class="mark-num at-corner" style="left:49.114%;top:10.127%">1</span><span class="mark" style="left:50.38%;top:10.127%;width:47.089%;height:10.127%"></span><span class="mark-num at-corner" style="left:97.468%;top:10.127%">2</span><span class="mark" style="left:2.785%;top:46.835%;width:94.43%;height:48.101%"></span><span class="mark-num at-corner" style="left:97.215%;top:46.835%">3</span></div>
+<figcaption><span class="legend"><span class="mark-num">1</span>Name</span><span class="legend"><span class="mark-num">2</span>Role in a few words</span><span class="legend"><span class="mark-num">3</span>Pick a face</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-create-first-duck-faces.png" data-alt="Profile with the name Research Duck, the role Product research, and twenty faces to pick from."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+</div>
+</li>
+<li class="step" id="step-3">
+<div class="step-rail" aria-hidden="true"><span class="step-num">3</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 3: </span>Give it a job</h2>
+<p class="do">Click <b class="ui">Its job</b> and write what it looks after.</p>
+<p class="more">Write it like a brief for a new colleague: what it looks after, what it may do on its own, and when it must ask you.</p>
+<figure class="shot">
+<div class="shot-frame is-cropped" style="width:790px;aspect-ratio:790 / 235"><img src="/help/screenshots/tutorial-create-first-duck-job.png" width="790" height="578" alt="Its job: Compare product and customer insights. Write concise findings with source links. Ask me before contacting anyone or spending money." loading="lazy" style="top:-78.723%"><span class="mark" style="left:25.949%;top:3.83%;width:23.671%;height:20.426%"></span><span class="mark-num at-corner" style="left:49.62%;top:3.83%">1</span><span class="mark" style="left:2.785%;top:61.702%;width:94.43%;height:28.936%"></span><span class="mark-num at-corner" style="left:97.215%;top:61.702%">2</span></div>
+<figcaption><span class="legend"><span class="mark-num">1</span>Its job</span><span class="legend"><span class="mark-num">2</span>Write the job here</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-create-first-duck-job.png" data-alt="Its job: Compare product and customer insights. Write concise findings with source links. Ask me before contacting anyone or spending money."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+<aside class="note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg><p><strong>Good to know.</strong> You can create a Duck with an empty job, but the window warns <strong>Its job is still empty</strong>. A clear job gives it direction.</p></aside>
+</div>
+</li>
+<li class="step" id="step-4">
+<div class="step-rail" aria-hidden="true"><span class="step-num">4</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 4: </span>Set its character</h2>
+<p class="do">Click <b class="ui">Character</b> and describe how it should behave.</p>
+<p class="more">Its manner, what it cares about, and how it makes up its mind. This is optional: there may be starter text already, which you can change.</p>
+<figure class="shot">
+<div class="shot-frame is-cropped" style="width:790px;aspect-ratio:790 / 200"><img src="/help/screenshots/tutorial-create-first-duck-character.png" width="790" height="578" alt="Character: Be curious and concise. Separate evidence from guesses, and explain uncertainty." loading="lazy" style="top:-92.5%"><span class="mark" style="left:49.367%;top:4.5%;width:24.051%;height:24%"></span></div>
+<figcaption><span class="caption">Character is how it behaves.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-create-first-duck-character.png" data-alt="Character: Be curious and concise. Separate evidence from guesses, and explain uncertainty."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+</div>
+</li>
+<li class="step" id="step-5">
+<div class="step-rail" aria-hidden="true"><span class="step-num">5</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 5: </span>Add notes and check the model</h2>
+<p class="do">Click <b class="ui">Notes</b> and add what it should remember, like your preferences or decisions.</p>
+<p class="more">The Duck adds to these notes as it learns, and <strong>everyone in your company can read them</strong>. Back on <strong>Profile</strong>, <strong>AI model</strong> says <strong>Same as the company</strong>. Click <b class="ui">Change</b> to give this Duck its own model.</p>
+<figure class="shot">
+<div class="shot-frame is-cropped" style="width:790px;aspect-ratio:790 / 200"><img src="/help/screenshots/tutorial-create-first-duck-notes.png" width="790" height="578" alt="Notes: It adds to these notes itself as it learns. Everyone in your company can read them." loading="lazy" style="top:-92.5%"><span class="mark" style="left:73.165%;top:4.5%;width:24.051%;height:24%"></span></div>
+<figcaption><span class="caption">Notes are what it remembers.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-create-first-duck-notes.png" data-alt="Notes: It adds to these notes itself as it learns. Everyone in your company can read them."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+<aside class="warn"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><p><strong>Watch out.</strong> If you pick a provider but no model, the window goes back to <strong>Profile</strong> and opens the model picker. Finish your choice there.</p></aside>
+</div>
+</li>
+<li class="step is-last" id="step-6">
+<div class="step-rail" aria-hidden="true"><span class="step-num">6</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 6: </span>Create the Duck</h2>
+<p class="do">Click <b class="ui">Create duck</b>.</p>
+<p class="more">The window closes. Your new Duck shows up under <strong>Direct messages</strong>, with its chat open.</p>
+<figure class="shot">
+<div class="shot-frame" style="width:1100px;aspect-ratio:1100 / 560"><img src="/help/screenshots/tutorial-create-first-duck-created.png" width="1100" height="560" alt="The workspace with the new Product Research Duck picked in the sidebar and its empty chat open." loading="lazy"><span class="mark" style="left:1.273%;top:65.357%;width:20.182%;height:6.786%"></span></div>
+<figcaption><span class="caption">Your new Duck, with its chat open.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-create-first-duck-created.png" data-alt="The workspace with the new Product Research Duck picked in the sidebar and its empty chat open."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+<aside class="warn"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><p><strong>Watch out.</strong> If <strong>Name</strong> or <strong>Role</strong> is missing, the window goes back to <strong>Profile</strong> and marks it. Fill it in and click <strong>Create duck</strong> again.</p></aside>
+</div>
+</li>
+</ol>
+<section class="done" aria-labelledby="done-title">
+<p class="done-head" id="done-title"><svg class="icon done-check" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Your first Duck is ready.</p>
+<a class="next" href="/help/first-task"><img src="/help/screenshots/tutorial-first-task-empty-chat.png" alt="" width="861" height="443" loading="lazy"><span class="next-text"><span class="next-eyebrow">Up next · Guide 3 of 3</span><span class="next-title">Give a Duck its first task</span><span class="next-card">Write a clear request, add what it needs, and send it. 5 steps.</span></span><span class="next-go"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+</section>
+<div class="after">
+<div class="feedback" data-feedback><span class="feedback-q">Did this guide help?</span><button type="button" data-answer="yes"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>Yes</button><button type="button" data-answer="no"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>Not really</button><p class="feedback-thanks" data-thanks="yes" hidden>Thanks for telling us.</p><p class="feedback-thanks" data-thanks="no" hidden>Sorry it didn’t. Tell us what was missing at <a href="mailto:info@tameduck.com">info@tameduck.com</a> and we’ll fix the guide.</p></div>
+<a class="stuck-link" href="mailto:info@tameduck.com"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Still stuck? Email info@tameduck.com</a>
+</div>
+</main>
+</div>
+<footer class="site-footer">
+<div class="wrap">
+<div class="footer-grid">
+<div class="footer-about"><span class="footer-brand"><img class="brand-tile" src="/brand/mark.svg" width="34" height="34" alt=""><span>TameDuck</span></span><p>A company workspace where the AI teammates have faces, memories, and computers of their own.</p></div>
+<nav class="footer-cols" aria-label="Footer">
+<div class="footer-col"><span class="footer-head">TameDuck</span><a href="/">Open the app</a><a href="/about">About</a><a href="https://tameduck.com">TameDuck Cloud</a></div>
+<div class="footer-col"><span class="footer-head">Company</span><a class="here" href="/help">Help</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:info@tameduck.com">Contact</a><a href="https://github.com/internetco/tameduck" target="_blank" rel="noopener noreferrer">Open source ↗</a></div>
+</nav>
+</div>
+<div class="footer-bottom"><span>Some of your teammates are ducks.</span><span>tameduck.com · © 2026 TameDuck</span></div>
+</div>
+</footer>
+<dialog class="zoom-dialog" aria-label="Screenshot">
+<form method="dialog" class="zoom-bar"><span class="zoom-caption"></span><button type="submit">Close</button></form>
+<img class="zoom-img" alt="">
+</dialog>
+<script type="module" src="/help/help-search.js"></script>
+<script src="/help/help-guide.js" defer></script>
+</body>
+</html>

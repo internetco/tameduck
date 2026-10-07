@@ -1,0 +1,472 @@
+/* A file opened for a look (src/FileViewer.jsx). The dialog's size is
+   .modal.full in style.css. Every rule starts at .modal.full or
+   .modal.file-confirm, because style.css comes later in the bundle and its
+   .modal-head and .modal-body would otherwise win. */
+.modal.full > .modal-head {
+  flex: none;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 12px 14px 12px 16px;
+}
+.modal.full > .modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+/* "Loading spreadsheet…", and why a sheet cannot be shown: in the middle of
+   the window, not stuck to the top of an empty one. */
+.modal.full > .modal-body > p {
+  margin: auto 0;
+  padding: 28px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+.modal.full > .modal-body > .csv-fallback {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px;
+}
+.modal.full .file-viewer-tile {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+.modal.full .file-viewer-tile.picture {
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+.modal.full .file-viewer-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.modal.full .file-viewer-title h2 {
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* It opens with the focus here, and a ring round the name, not across the
+   whole head, when the keyboard opened it. */
+.modal.full .file-viewer-title h2:focus {
+  outline: none;
+}
+.modal.full .file-viewer-title h2:focus-visible {
+  width: fit-content;
+  max-width: 100%;
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+  border-radius: 3px;
+}
+.modal.full .file-viewer-from {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+.modal.full .file-viewer-from b {
+  color: var(--ink);
+  font-weight: 650;
+}
+/* Two lines at most: long duck and channel names made it eleven lines tall
+   and left the file two rows. The whole sentence is its title. */
+.modal.full .file-viewer-from > span:not(.avatar) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  min-width: 0;
+  overflow: hidden;
+}
+/* A name, a place and a time each stay whole: "yesterday / at 16:40" and
+   "# / operations" broke across lines. One longer than the line ends in … */
+.modal.full .file-viewer-phrase {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+.modal.full .file-viewer-from .avatar {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 5px;
+}
+.modal.full .file-viewer-from .avatar.human {
+  font-size: 11px !important;
+}
+.modal.full .file-viewer-acts {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal.full .file-viewer-sep {
+  width: 1px;
+  height: 26px;
+  margin: 0 2px;
+  background: var(--border);
+}
+.modal.full .file-viewer-icon {
+  /* Never squeezed: a long file name left a phone's Close 32px wide. */
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 7px;
+  color: var(--ink-2);
+  transition: background 0.12s;
+}
+.modal.full .file-viewer-icon:hover,
+.modal.full .file-viewer-icon[aria-expanded="true"] {
+  background: var(--soft);
+  color: var(--ink);
+}
+.modal.full .file-viewer-more {
+  position: relative;
+}
+.modal.full .file-viewer-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 5;
+  min-width: 190px;
+  padding: 6px;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 12px 35px color-mix(in srgb, var(--ink) 25%, transparent);
+}
+.modal.full .file-viewer-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 38px;
+  padding: 9px 10px;
+  border-radius: 7px;
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 650;
+  text-align: left;
+}
+.modal.full .file-viewer-menu button:hover,
+.modal.full .file-viewer-menu button:focus-visible {
+  background: var(--danger-soft);
+}
+/* A picture, as large as the window lets it be and never larger than it is. */
+.modal.full .file-viewer-picture {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: var(--soft);
+}
+.modal.full .file-viewer-picture img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+}
+.modal.full .file-viewer-picture img[hidden] {
+  display: none;
+}
+/* "Loading picture…", and why one cannot be shown. */
+.modal.full .file-viewer-picture > p {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+.modal.full .file-viewer-other {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 28px 16px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+.modal.full .file-viewer-other p:first-of-type {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* What only a phone shows. Last, so it outranks the display of each part. */
+.modal.full .file-viewer-phone {
+  display: none;
+}
+
+/* A phone: the file gets the screen, closing is top left, and Show in chat
+   and Download sit under a thumb. 44px to press, 13px and up to read. */
+@media (max-width: 640px) {
+  .modal.full > .modal-head {
+    gap: 2px;
+    min-height: 64px;
+    padding: 8px 6px 8px 4px;
+  }
+  .modal.full .file-viewer-wide,
+  .modal.full .file-viewer-tile {
+    display: none;
+  }
+  .modal.full .file-viewer-phone {
+    display: revert;
+  }
+  .modal.full .file-viewer-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .modal.full .file-viewer-title h2 {
+    font-size: 15px;
+  }
+  .modal.full .file-viewer-short {
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .modal.full button.file-viewer-phone {
+    display: inline-flex;
+  }
+  .modal.full .file-viewer-bar {
+    flex: none;
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .modal.full .file-viewer-bar > * {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  .modal.full .file-viewer-menu button {
+    min-height: 44px;
+    font-size: 15px;
+  }
+  .modal.full .file-viewer-picture {
+    padding: 12px;
+  }
+}
+
+/* Asking before a delete: what goes, from whom, and that it cannot come back. */
+.modal.file-confirm {
+  width: min(450px, calc(100vw - 32px));
+}
+.modal.file-confirm > .modal-head {
+  justify-content: flex-start;
+  gap: 11px;
+  padding: 16px 18px 0;
+  border-bottom: 0;
+}
+.modal.file-confirm > .modal-head h2 {
+  min-width: 0;
+  font-size: 17px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.modal.file-confirm > .modal-body {
+  padding: 9px 18px 0 59px;
+}
+.modal.file-confirm > .modal-body > p {
+  margin-bottom: 16px;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.6;
+}
+/* A refusal, said where it is read. */
+.modal.file-confirm > .modal-body > .file-confirm-problem {
+  margin-top: -6px;
+  color: var(--danger);
+  font-weight: 600;
+}
+.modal.file-confirm .modal-actions {
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0 -18px 0 -59px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+  background: var(--soft);
+}
+.modal.file-confirm .file-confirm-warn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid color-mix(in srgb, var(--danger) 75%, var(--surface));
+  border-radius: 8px;
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.modal.file-confirm .button.danger-button {
+  border-color: color-mix(in srgb, var(--danger) 78%, var(--ink));
+  background: var(--danger);
+  color: var(--surface);
+}
+.modal.file-confirm .button.danger-button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 84%, var(--ink));
+}
+@media (max-width: 640px) {
+  .modal.file-confirm > .modal-body {
+    padding-left: 18px;
+  }
+  .modal.file-confirm .modal-actions {
+    margin-left: -18px;
+  }
+  .modal.file-confirm .modal-actions > * {
+    flex: 1 1 auto;
+    min-height: 44px;
+  }
+}
+/* Structured previews display only text; originals keep their download action. */
+.file-preview-workbook {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+}
+.file-preview-workbook.fill {
+  flex: 1 1 auto;
+}
+.file-preview-workbook.compact {
+  height: min(65vh, 620px);
+}
+.file-preview-sheets {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+}
+.file-preview-sheets label {
+  flex: none;
+  font-weight: 650;
+}
+.file-preview-sheets select {
+  appearance: auto;
+  min-width: 0;
+  max-width: 400px;
+  flex: 1 1 auto;
+  padding: 8px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+}
+.file-preview-sheets span {
+  flex: none;
+  color: var(--muted);
+}
+.file-preview-workbook > .muted {
+  margin: auto;
+  padding: 24px 16px;
+  text-align: center;
+}
+.file-preview-text,
+.file-preview-document {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
+  padding: 24px;
+  color: var(--ink);
+  text-align: left;
+}
+.file-preview-text.compact,
+.file-preview-document.compact {
+  max-height: 65vh;
+}
+.file-preview-text pre {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font:
+    13px/1.55 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+}
+.file-preview-document section {
+  max-width: 850px;
+  margin: 0 auto 24px;
+}
+.file-preview-document h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+.file-preview-document p {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.file-preview-note,
+.file-preview-description {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 10px 16px;
+}
+.file-preview-workbook > .file-preview-note {
+  flex: none;
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+.file-preview-document .file-preview-description {
+  padding: 0;
+  margin: 0 auto 24px;
+  max-width: 850px;
+}
+.file-preview-status {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .file-preview-text,
+  .file-preview-document {
+    padding: 16px;
+  }
+  .file-preview-sheets {
+    gap: 8px;
+    padding: 8px;
+  }
+  .file-preview-sheets select {
+    min-height: 44px;
+  }
+}

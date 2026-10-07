@@ -1,0 +1,297 @@
+/* Documents on ticket pages */
+.ticket-document-link {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--blue);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.ticket-document-link svg {
+  flex: none;
+  margin-top: 2px;
+}
+.ticket-document-link:hover span {
+  text-decoration: underline;
+}
+.ticket-document-link.deleted {
+  color: var(--muted);
+  font-weight: 500;
+  cursor: default;
+}
+.ticket-activity-entry.document .ticket-document-link {
+  margin-top: 4px;
+}
+
+.ticket-document-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ticket-document-actions .ticket-artifact-changes-trigger {
+  flex: 0 0 auto;
+  min-height: 32px;
+  padding-inline: 10px;
+}
+.ticket-documents-read {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.ticket-documents-read summary {
+  cursor: pointer;
+  width: fit-content;
+}
+.ticket-documents-read ul,
+.ticket-documents ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.ticket-documents ul {
+  margin: 0;
+  gap: 12px;
+}
+.ticket-documents li {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.ticket-documents li small {
+  color: var(--muted);
+  font-size: 11px;
+  padding-left: 20px;
+}
+.ticket-documents .workflow-hint {
+  margin: 0;
+}
+
+/* Workflow requests in chat */
+.workflow-request-avatar,
+.schedule-request-avatar {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+.workflow-request,
+.schedule-request {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--soft);
+  padding: 10px 12px;
+  margin-top: 4px;
+  max-width: 680px;
+  min-width: 0;
+}
+.workflow-request p,
+.schedule-request p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.workflow-request-actions,
+.schedule-request-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.workflow-request-actions small,
+.workflow-request summary,
+.schedule-request-actions small,
+.schedule-request summary {
+  color: var(--muted);
+  font-size: 12px;
+}
+.workflow-request details,
+.schedule-request details {
+  margin-top: 8px;
+}
+.workflow-request summary,
+.schedule-request summary {
+  cursor: pointer;
+  width: fit-content;
+}
+.workflow-request pre,
+.schedule-request pre {
+  margin: 8px 0 0;
+  max-height: 320px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 10px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+/* Plain summaries with technical details folded away */
+.ticket-handoff-details {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.ticket-handoff-details summary {
+  cursor: pointer;
+  width: fit-content;
+}
+.ticket-handoff-details > div,
+.ticket-handoff-details p {
+  overflow-wrap: anywhere;
+}
+
+/* Why a message is in Needs you, shown in the chat it came from. It wears the
+   colours of the sidebar badge that sent somebody looking for it: as a grey box
+   on a white page (1.09:1) it was the faintest thing there. On the Needs you
+   page itself that reason is now the line, so it needs no box of its own. */
+.message-needs-you {
+  margin: 8px 0 0;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: var(--attn-soft);
+  border: 1px solid var(--attn-line);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.message-needs-you {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 9px;
+  width: fit-content;
+  max-width: 680px;
+}
+.needs-you-pill {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border: 1px solid var(--attn-line);
+  border-radius: 4px;
+  background: var(--attn);
+  color: var(--attn-ink);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* A schedule that files tickets on a board is not any one duck's, so it wears
+   the board's mark where a duck's face would be. */
+.schedule-board-icon {
+  width: 33px;
+  height: 33px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.workflow-group > summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 30px;
+  list-style: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 11px;
+}
+.workflow-group > summary::-webkit-details-marker { display: none; }
+.workflow-group > summary strong { color: var(--ink); font-size: 12px; }
+.workflow-group > summary time { margin-left: auto; font-size: 10px; }
+.workflow-group > summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+.workflow-group-chevron { flex: none; }
+.workflow-group[open] > summary .workflow-group-chevron { transform: rotate(90deg); }
+.workflow-group-events { margin-top: 6px; }
+.workflow-group-event { border-top: 1px solid var(--border); padding: 10px 0; }
+.workflow-group-event:last-child { padding-bottom: 0; }
+
+.workflow-group-event > header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px; color: var(--muted); font-size: 11px; }
+.workflow-group-event > header strong { color: var(--ink); font-size: 12px; }
+.workflow-group-event > header time { margin-left: auto; font-size: 10px; }
+
+/* File versions shared by ducks stay individually accessible on their ticket. */
+.ticket-files ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.ticket-files li {
+  min-width: 0;
+}
+.ticket-files li small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.ticket-files .workflow-hint {
+  margin: 0;
+}
+.ticket-file-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.ticket-file-link > :first-child {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--blue);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+.ticket-file-link > :first-child > span:last-child {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.ticket-file-link .file-icon {
+  flex: none;
+}
+.ticket-file-link > :first-child:hover > span:last-child {
+  text-decoration: underline;
+}
+.ticket-file-link .icon-button {
+  flex: none;
+}

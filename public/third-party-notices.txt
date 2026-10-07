@@ -1,0 +1,4 @@
+TameDuck includes noVNC 1.7.0, unmodified, licensed under Mozilla Public License 2.0.
+Source: https://github.com/novnc/noVNC/tree/v1.7.0
+License: https://github.com/novnc/noVNC/blob/v1.7.0/LICENSE.txt
+Other dependency licenses are available in their respective npm packages.

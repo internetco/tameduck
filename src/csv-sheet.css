@@ -1,0 +1,288 @@
+.csv-sheet {
+  min-width: 0;
+  max-width: 100%;
+  margin: 14px 0;
+  color: var(--ink, #25233a);
+  font-size: 13px;
+}
+.csv-sheet-info,
+.csv-sheet-note {
+  color: var(--muted, #6b687b);
+  font-size: 12px;
+  margin: 8px 0;
+}
+.csv-sheet-scroll {
+  max-width: 100%;
+  max-height: 480px;
+  overflow: auto;
+  border: 1px solid var(--border, #dfdce8);
+  border-radius: 8px;
+  background: var(--surface, #fff);
+  overscroll-behavior: contain;
+}
+.csv-sheet-scroll:focus-visible {
+  outline: 2px solid var(--blue, #3158ed);
+  outline-offset: 2px;
+}
+.csv-sheet .csv-sheet-scroll table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  width: max-content;
+  min-width: 100%;
+  font-size: 13px;
+}
+.csv-sheet .csv-sheet-scroll th,
+.csv-sheet .csv-sheet-scroll td {
+  border: 0;
+  border-right: 1px solid var(--border, #dfdce8);
+  border-bottom: 1px solid var(--border, #dfdce8);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.5;
+}
+.csv-sheet .csv-sheet-scroll td {
+  min-width: 110px;
+  max-width: 340px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+.csv-sheet .csv-sheet-scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--soft, #f3f1f8);
+  color: var(--muted, #6b687b);
+  text-align: center;
+  font-weight: 600;
+}
+.csv-sheet .csv-sheet-scroll tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 42px;
+  width: 42px;
+  background: var(--soft, #f3f1f8);
+  color: var(--muted, #6b687b);
+  text-align: right;
+  font-weight: 400;
+}
+.csv-sheet .csv-sheet-scroll .csv-corner {
+  left: 0;
+  z-index: 3;
+}
+.csv-sheet .csv-sheet-scroll .csv-first-row {
+  font-weight: 600;
+  background: var(--soft, #f3f1f8);
+}
+.csv-sheet .csv-sheet-scroll tr:last-child > * {
+  border-bottom: 0;
+}
+.csv-sheet .csv-sheet-scroll tr > *:last-child {
+  border-right: 0;
+}
+.csv-fallback pre {
+  max-height: 400px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* A sheet in a window of its own (CsvSheet's fill). The names stay on top and
+   the first column stays at the left however far you go; every row is one
+   line, and a picked cell's whole text shows underneath. */
+.csv-fill {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  color: var(--ink);
+  font-size: 13px;
+}
+.csv-fill-strip {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.csv-fill-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--surface);
+  /* Its pinned heading paints over the rows, not over the menu above it. */
+  isolation: isolate;
+}
+.csv-fill-scroll table {
+  display: table;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.csv-fill-scroll th,
+.csv-fill-scroll td {
+  padding: 7px 10px;
+  border: 0;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+.csv-fill-scroll td {
+  color: var(--ink-2);
+}
+.csv-fill-scroll tbody [data-c] {
+  cursor: pointer;
+  user-select: text;
+}
+.csv-fill-scroll tbody [data-c]:focus {
+  outline: none;
+}
+.csv-fill-scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--soft);
+  color: var(--ink);
+  font-weight: 650;
+  font-size: 12.5px;
+  line-height: 1.3;
+  white-space: normal;
+  vertical-align: bottom;
+  border-bottom-color: var(--edge);
+}
+.csv-fill-scroll .csv-fill-number {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  padding-inline: 6px 8px;
+  background: var(--soft);
+  color: var(--muted);
+  text-align: right;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.csv-fill-scroll .csv-fill-name {
+  position: sticky;
+  left: var(--csv-numbers, 0);
+  z-index: 1;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  border-right-color: var(--edge);
+}
+.csv-fill-scroll thead .csv-fill-number,
+.csv-fill-scroll thead .csv-fill-name {
+  z-index: 3;
+  background: var(--soft);
+}
+.csv-fill-scroll .csv-fill-amount {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.csv-fill-scroll tr > *:last-child {
+  border-right: 0;
+}
+.csv-fill-scroll tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.csv-fill-scroll .picked {
+  box-shadow: inset 0 0 0 2px var(--blue);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+.csv-fill-cell {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  max-height: 35%;
+  overflow: auto;
+  padding: 10px 16px 11px;
+  border-top: 1px solid var(--edge);
+  background: var(--soft);
+}
+.csv-fill-cell b {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+.csv-fill-cell p {
+  flex: 1 1 300px;
+  margin: 0;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.csv-fill-cell .csv-fill-empty {
+  color: var(--muted);
+}
+/* A sheet with only its column names: a blank grid under "0 rows" looked
+   broken. */
+.csv-fill-none {
+  margin: 0;
+  padding: 28px 16px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+.csv-fill-note {
+  flex: none;
+  margin: 0;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+/* A phone: 44px rows to put a finger on, and nothing under 13px. */
+@media (max-width: 640px) {
+  .csv-fill-strip {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .csv-fill-scroll th,
+  .csv-fill-scroll td {
+    padding: 12px 10px;
+  }
+  .csv-fill-scroll thead th {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+  .csv-fill-scroll tbody > tr > * {
+    height: 44px;
+  }
+  .csv-fill-cell {
+    display: block;
+    padding: 10px 14px 11px;
+  }
+  .csv-fill-cell b {
+    display: block;
+    font-size: 13px;
+  }
+  .csv-fill-cell p {
+    margin-top: 2px;
+    font-size: 14px;
+  }
+  .csv-fill-note {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}

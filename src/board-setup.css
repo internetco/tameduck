@@ -1,0 +1,678 @@
+/* Setting up a board (src/BoardSetup.jsx): the board's name and buttons, its
+   steps as a row of cards in board order, the picked step's editor under the
+   row, and the two whole-board switches. Tokens only, so every theme works.
+   This file loads before style.css, so a rule that changes a shared class is
+   written one class stronger than the shared rule. */
+.page.board-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 24px;
+  color: var(--ink);
+}
+.board-setup .danger {
+  color: var(--danger);
+}
+
+/* The name, the description and the buttons. */
+.board-setup-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+}
+.board-setup-title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.board-setup .eyebrow {
+  margin: 0;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+}
+.board-setup-names {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.board-setup-name {
+  width: 260px;
+  max-width: 100%;
+  height: 38px;
+  margin-left: -9px;
+  padding: 0 9px;
+  border-radius: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.board-setup-about {
+  width: 330px;
+  max-width: 100%;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+.board-setup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-self: flex-end;
+  gap: 8px;
+  margin-left: auto;
+}
+.board-setup .board-setup-actions .button {
+  min-height: 34px;
+  padding: 6px 12px;
+}
+/* A button with no box: Archive board, Remove step. */
+.board-setup-quiet {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.board-setup-quiet:hover:not(:disabled) {
+  background: var(--soft);
+}
+
+/* Start from (a new board only). */
+.board-setup-start {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.board-setup-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.board-setup-pills button {
+  min-height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+}
+.board-setup-pills button:hover {
+  border-color: color-mix(in srgb, var(--blue) 45%, var(--border));
+}
+.board-setup-pills button[aria-pressed="true"] {
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 1px var(--blue);
+  background: color-mix(in srgb, var(--blue) 8%, var(--surface));
+  color: var(--ink);
+}
+.board-setup-start p {
+  font-size: 12.5px;
+}
+
+/* The steps, in board order. With many, the row slides sideways the way the
+   board's lanes do. The padding keeps the picked card's ring from being cut. */
+.board-setup-steps-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin-top: 4px;
+}
+.board-setup-steps-head h2 {
+  font-size: 15px;
+}
+.board-setup-hint {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.board-setup-steps {
+  /* A row that scrolls may otherwise be squeezed to nothing when the page is
+     taller than the window. */
+  flex: none;
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin: -6px;
+  padding: 6px;
+  overflow-x: auto;
+}
+.board-setup-card {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--soft);
+  color: var(--ink);
+  text-align: left;
+}
+/* A person's step wears the tint the board gives a person's lane. */
+.board-setup-card.person {
+  background: var(--attn-soft);
+  border-color: var(--attn-line);
+}
+.board-setup-card:hover {
+  border-color: color-mix(in srgb, var(--blue) 45%, var(--border));
+}
+.board-setup-card[aria-pressed="true"] {
+  padding: 9px;
+  border: 2px solid var(--blue);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 14%, transparent);
+}
+.board-setup-card-top,
+.board-setup-card-who,
+.board-setup-card-check {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.board-setup-card-top {
+  gap: 7px;
+}
+.board-setup-card-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.board-setup-grip {
+  color: var(--muted);
+}
+.board-setup-card-who {
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+.board-setup-card-who.danger {
+  color: var(--danger);
+}
+.board-setup-card .workflow-person-mark {
+  width: 20px;
+  height: 20px;
+}
+.board-setup-card-check {
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-2);
+  /* Eight checkers' faces do not fit a card; the line ends at its edge. */
+  overflow: hidden;
+}
+.board-setup-card-check.muted,
+.board-setup-card-check > svg {
+  color: var(--muted);
+}
+.board-setup-card-check.checked > svg {
+  color: var(--ok);
+}
+.board-setup-card-who > span:last-child,
+.board-setup-card-checkers {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* A warning wraps instead: cut, it lost the one word that matters. */
+.board-setup-card-who.danger > span:last-child {
+  white-space: normal;
+}
+/* Where a dragged step will land: a bar in the gap before or after a card. */
+.board-setup-card.drop-before::before,
+.board-setup-card.drop-after::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--blue);
+}
+.board-setup-card.drop-before::before {
+  left: -7.5px;
+}
+.board-setup-card.drop-after::after {
+  right: -7.5px;
+}
+.board-setup-add {
+  flex: none;
+  width: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px dashed color-mix(in srgb, var(--muted) 45%, var(--surface));
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 600;
+}
+.board-setup-add:hover:not(:disabled) {
+  border-color: var(--blue);
+}
+
+/* The picked step's editor, with a small square pointing at its card. */
+.board-setup-editor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 2px;
+  padding: 14px 18px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--nav-rail) 7%, transparent);
+}
+.board-setup-caret {
+  position: absolute;
+  top: -8px;
+  left: calc(var(--caret-x, 50%) - 7px);
+  width: 14px;
+  height: 14px;
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  transform: rotate(45deg);
+}
+.board-setup-editor[data-no-caret] .board-setup-caret {
+  display: none;
+}
+.board-setup-editor-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.board-setup-editor-head h3 {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.board-setup-tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+}
+.board-setup-tools .icon-button {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  color: var(--muted);
+}
+.board-setup-tools .icon-button svg {
+  width: 15px;
+  height: 15px;
+}
+.board-setup-tools .board-setup-quiet {
+  gap: 6px;
+  min-height: 28px;
+  padding: 0 8px;
+}
+.board-setup-editor-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.board-setup-editor-body > div,
+.board-setup-finish {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.board-setup-finish {
+  max-width: calc(50% - 12px);
+}
+.board-setup-finish p {
+  font-size: 13px;
+}
+.board-setup-editor .field {
+  margin: 0;
+}
+.board-setup-editor .field > textarea {
+  height: 120px;
+}
+.board-setup-gone {
+  margin-bottom: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--danger);
+}
+
+/* Who does the step: every duck on the team, then a person. */
+.board-setup-who {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  max-height: 300px;
+  margin: -3px;
+  padding: 3px;
+  overflow-y: auto;
+}
+.board-setup-who label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: 46px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  cursor: pointer;
+}
+.board-setup-who label:hover {
+  border-color: color-mix(in srgb, var(--blue) 45%, var(--border));
+}
+.board-setup-who label.picked {
+  padding: 0 7px;
+  border: 2px solid var(--blue);
+  background: color-mix(in srgb, var(--blue) 8%, var(--surface));
+}
+.board-setup-who label:has(input:focus-visible) {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+}
+.board-setup-who input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.board-setup-who label > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.board-setup-who strong,
+.board-setup-who small {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.board-setup-who strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.board-setup-who small {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.board-setup-who .workflow-person-mark {
+  width: 24px;
+  height: 24px;
+}
+
+/* Checkers and waits, as chips, with a dropdown laid unseen over "Add". */
+.board-setup-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.board-setup-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 0 4px 0 5px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+}
+.board-setup-chip .muted {
+  font-size: 12px;
+}
+.board-setup-chip .icon-button {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: var(--muted);
+}
+.board-setup-chip .icon-button svg {
+  width: 14px;
+  height: 14px;
+}
+.board-setup-add-duck {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 600;
+}
+.board-setup-add-duck:hover {
+  border-color: color-mix(in srgb, var(--blue) 45%, var(--border));
+}
+.board-setup-add-duck:has(select:focus-visible) {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.board-setup-add-duck select {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+  /* 16px keeps a phone from zooming in when the list opens. */
+  font-size: 16px;
+}
+
+/* More options, and how many tickets the step holds. */
+.board-setup-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.board-setup-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  padding: 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.board-setup-more strong {
+  font-weight: 600;
+}
+.board-setup-more > svg {
+  transition: transform 0.15s;
+}
+.board-setup-more[aria-expanded="true"] > svg {
+  transform: rotate(90deg);
+}
+.board-setup-tickets {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: auto;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.board-setup-tickets > svg {
+  color: var(--muted);
+}
+.board-setup-more-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Its own line under More options and the ticket line. */
+  order: 1;
+  flex-basis: 100%;
+}
+
+/* The two switches that are about the whole board. */
+.board-setup-whole {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--soft);
+}
+.board-setup-whole strong {
+  font-size: 13px;
+  font-weight: 700;
+}
+.board-setup-whole label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* The archive confirm: what archiving does reads plainly; only the line
+   that reassures at the end is quiet, the way dialogs are by default. */
+.modal-body > p.board-archive-warning {
+  color: var(--ink-2);
+}
+
+/* Archived boards, in the dialog that brings them back. */
+.archived-board {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.archived-board .muted {
+  font-size: 12px;
+}
+
+/* The sidebar stays until 700px, so the page is narrow well before the
+   window is. Two columns there cut the duck names to a few letters. */
+@media (max-width: 1000px) {
+  .board-setup-editor-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+}
+@media (max-width: 900px) {
+  .board-setup-actions {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+  /* The name and the description, one under the other and lined up. */
+  .board-setup-name,
+  .board-setup-about {
+    width: 100%;
+  }
+  .board-setup-name {
+    margin-left: 0;
+  }
+}
+@media (max-width: 700px) {
+  .page.board-setup {
+    padding: 14px;
+  }
+  .board-setup-name {
+    font-size: 20px;
+  }
+  .board-setup-card {
+    min-width: 150px;
+  }
+  .board-setup-editor {
+    padding: 14px;
+  }
+  /* The step name gets the first line, and its buttons the next, or a
+     name was squeezed into a column a word or two wide. */
+  .board-setup-editor-head {
+    flex-wrap: wrap;
+  }
+  .board-setup-tools {
+    flex-basis: 100%;
+  }
+  .board-setup-finish {
+    max-width: none;
+  }
+  .board-setup-foot,
+  .board-setup-whole {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .board-setup-tickets {
+    margin-left: 0;
+  }
+  /* What More options opens comes right under it; the ticket line after. */
+  .board-setup-more-body {
+    order: 0;
+    flex-basis: auto;
+    align-self: stretch;
+  }
+}
+/* Pressed with a finger: big enough for one, and no promise of a drag. */
+@media (pointer: coarse) {
+  .board-setup-drag,
+  .board-setup-grip {
+    display: none;
+  }
+  .board-setup .board-setup-actions .button,
+  .board-setup-quiet,
+  .board-setup-tools .board-setup-quiet,
+  .board-setup-pills button,
+  .board-setup-add-duck,
+  .board-setup-chip,
+  .board-setup-more,
+  .board-setup-whole label {
+    min-height: 44px;
+  }
+  .board-setup-tools .icon-button {
+    width: 44px;
+    height: 44px;
+  }
+  .board-setup-chip .icon-button {
+    width: 36px;
+    height: 44px;
+  }
+}

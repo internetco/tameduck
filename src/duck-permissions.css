@@ -1,0 +1,502 @@
+/* Settings > Ducks: the grid people already know, with real switches in it.
+
+   This file is bundled before style.css and themes.css, so where a rule here
+   has to beat one of theirs it is written under .duck-perms to outrank it.
+   Every colour is a token, so all five themes share one set of rules bar the
+   knob on a filled switch: that is the colour of the paper, and Dark's paper
+   is not white. */
+.duck-perms-page {
+  /* The room this page has is not the window's: on a tablet the rail, the
+     sidebar and the settings menu leave it a phone's width. So the table folds
+     by its own width rather than the viewport's. */
+  container-type: inline-size;
+}
+
+.duck-perms-head {
+  max-width: 620px;
+  margin-bottom: 18px;
+}
+.duck-perms-head p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.duck-perms-wrap {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.duck-perms-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.duck-perms-table th,
+.duck-perms-table td {
+  text-align: left;
+  padding: 7px 8px;
+  font-weight: 400;
+  vertical-align: middle;
+}
+.duck-perms-table th:first-child {
+  width: 28%;
+  padding-left: 16px;
+}
+.duck-perms-table thead th {
+  vertical-align: top;
+  padding-top: 12px;
+  padding-bottom: 11px;
+  background: var(--soft);
+  border-bottom: 1px solid var(--border);
+}
+.duck-perms-table thead b {
+  display: block;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.duck-perms-table thead span {
+  display: block;
+  margin-top: 1px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.duck-perms-table tbody tr + tr > *,
+.duck-perms-table tfoot tr > * {
+  border-top: 1px solid var(--border);
+}
+.duck-perms-table tbody tr {
+  transition: background 0.15s;
+}
+.duck-perms-table tbody tr:hover {
+  background: color-mix(in srgb, var(--soft) 55%, var(--surface));
+}
+.duck-perms-table tfoot tr {
+  background: var(--soft);
+}
+
+/* The flex lives inside the cell and never on it. On it, the name cell stopped
+   being a table cell, and its bottom border sat 6 to 13px above the rest of
+   the row: a stepped line under every duck, in every theme. */
+.duck-perms-who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.duck-perms-who .avatar {
+  border-radius: 7px;
+}
+.duck-perms-name {
+  min-width: 0;
+}
+.duck-perms-name b {
+  display: block;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ink);
+  /* "Research Duck" and "Finance Duck" broke over two lines in a 150px
+     column. A name that is genuinely too long for the column ends in an
+     ellipsis rather than spilling over the first switch. */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.duck-perms-name span {
+  display: block;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted);
+  /* A long job wrapped to three lines and pulled the whole row out of shape,
+     the way a long name used to. It ends the way the name ends. */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.duck-perms-tile {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: 1px solid var(--accent-line);
+  border-radius: 7px;
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+
+.duck-perms-cell {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 36px;
+}
+label.duck-perms-cell {
+  cursor: pointer;
+}
+/* Only a phone shows this. */
+.duck-perms-lab {
+  display: none;
+}
+/* The answer beside the switch, so that no cell is a bare tick. */
+.duck-perms-word {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+/* The switch, and not only in this table: the rules that hide the real tick
+   box used to be scoped to .duck-perms, so borrowing the switch anywhere else
+   drew a native checkbox next to the track. It is a component now. */
+.duck-perms-switch {
+  /* The colours a filled switch is drawn in belong to the switch, not to the
+     page it was first written for. They lived on .duck-perms-page, so the
+     first screen to borrow the switch - Settings > Emails - drew every one of
+     them as an empty outline with no knob: on and off looked identical, on a
+     page whose only job is to show you what is on. A component carries its own
+     colours or it is not a component.
+
+     --green is the fill under every button in the product: the theme's own
+     blue in the four light themes, and the violet Dark uses in place of its
+     pale --blue, which a white knob would vanish into. */
+  --perm-on: var(--green);
+  --perm-on-hover: var(--green-deep);
+  /* The rim of a filled switch: its own colour in the light themes, where the
+     fill already stands out, and a lighter violet in Dark, where the fill
+     alone is under 3:1 on the tint the header and the All ducks row wear. */
+  --perm-on-edge: color-mix(in srgb, var(--blue) 55%, var(--green));
+  --perm-knob: var(--surface);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 36px;
+  cursor: pointer;
+}
+/* Dark's paper is dark, so the knob borrows that theme's ink, the near-white
+   everything else is written in. */
+[data-theme="dark"] .duck-perms-switch {
+  --perm-knob: var(--ink);
+}
+.duck-perms-switch input[type="checkbox"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  /* The track is drawn after the box and is positioned too, so without this it
+     sits on top and the pointer lands on a decoration. */
+  z-index: 1;
+}
+.duck-perms-switch input[type="checkbox"]:disabled {
+  cursor: progress;
+}
+.duck-perms-switch:has(input:disabled) {
+  opacity: 0.48;
+}
+.duck-perms-track {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 24px;
+  border: 1.5px solid var(--edge);
+  border-radius: 999px;
+  background: var(--surface);
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.duck-perms-track::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 15px;
+  height: 15px;
+  margin-top: -7.5px;
+  border-radius: 999px;
+  background: var(--edge);
+  transition:
+    transform 0.15s,
+    background 0.15s,
+    width 0.12s;
+}
+.duck-perms-switch input:checked + .duck-perms-track {
+  border-color: var(--perm-on-edge);
+  background: var(--perm-on);
+}
+.duck-perms-switch input:checked + .duck-perms-track::after {
+  background: var(--perm-knob);
+  transform: translateX(16px);
+}
+.duck-perms-cell:hover .duck-perms-track {
+  border-color: var(--blue);
+}
+.duck-perms-cell:hover .duck-perms-track::after {
+  background: var(--blue);
+}
+.duck-perms-cell:hover input:checked + .duck-perms-track {
+  background: var(--perm-on-hover);
+}
+.duck-perms-cell:hover input:checked + .duck-perms-track::after {
+  background: var(--perm-knob);
+}
+.duck-perms-cell:active .duck-perms-track::after {
+  width: 19px;
+}
+.duck-perms-cell:active input:checked + .duck-perms-track::after {
+  transform: translateX(12px);
+}
+.duck-perms-switch input:focus-visible {
+  outline: none;
+}
+.duck-perms-switch input:focus-visible + .duck-perms-track {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* The All ducks row: one press per column, lined up under the switches it
+   changes, rather than three loose buttons floating above the table. */
+.duck-perms-bulk {
+  min-height: 36px;
+  padding: 0;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-color: var(--edge);
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.duck-perms-bulk:hover:not(:disabled) {
+  color: var(--ink);
+  text-decoration-color: var(--ink);
+}
+.duck-perms-bulk:active:not(:disabled) {
+  opacity: 0.7;
+}
+.duck-perms-bulk:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* One press changed all five ducks with nothing to say and no way back. */
+.duck-perms-undo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 9px;
+  margin-top: 10px;
+  padding: 2px 6px 2px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--soft);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.duck-perms-undo svg {
+  flex-shrink: 0;
+  color: var(--ok);
+}
+.duck-perms-undo > span {
+  flex: 1 1 auto;
+  padding: 6px 0;
+}
+.duck-perms-undo button {
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--blue);
+  transition: background 0.15s;
+}
+.duck-perms-undo button:hover:not(:disabled) {
+  background: var(--accent-soft);
+}
+.duck-perms-undo button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.duck-perms-undo button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Where the setting that is yours alone went, said once, under the table it
+   used to sit in the middle of. */
+.duck-perms-fine {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 16px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.duck-perms-proxy-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 14px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.duck-perms-proxy-note svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--blue);
+}
+.duck-perms-fine svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.duck-perms .duck-perms-fine .text-button {
+  /* It belongs in the sentence, so it flows with it; the padding is what makes
+     it big enough to hit, and the matching margin keeps the line spacing. */
+  display: inline;
+  padding: 11px 0;
+  margin: -11px 0;
+  border-radius: 3px;
+  font-size: 12px;
+}
+.duck-perms .duck-perms-fine .text-button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.duck-perms-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* A tablet leaves this page about 520px: the answer drops under its switch. */
+@container (max-width: 760px) {
+  label.duck-perms-cell {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 3px 0 5px;
+  }
+  /* Four headings of one line and one of two put the switches out of step, so
+     every heading keeps room for the longer pair. */
+  .duck-perms-table thead b {
+    min-height: 2.8em;
+  }
+}
+@container (max-width: 600px) {
+  .duck-perms-table th,
+  .duck-perms-table td {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  /* 30% left "Research Duck" 4px short of its own name and it was cut to
+     "Research D...". The switches can spare the room: the widest thing under
+     one of them is the word "Asks first". */
+  .duck-perms-table th:first-child {
+    width: 34%;
+    padding-left: 12px;
+  }
+  /* Their jobs would be cut to two words here, and the switches are what
+     somebody came to this screen for. Which duck is the chief stays. */
+  .duck-perms-name span:not(.duck-perms-chief) {
+    display: none;
+  }
+}
+/* A narrow settings pane: every row becomes a card of named lines, and the
+   table is never swiped sideways. */
+@container (max-width: 600px) {
+  .duck-perms-table,
+  .duck-perms-table tbody,
+  .duck-perms-table tfoot,
+  .duck-perms-table tr,
+  .duck-perms-table th,
+  .duck-perms-table td {
+    display: block;
+  }
+  .duck-perms-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .duck-perms-table tr {
+    padding: 12px 14px 10px;
+  }
+  .duck-perms-table tbody tr + tr,
+  .duck-perms-table tfoot tr {
+    border-top: 1px solid var(--border);
+  }
+  .duck-perms-table th,
+  .duck-perms-table td,
+  .duck-perms-table th:first-child {
+    width: auto;
+    padding: 0;
+  }
+  .duck-perms-table tbody tr + tr > *,
+  .duck-perms-table tfoot tr > * {
+    border-top: 0;
+  }
+  .duck-perms-table th {
+    margin-bottom: 4px;
+  }
+  /* Same shape of selector as the rule above that hides them, so that this
+     one, being the later of the two, is the one that counts here. */
+  .duck-perms-name span:not(.duck-perms-chief) {
+    display: block;
+  }
+  .duck-perms-cell,
+  label.duck-perms-cell {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 1px 0;
+  }
+  .duck-perms-lab {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .duck-perms-switch {
+    order: 3;
+  }
+  .duck-perms-word {
+    order: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .duck-perms-table tbody tr,
+  .duck-perms-track,
+  .duck-perms-track::after,
+  .duck-perms-undo button {
+    transition: none;
+  }
+  .duck-perms-cell:active .duck-perms-track::after {
+    width: 15px;
+  }
+  .duck-perms-cell:active input:checked + .duck-perms-track::after {
+    transform: translateX(16px);
+  }
+  .duck-perms-undo button:active:not(:disabled) {
+    transform: none;
+  }
+}

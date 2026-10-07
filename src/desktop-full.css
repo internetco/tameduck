@@ -1,0 +1,236 @@
+/* Holding a duck's screen. Its desktop fills the window under one bar in the
+   colours of the "Needs you" badge, and handing back is the way out. It sits
+   over the app's own menu and sidebar, which have nothing to offer while the
+   duck waits. */
+.desktop-full {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background: #110d22;
+  color: #fff;
+  outline: none;
+}
+.desktop-full-bar {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  min-height: 72px;
+  padding: 12px 16px 12px 20px;
+  background: var(--attn);
+  color: var(--attn-ink);
+}
+.desktop-full-bar .avatar {
+  border-radius: 9px;
+}
+/* Room for the words before the buttons: with a long duck name, Done grew
+   wide enough to squeeze them to a letter a line. The buttons move to their
+   own row instead. */
+.desktop-full-words {
+  flex: 1 1 260px;
+  min-width: 0;
+  /* A duck can ask in a long sentence. All of it can be read, and the bar
+     stays a bar: past a quarter of the window the words scroll. */
+  max-height: 25vh;
+  overflow-y: auto;
+}
+.desktop-full-words h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.desktop-full-words p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.desktop-full-ask {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.desktop-full-buttons {
+  flex: 0 1 auto;
+  max-width: 100%;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.desktop-full-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--attn-ink) 30%, transparent);
+  background: color-mix(in srgb, #fff 55%, transparent);
+  color: var(--attn-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+.desktop-full-quiet:hover {
+  background: color-mix(in srgb, #fff 80%, transparent);
+}
+.button.desktop-full-done {
+  min-height: 44px;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  padding: 6px 20px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 1px 2px #36204840;
+}
+.desktop-full .desktop-paste {
+  flex: none;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--attn-soft);
+  color: var(--ink);
+}
+.desktop-full-keys {
+  flex: none;
+  display: flex;
+  gap: 14px;
+  padding: 6px 16px;
+  background: var(--attn-soft);
+  font-size: 12px;
+}
+.desktop-full > .error-box {
+  flex: none;
+  margin: 12px 12px 0;
+}
+.desktop-full-screen {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: 12px;
+}
+.desktop-full-screen .human-desktop-canvas {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  border: 0;
+  border-radius: 6px;
+}
+.desktop-full-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  border-radius: 6px;
+  background: #110d22b8;
+}
+/* While it connects the viewer underneath draws its own "Connecting…" in the
+   same place, and through the dimmed layer the two read as one jumble. There
+   is nothing under it worth seeing yet, so this one covers it. */
+.desktop-full-state.starting {
+  background: #110d22;
+}
+.desktop-full-state p {
+  max-width: 420px;
+  margin: 0;
+  color: #e8e5f2;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.desktop-full-state p svg {
+  margin-right: 8px;
+  vertical-align: -3px;
+}
+.desktop-full-hint {
+  flex: none;
+  margin: -4px 12px 10px;
+  color: #c4c7d2;
+}
+
+/* The picture on the page is the way in, with the one button that says so on
+   top of it. */
+.desktop-take {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  color: #fff;
+  border-radius: 10px;
+}
+.desktop-take.on-picture {
+  position: relative;
+}
+.desktop-take-label {
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 9px;
+  font-size: 15px;
+}
+.desktop-take.on-picture .desktop-take-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 16px #0000005c;
+}
+.desktop-take.on-picture:hover:not(:disabled) img {
+  filter: brightness(0.85);
+}
+
+@media (max-width: 700px) {
+  .desktop-full-bar {
+    gap: 10px 12px;
+    min-height: 0;
+    padding: 10px 12px;
+  }
+  .desktop-full-words h2 {
+    font-size: 15px;
+  }
+  .desktop-full-words p {
+    font-size: 12px;
+  }
+  /* Side by side when they fit; otherwise Done takes the first row to itself
+     and Paste text the next, each the full width. */
+  .desktop-full-buttons {
+    width: 100%;
+  }
+  .desktop-full-buttons > * {
+    flex: 1 1 auto;
+  }
+  .button.desktop-full-done {
+    order: -1;
+    padding: 6px 14px;
+    font-size: 14px;
+  }
+  .desktop-full-screen {
+    margin: 8px;
+  }
+  .desktop-full .desktop-paste {
+    padding: 10px 12px;
+  }
+  .desktop-full .desktop-paste input,
+  .desktop-full .desktop-paste .button,
+  .desktop-full .desktop-paste .text-button {
+    min-height: 44px;
+  }
+  /* A small phone shows the top of the picture above the fold, not its
+     middle. */
+  .desktop-take.on-picture .desktop-take-label {
+    top: 12px;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,37 @@
+/* The Logo row at the top of Company settings. Square tile, name and one
+   line beside it, Upload/Replace and Remove on the right for whoever may
+   change company settings; everyone else sees only the tile. */
+.company-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 19px;
+}
+.company-logo-tile {
+  width: 56px;
+  height: 56px;
+  border-radius: 13px;
+  font-size: 24px;
+  background: var(--soft);
+  color: var(--ink);
+}
+.company-logo-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.company-logo-info small {
+  color: var(--ink-2);
+}
+.company-logo-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+@media (max-width: 700px) {
+  .company-logo-row { align-items: flex-start; flex-wrap: wrap; }
+  .company-logo-info { min-width: calc(100% - 70px); }
+  .company-logo-actions { width: calc(100% - 70px); margin-left: 70px; flex-wrap: wrap; }
+}

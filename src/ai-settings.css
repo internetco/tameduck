@@ -1,0 +1,635 @@
+/* Settings -> AI connection: one short list, one row per AI.
+
+   This file is bundled before style.css and themes.css, so where a rule here
+   has to beat one of theirs (a dark-theme border, the base button) it is
+   written under .ai-page to outrank it rather than hoping to come last.
+   Every colour is a token, so all five themes are one set of rules, bar the
+   one edge Dark's filled button needs. */
+.ai-page {
+  max-width: 780px;
+  /* The room this page has is not the window's: on a tablet the rail, the
+     sidebar and the settings menu leave it a phone's width. So it folds by
+     its own width. */
+  container-type: inline-size;
+}
+/* What is true while nothing is connected, under the page's own heading. */
+.ai-page .ai-state {
+  margin: 0 0 16px;
+  max-width: 620px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.ai-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.ai-item + .ai-item {
+  border-top: 1px solid var(--border);
+}
+.ai-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  transition: background 0.15s;
+}
+.ai-row.can-open {
+  cursor: pointer;
+}
+.ai-row.can-open:hover {
+  background: var(--soft);
+}
+.ai-row.can-open:active {
+  background: color-mix(in srgb, var(--soft) 70%, var(--border));
+}
+.ai-item.open > .ai-row,
+.ai-row-body {
+  background: var(--soft);
+}
+.ai-tile {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  color: var(--blue);
+  font-weight: 750;
+  font-size: 17px;
+  line-height: 1;
+}
+/* The one to reach for first wears the accent itself. --surface on --blue is
+   white on the accent in the four light themes and dark on lavender in Dark,
+   which is the same pairing the active tab uses there. */
+.ai-tile.lead {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--surface);
+}
+.ai-tile.ok {
+  background: var(--ok-soft);
+  border-color: var(--ok-soft);
+  color: var(--ok);
+}
+.ai-row-main {
+  flex: 1;
+  min-width: 0;
+}
+.ai-row-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ai-row-name h3 {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+.ai-row-what {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.ai-row-side {
+  display: flex;
+  align-items: center;
+  gap: 0 14px;
+  flex-shrink: 0;
+}
+.ai-tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--accent-line);
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--blue);
+  padding: 3px 7px;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+/* On the key rows people take for the chat plan they already pay for. It may
+   wrap: on a 360px phone, kept on one line, it ran under the button beside it. */
+.ai-tag.not-plan {
+  border-color: transparent;
+  background: var(--danger-soft);
+  color: var(--danger);
+  white-space: normal;
+  text-wrap: balance;
+}
+/* --ok alone is 3.9:1 on its own tint; a little ink takes it past 4.5. */
+.ai-tag.ok,
+.ai-saved {
+  color: color-mix(in srgb, var(--ok) 72%, var(--ink));
+}
+.ai-tag.ok {
+  background: var(--ok-soft);
+  border-color: transparent;
+}
+.ai-checking {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+/* Nothing pressable under 36px, and an edge that can be seen: --border is a
+   1.3:1 hairline, which is fine between rows and not around a box to type in. */
+.ai-page .button.small,
+.ai-page .text-button,
+.ai-page .text-link {
+  min-height: 36px;
+}
+.ai-page .ai-use select,
+.ai-page .ai-key-row input,
+.ai-page .model-catalog-tools input,
+.ai-page .ai-list .button.secondary {
+  border-color: var(--edge);
+}
+.ai-page .ai-use select:focus,
+.ai-page .ai-key-row input:focus {
+  border-color: var(--blue);
+}
+.ai-page .ai-key-row input::placeholder,
+.ai-page .model-catalog-tools input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+/* Dark's filled button is 2.9:1 against a card and 2.6:1 on an open row, so
+   its shape is hard to find. An edge mixed from the accent takes it past 4:1.
+   The other four themes fill the button with the accent itself and need
+   nothing. */
+[data-theme="dark"] .ai-page .button:not(.secondary) {
+  border-color: color-mix(in srgb, var(--blue) 55%, transparent);
+}
+.ai-page .button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.ai-page .text-button:active:not(:disabled),
+.ai-page .text-link:active {
+  color: var(--green-deep);
+}
+.ai-page .ai-quiet {
+  color: var(--muted);
+  font-weight: 500;
+}
+.ai-page .ai-quiet:hover:not(:disabled),
+.ai-page .ai-quiet:active:not(:disabled) {
+  color: var(--ink);
+}
+.ai-row-body {
+  display: grid;
+  gap: 12px;
+  padding: 8px 16px 18px 68px;
+}
+.ai-code {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+}
+.ai-code-step {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 12px;
+}
+.ai-code-step b {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.ai-code-step > .button {
+  justify-self: start;
+}
+.ai-code-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-height: 38px;
+  border: 1px solid var(--accent-line);
+  border-radius: 6px;
+  background: var(--accent-soft);
+  padding: 4px 6px 4px 12px;
+}
+.ai-code-box code {
+  font:
+    700 17px/1.2 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.ai-wait {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  margin: 0 0 -8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.ai-page .ai-wait .text-button {
+  font-size: 12px;
+}
+.ai-key-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: -10px;
+}
+.ai-key-row {
+  display: flex;
+  gap: 10px 8px;
+  flex-wrap: wrap;
+}
+.ai-key-row input {
+  flex: 1 1 170px;
+  font-size: 13px;
+}
+.ai-key-form .text-link {
+  justify-self: start;
+}
+/* The app's error box is three literal pinks with a second set for Dark. Here
+   it is the same box from the tokens. */
+.ai-page .ai-list .error-box {
+  margin: 0;
+  border-color: color-mix(in srgb, var(--danger) 35%, var(--surface));
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.ai-use {
+  display: grid;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.ai-use h3 {
+  margin: 0;
+  font-size: 14px;
+}
+.ai-use-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) auto;
+  gap: 12px;
+  align-items: end;
+}
+.ai-use-row .field {
+  margin: 0;
+}
+.ai-saved {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.ai-use-now {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.ai-use-warn {
+  margin: 0;
+  border: 1px solid var(--attn-line);
+  border-radius: 8px;
+  background: var(--attn-soft);
+  color: var(--ink);
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.ai-hint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.ai-fine {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  max-width: 620px;
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.ai-fine svg {
+  margin-top: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-page .button:active:not(:disabled) {
+    transform: none;
+  }
+}
+.model-picker {
+  margin: 20px 0;
+  container-type: inline-size;
+}
+.model-intelligence-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.model-intelligence-head h4 {
+  margin: 0 0 3px;
+  font-size: 14px;
+}
+.model-intelligence-head small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.model-intelligence-summary {
+  border: 1px solid var(--accent-line);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  padding: 12px 14px;
+  color: var(--ink);
+}
+.model-intelligence-summary strong {
+  font-size: 13px;
+}
+.model-intelligence-summary p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.model-intelligence-summary .model-intelligence-tradeoff b {
+  color: color-mix(in srgb, var(--purple) 80%, var(--ink));
+}
+.model-intelligence-list {
+  min-width: 0;
+  margin: 10px 0 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: 7px;
+}
+.model-intelligence-row {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) minmax(48px, auto) minmax(
+      70px,
+      120px
+    );
+  gap: 8px 10px;
+  align-items: center;
+  min-height: 58px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 11px;
+  background: var(--surface);
+  cursor: pointer;
+}
+.model-intelligence-row:hover:not(:has(input:disabled)) {
+  border-color: var(--edge);
+}
+.model-intelligence-row:has(input:checked) {
+  border-color: color-mix(in srgb, var(--blue) 65%, var(--purple));
+  background: linear-gradient(
+    110deg,
+    color-mix(in srgb, var(--blue) 10%, var(--surface)),
+    color-mix(in srgb, var(--purple) 10%, var(--surface))
+  );
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--blue) 50%, var(--purple));
+}
+.model-intelligence-row:has(input:disabled) {
+  cursor: default;
+}
+.model-intelligence-row input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--blue);
+}
+.model-intelligence-row:has(input:focus-visible) {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.model-intelligence-name {
+  min-width: 0;
+}
+.model-intelligence-name b {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 13px;
+}
+.model-intelligence-name small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.model-intelligence-score {
+  color: var(--ink);
+  font-size: 13px;
+  text-align: right;
+  white-space: nowrap;
+}
+.model-intelligence-bar {
+  display: block;
+  min-width: 0;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--soft);
+  overflow: hidden;
+}
+.model-intelligence-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+}
+.model-intelligence-billing {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.model-intelligence-billing strong {
+  color: var(--ink);
+}
+@container (max-width: 420px) {
+  .model-intelligence-row {
+    grid-template-columns: 18px minmax(0, 1fr) auto;
+  }
+  .model-intelligence-bar {
+    grid-column: 2 / 4;
+  }
+}
+.ai-use .model-picker {
+  margin: 0;
+}
+.ai-use .model-catalog-tools {
+  margin-top: 2px;
+}
+/* The link brings its own room, being 36px tall around 18px of words. The box
+   for searching a long list does not, and sat 2px under the two above it. */
+.ai-use .model-catalog-tools:has(input) {
+  margin-top: 10px;
+}
+.ai-use .ai-apply-all {
+  margin: 4px 0;
+}
+/* Asking the AI company for its list again is for the day it adds a model.
+   It stays within reach and out of the way. */
+.ai-page .ai-use .model-catalog-tools .text-button {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+.ai-page .ai-use .model-catalog-tools .text-button:hover:not(:disabled) {
+  color: var(--ink);
+}
+.model-picker select {
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+.model-picker .field {
+  min-width: 0;
+}
+.model-catalog-tools {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.model-catalog-tools input {
+  max-width: 330px;
+  min-width: 0;
+}
+.model-catalog-tools small,
+.model-help {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.model-help {
+  margin: 8px 0;
+}
+.model-help.warn {
+  color: var(--danger);
+}
+.ai-apply-all {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  margin: 18px 0;
+  font-size: 13px;
+}
+.ai-apply-all input {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin: 2px 0;
+}
+.ai-apply-all strong,
+.ai-apply-all small {
+  display: block;
+}
+.ai-apply-all small {
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.duck-model-setting {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 0 0 24px;
+}
+.duck-model-setting h4 {
+  margin: 0 0 5px;
+}
+.duck-model-setting p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.message-model {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.message-model.fallback {
+  color: var(--green);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+@media (max-width: 650px) {
+  .model-picker .form-row {
+    grid-template-columns: 1fr;
+    display: grid;
+    gap: 0;
+  }
+  .model-catalog-tools input {
+    width: 100%;
+  }
+}
+@container (max-width: 560px) {
+  .ai-row {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px;
+  }
+  /* Two things to press do not fit beside the words on a phone, so they go
+     under them, in line with the name. */
+  .ai-row-side.two {
+    flex-basis: 100%;
+    padding-left: 50px;
+    /* They are 36px tall to be easy to hit and 18px of that is words, so
+       without this the row is heavier below them than above. */
+    margin: -8px 0 -6px;
+  }
+  .ai-row-body {
+    padding: 6px 12px 16px;
+  }
+  /* The box for the key gets the whole line and its button goes under it.
+     Side by side, a short name fitted and a long one wrapped, so two rows of
+     the same list looked different, and the ring around the box touched the
+     button. */
+  .ai-key-row input {
+    flex-basis: 100%;
+  }
+  .ai-code,
+  .ai-use-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ai-use-row > .button,
+  .ai-saved {
+    justify-self: start;
+  }
+}

@@ -1,0 +1,690 @@
+/* Scheduled tasks: the list, one schedule's own page, and its form.
+
+   Every colour is a theme token. A schedule that stopped by itself wears the
+   Needs-you colour (--attn with --attn-ink), because that is where it sends
+   people from; red is kept for Delete and for a run that did not finish. The
+   old list's stop line was a red that is in no theme, and fell back to one
+   that read 3.44:1 on Dark.
+
+   These load before style.css, so where they change one of its rules they
+   ask for it by two names. */
+
+/* The top bar: one step back up, then where you are. */
+.topbar.topbar-crumbed {
+  height: auto;
+  min-height: 65px;
+  padding-block: 8px;
+}
+.topbar-crumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  min-width: 0;
+}
+.topbar-crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 36px;
+  margin-left: -6px;
+  padding: 0 6px;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.topbar-crumb:hover {
+  color: var(--ink);
+  background: var(--soft);
+  text-decoration: none;
+}
+.topbar .topbar-crumbs h1 {
+  min-width: 0;
+  max-width: none;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+@media (max-width: 700px) {
+  .topbar.topbar-crumbed {
+    min-height: 58px;
+    padding-block: 4px 8px;
+  }
+  /* Only a schedule's own page, with its longer name, puts the way back
+     above it; the list keeps both on one line, as the design has it. */
+  .topbar-crumbs.one-schedule {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .topbar-crumb {
+    min-height: 44px;
+  }
+  .topbar .topbar-crumbs h1 {
+    font-size: 16px;
+  }
+  /* Two lines at most: a 200-character name made the bar a fifth of the
+     screen. The whole name is in "What should it do?" on the page. */
+  .topbar .topbar-crumbs.one-schedule h1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}
+
+.page.sched-page {
+  padding: 0;
+  container-type: inline-size;
+}
+/* A name as long as the app takes, with no space in it - a web address, or
+   a German company's - breaks where it must rather than running off a phone
+   or over the next column. */
+.sched,
+.sched-band {
+  overflow-wrap: anywhere;
+}
+.sched {
+  max-width: 1080px;
+  padding: 22px 28px 48px;
+  font-size: 13px;
+  color: var(--ink);
+  --sched-dedge: color-mix(in srgb, var(--danger) 75%, var(--surface));
+}
+
+/* ---- the list: only for finding one ------------------------------------ */
+.sched-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-bottom: 18px;
+}
+.sched-intro p {
+  flex: 1 1 260px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.sched-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.sched-list li + li {
+  border-top: 1px solid var(--border);
+}
+.sched-row {
+  display: grid;
+  grid-template-columns: 33px minmax(0, 1fr) minmax(0, 230px) 16px;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 11px 14px;
+  color: var(--ink);
+  transition: background 0.12s;
+}
+.sched-row:hover {
+  background: var(--soft);
+  text-decoration: none;
+}
+.sched-row.stopped {
+  background: var(--attn-soft);
+}
+.sched-row:hover b {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sched-row:focus-visible {
+  outline-offset: -3px;
+}
+.sched-row-text b,
+.sched-row-text i {
+  display: block;
+}
+.sched-row-text b {
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.sched-row-text i,
+.sched-row-state i {
+  font-style: normal;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.sched-row-state {
+  display: grid;
+  gap: 1px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.sched-row-state > span {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.sched-chev {
+  color: var(--muted);
+}
+.sched-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  background: var(--attn);
+  color: var(--attn-ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* What a run did: the words carry it, the mark only repeats it. */
+.sched-said {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.sched-said.bad {
+  color: var(--danger);
+  font-weight: 600;
+}
+.sched-mark {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.sched-mark.said,
+.sched-mark.ticket {
+  color: var(--blue);
+}
+.sched-mark.quiet {
+  color: var(--muted);
+}
+.sched-mark.bad {
+  color: var(--danger);
+}
+svg.sched-mark:not(.said, .ticket, .quiet, .bad) {
+  color: var(--muted);
+}
+.sched-dot {
+  flex: none;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 6px 4px 0 3px;
+  border-radius: 999px;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px var(--ok-soft);
+}
+
+/* ---- one schedule's page -------------------------------------------------- */
+.sched-band {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 28px;
+  border-bottom: 1px solid var(--attn-line);
+  background: var(--attn);
+  color: var(--attn-ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.sched-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.sched-head-main {
+  flex: 999 1 280px;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.sched-meta {
+  max-width: 76ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.sched-meta b {
+  font-weight: 650;
+  color: var(--ink-2);
+}
+.sched-why {
+  max-width: 62ch;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.sched-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sched-h {
+  margin: 22px 0 10px;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* What it found. */
+.sched-feed {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+/* Where the keyboard lands after Show earlier runs. */
+.sched-feed > li:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 9px;
+}
+.sched-run {
+  border: 1px solid var(--edge);
+  border-radius: 9px;
+  background: var(--surface);
+}
+.sched-run.bad {
+  border-color: var(--sched-dedge);
+}
+.sched-run-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-height: 44px;
+  padding: 6px 8px 6px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.sched-run-head .sched-mark,
+.sched-run-head .sched-dot {
+  margin-top: 0;
+}
+.sched-when {
+  font-weight: 650;
+  color: var(--ink);
+}
+.sched-what {
+  color: var(--ink-2);
+}
+.sched-bad {
+  color: var(--danger);
+  font-weight: 600;
+}
+.sched-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+  margin-left: auto;
+}
+.sched-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 30px;
+  padding: 0 2px;
+  border-radius: 5px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.sched-link:hover {
+  text-underline-offset: 3px;
+}
+.sched-whose {
+  color: var(--muted);
+}
+.sched-run blockquote {
+  margin: 0;
+  padding: 10px 12px 12px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+.sched-quiet {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.sched-empty {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.sched-earlier {
+  margin-top: 10px;
+}
+
+/* How it is set up: the form, on the page. */
+.sched-form {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+}
+.sched .sched-form .field {
+  margin: 0;
+}
+.sched .sched-form .field > label {
+  font-size: 13px;
+  color: var(--ink);
+}
+.sched .sched-form .field > small {
+  font-size: 13px;
+  color: var(--muted);
+}
+.sched .sched-form textarea {
+  min-height: 64px;
+}
+.sched-form fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.sched-form legend {
+  margin-bottom: 6px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.sched-who {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.sched-who label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.sched-who label:has(input:checked),
+.sched-face:has(input:checked) {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 1px var(--blue);
+  background: var(--accent-soft);
+}
+.sched-who label:has(input:focus-visible),
+.sched-face:has(input:focus-visible) {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.sched .sched-who input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  padding: 0;
+  accent-color: var(--blue);
+}
+.sched-who b,
+.sched-who i {
+  display: block;
+  font-size: 13px;
+}
+.sched-who b {
+  font-weight: 650;
+  color: var(--ink);
+}
+.sched-who i {
+  font-style: normal;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.sched-faces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sched-faces legend {
+  width: 100%;
+}
+.sched-face {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 4px 13px 4px 5px;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+.sched-face .avatar {
+  border-radius: 999px;
+}
+.sched-face-board {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--ink-2);
+}
+.sched .sched-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  opacity: 0;
+}
+.sched-note,
+.sched-missing {
+  flex: 1 1 100%;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.sched-missing {
+  color: var(--danger);
+  font-weight: 600;
+}
+.sched-row2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 12px;
+}
+.sched-often {
+  display: grid;
+  gap: 10px;
+}
+.sched-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.sched .sched-check input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--blue);
+}
+.sched-save {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+}
+.sched-save p {
+  flex: 1 1 260px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* Delete, set apart at the foot, and asked about in place. */
+.sched-danger {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--sched-dedge);
+  border-radius: 10px;
+  background: var(--danger-soft);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.sched-danger > span {
+  flex: 1 1 260px;
+  min-width: 0;
+  text-wrap: pretty;
+}
+.sched-danger b {
+  color: var(--danger);
+}
+.sched-danger > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.sched-del,
+.sched-delq {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.sched-delq {
+  border: 1px solid var(--sched-dedge);
+  background: var(--surface);
+  color: var(--danger);
+}
+.sched-delq:hover {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+.sched-del {
+  border: 1px solid color-mix(in srgb, var(--danger) 78%, var(--ink));
+  background: var(--danger);
+  color: var(--surface);
+}
+.sched-del:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 84%, var(--ink));
+}
+
+/* A phone, or any column this narrow. */
+@container (max-width: 560px) {
+  .sched {
+    padding: 16px 16px 40px;
+  }
+  .sched-band {
+    padding: 8px 16px;
+  }
+  .sched-row {
+    grid-template-columns: 33px minmax(0, 1fr) 16px;
+    align-items: start;
+  }
+  .sched-row-state {
+    grid-column: 2;
+  }
+  .sched-chev {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+  .sched-acts,
+  .sched-danger > div {
+    flex: 1 1 100%;
+  }
+  .sched-acts > *,
+  .sched-danger > div > * {
+    flex: 1 1 auto;
+  }
+  .sched-who,
+  .sched-row2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sched-face,
+  .sched-check,
+  .sched-link {
+    min-height: 44px;
+  }
+  .sched .sched-form :is(input:not([type="radio"], [type="checkbox"]), select),
+  .sched :is(.button, .sched-del, .sched-delq) {
+    min-height: 44px;
+  }
+  .sched-intro .button,
+  .sched-save .button,
+  .sched .sched-earlier {
+    width: 100%;
+  }
+}

@@ -1,0 +1,490 @@
+/* Settings > Activity log (src/ActivityLog.jsx): one trail, by day.
+   The rows borrow the anatomy of the Needs you list: a face, a 14px line, a
+   12-13px line under it, one mark at the right, and a line that opens where it
+   stands. Colours are the theme's tokens only; --okt is --ok pulled toward the
+   ink, because plain --ok on --ok-soft is 4.3:1 in the light themes. */
+.activity-log {
+  max-width: 780px;
+  container-type: inline-size;
+  --okt: color-mix(in srgb, var(--ok) 78%, var(--ink));
+}
+/* The filters: a row of chips, or on a phone one menu. */
+.activity-log .al-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+.activity-log .al-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 6px 13px;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  transition:
+    background 0.12s,
+    border-color 0.12s;
+}
+.activity-log .al-chip:hover {
+  background: var(--soft);
+  border-color: var(--ink-2);
+}
+.activity-log .al-chip[aria-pressed="true"] {
+  border-color: var(--blue);
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+.activity-log .al-pick {
+  display: none;
+}
+.activity-log .al-pick span {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.activity-log .al-pick select {
+  min-height: 44px;
+  border-color: var(--edge);
+  font-size: 14px;
+}
+
+/* A day, and its lines. */
+.activity-log .al-day + .al-day {
+  margin-top: 24px;
+}
+.activity-log .al-day-h {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  margin: 0 0 8px 2px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.activity-log .al-day-h:focus {
+  outline: none;
+}
+.activity-log .al-day-h:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.activity-log .al-day-h span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.activity-log .al-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.activity-log .al-list > li + li {
+  border-top: 1px solid var(--border);
+}
+.activity-log .al-row {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto auto;
+  grid-template-areas: "f w o t";
+  align-items: center;
+  gap: 6px 14px;
+  min-height: 58px;
+  padding: 11px 14px 11px 16px;
+}
+.activity-log .al-row > .al-fb,
+.activity-log .al-row > .al-faces {
+  grid-area: f;
+}
+.activity-log .al-what {
+  grid-area: w;
+  min-width: 0;
+}
+.activity-log .al-row > .al-out {
+  grid-area: o;
+}
+.activity-log .al-when {
+  grid-area: t;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  min-width: 66px;
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.activity-log .al-when svg {
+  color: var(--ink-2);
+  transition: transform 0.15s;
+}
+.activity-log .al-when i {
+  display: inline-block;
+  width: 16px;
+}
+.activity-log summary.al-row {
+  list-style: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.activity-log summary.al-row::-webkit-details-marker {
+  display: none;
+}
+.activity-log summary.al-row:hover,
+.activity-log details[open] > summary.al-row {
+  background: var(--soft);
+}
+.activity-log summary.al-row:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: -3px;
+  border-radius: 9px;
+}
+.activity-log details[open] > summary .al-when svg {
+  transform: rotate(180deg);
+}
+.activity-log .al-line,
+.activity-log .al-sub,
+.activity-log .al-why {
+  display: block;
+}
+.activity-log .al-line {
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+.activity-log .al-sub {
+  margin-top: 2px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+.activity-log .al-why {
+  margin-top: 3px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+/* A face, and in its corner what kind of thing happened. */
+.activity-log .al-fb {
+  position: relative;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+}
+.activity-log .al-fb .avatar.human {
+  font-size: 13px !important;
+}
+.activity-log .al-kind {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  border-radius: 999px;
+  border: 1px solid var(--edge);
+  background: var(--surface);
+  color: var(--ink-2);
+}
+.activity-log .al-kind.bad {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.activity-log .al-faces {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+.activity-log .al-faces .avatar {
+  position: absolute;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px var(--surface);
+}
+.activity-log .al-faces .avatar:nth-child(1) {
+  left: 0;
+  top: 0;
+}
+.activity-log .al-faces .avatar:nth-child(2) {
+  left: 11px;
+  top: 0;
+}
+.activity-log .al-faces .avatar:nth-child(3) {
+  left: 5px;
+  top: 11px;
+}
+
+/* How a tool decision or a run ended. */
+.activity-log .al-out {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+  padding: 2px 9px 2px 7px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.activity-log .al-out.done {
+  background: var(--ok-soft);
+  color: var(--okt);
+  border-color: color-mix(in srgb, var(--ok) 40%, var(--surface));
+}
+.activity-log .al-out.no {
+  background: var(--soft);
+  color: var(--ink-2);
+  border-color: var(--edge);
+}
+.activity-log .al-out.bad {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--surface));
+}
+.activity-log .al-out.unsure {
+  background: var(--attn-soft);
+  color: var(--ink);
+  border-color: var(--attn-line);
+}
+.activity-log .al-out.never {
+  background: var(--surface);
+  color: var(--muted);
+  border-color: var(--edge);
+}
+
+/* What opens under a line. */
+.activity-log .al-open {
+  padding: 2px 16px 14px 60px;
+  background: var(--soft);
+}
+.activity-log .al-open-cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+}
+.activity-log .al-open h4 {
+  margin: 8px 0 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+.activity-log .al-facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 3px 14px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.activity-log .al-facts dt {
+  color: var(--muted);
+}
+.activity-log .al-facts dd {
+  margin: 0;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.activity-log .al-sent {
+  max-width: 60ch;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+.activity-log .al-fold .al-line {
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.activity-log .al-runs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.activity-log .al-runs li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.activity-log .al-runs li:focus {
+  outline: none;
+}
+.activity-log .al-runs li:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.activity-log .al-runs li + li {
+  border-top: 1px solid var(--border);
+}
+.activity-log .al-runs .avatar {
+  border-radius: 6px;
+}
+.activity-log .al-runs b {
+  font-weight: 650;
+  color: var(--ink);
+}
+.activity-log .al-runs time {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.activity-log .al-all {
+  margin-top: 8px;
+}
+.activity-log .al-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.activity-log .al-quiet-line {
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  background: var(--soft);
+}
+.activity-log .al-status {
+  margin: 4px 0 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.activity-log .al-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid var(--edge);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.3;
+  text-align: center;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.activity-log .al-quiet:hover {
+  background: var(--soft);
+  border-color: var(--ink-2);
+}
+.activity-log .al-quiet:active {
+  transform: translateY(1px);
+}
+.activity-log .al-quiet[aria-disabled="true"] {
+  cursor: progress;
+  opacity: 0.7;
+}
+.activity-log .al-link {
+  color: var(--blue);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.activity-log .al-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* A phone: the same things, one column, 44px to press, 13px and up. */
+@container (max-width: 560px) {
+  .activity-log .al-quiet {
+    min-height: 44px;
+    width: 100%;
+    white-space: normal;
+  }
+  .activity-log .al-out,
+  .activity-log .al-facts,
+  .activity-log .al-open h4,
+  .activity-log .al-sub,
+  .activity-log .al-why,
+  .activity-log .al-day-h span,
+  .activity-log .al-runs time,
+  .activity-log .al-quiet-line {
+    font-size: 13px;
+  }
+  /* A link inside a sentence keeps its line, but gets a 44px place to land. */
+  .activity-log .al-link {
+    display: inline-block;
+    padding: 14px 0;
+    margin: -14px 0;
+  }
+  .activity-log .al-facts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .activity-log .al-facts dd + dt {
+    margin-top: 6px;
+  }
+  .activity-log .al-bar {
+    display: none;
+  }
+  .activity-log .al-pick {
+    display: grid;
+    gap: 6px;
+    margin: 0 0 18px;
+  }
+  .activity-log .al-row {
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    grid-template-areas: "f w t" "f o o";
+    align-items: start;
+    padding: 12px 12px 12px 14px;
+  }
+  .activity-log .al-row > .al-out {
+    justify-self: start;
+  }
+  .activity-log .al-when {
+    min-width: 0;
+    padding-top: 1px;
+    font-size: 13px;
+  }
+  .activity-log .al-open {
+    padding: 4px 14px 14px;
+  }
+  .activity-log .al-runs li {
+    grid-template-columns: 22px minmax(0, 1fr);
+  }
+  .activity-log .al-runs time {
+    grid-column: 2;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .activity-log .al-quiet:active {
+    transform: none;
+  }
+}

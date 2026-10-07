@@ -1,0 +1,363 @@
+.connections-page {
+  min-width: 0;
+}
+.connection-catalog-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0 26px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 26px;
+}
+.connection-catalog-summary > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.connection-catalog-summary > span > span {
+  color: var(--muted);
+}
+.connection-catalog-count {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+/* The section's own title only: a search that finds nothing has a title of
+   its own under it. */
+.connected-section > h3,
+.connection-catalog-section-title h3 {
+  font-size: 17px;
+  margin: 0 0 6px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.connected-list {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0 32px;
+}
+.connected-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  background: var(--surface);
+}
+/* The one a Reconnect button in Needs you opened the page on. */
+.connected-item.focused {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--purple) 25%, transparent);
+}
+.connection-waiting {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+/* Ducks a connection is for that its key does not let in. The attention
+   colours are theme tokens, as on the AI page, so all five themes are right. */
+.connection-key-warn {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 12px 0 0;
+  padding: 11px 12px;
+  border: 1px solid var(--attn-line);
+  border-radius: 8px;
+  background: var(--attn-soft);
+  color: var(--ink);
+  font-size: 12.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.connection-key-warn svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.connected-top {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+.connected-name {
+  min-width: 0;
+  flex: 1;
+}
+.connected-name h4 {
+  font-size: 15px;
+  margin: 0 0 5px;
+  overflow-wrap: anywhere;
+}
+.connected-name p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+.connected-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.connection-catalog-text-button {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 8px;
+}
+.connection-catalog-text-button:hover {
+  color: var(--ink);
+  background: var(--soft);
+  border-radius: 6px;
+}
+.connection-catalog-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 20px;
+}
+.connection-catalog-section-title p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 4px 0;
+  line-height: 1.5;
+}
+.connection-catalog-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 13px;
+}
+.connection-catalog-search > svg {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.connection-catalog-search input {
+  border: 0 !important;
+  background: transparent;
+  box-shadow: none !important;
+  width: 100%;
+  min-width: 0;
+  height: 43px;
+  padding: 0;
+}
+.connection-catalog-search:focus-within {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.connection-catalog-filters {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 15px 0 20px;
+}
+.connection-catalog-filters button {
+  font: inherit;
+  font-size: 12px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+}
+.connection-catalog-filters button[aria-pressed="true"] {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+.connection-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.connection-catalog-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 19px;
+  background: var(--surface);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.connection-catalog-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 3px 12px #00000009;
+}
+.connection-catalog-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.connection-catalog-card-top > div {
+  flex: 1;
+  min-width: 0;
+}
+.connection-catalog-card h4 {
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+.connection-catalog-card-top > div > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.connection-catalog-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.connection-catalog-card > p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 16px 0 22px;
+  flex: 1;
+}
+.connection-catalog-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.connection-catalog-card-bottom > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.connection-catalog-error {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 8px;
+  padding: 13px 15px;
+  background: var(--surface);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 16px 0;
+  overflow-wrap: anywhere;
+}
+.connection-catalog-error p {
+  margin: 5px 0 0;
+}
+.connection-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 14px 0 0;
+}
+.connection-error svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.connection-catalog-help-link {
+  font-size: 12px;
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  color: var(--blue);
+  text-decoration: none;
+}
+.connection-catalog-help-link:hover {
+  text-decoration: underline;
+}
+.activation-intro {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 22px;
+}
+.activation-intro p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+.connection-key-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.connection-key-fields > * {
+  min-width: 0;
+}
+.connection-key-fields input,
+.connection-key-fields select {
+  width: 100%;
+  min-width: 0;
+}
+.connection-catalog-hint {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 16px 0;
+}
+.activation-result > p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+@media (max-width: 680px) {
+  .connection-catalog-grid {
+    grid-template-columns: 1fr;
+  }
+  .connection-catalog-summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .connection-catalog-card {
+    padding: 17px;
+  }
+  .connected-item {
+    padding: 15px;
+  }
+  .connected-top {
+    flex-wrap: wrap;
+  }
+  /* The name takes the rest of the row, so the pill goes under it. Beside
+     it, a wide pill left a long name one or two words a line. */
+  .connected-name {
+    flex-basis: calc(100% - 53px);
+  }
+  .connected-top .pill {
+    margin-left: 53px;
+  }
+  .connection-key-fields {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .connection-catalog-text-button {
+    margin-left: 0;
+  }
+  .connection-catalog-section-title {
+    align-items: flex-start;
+  }
+}

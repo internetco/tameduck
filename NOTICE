@@ -1,0 +1,20 @@
+TameDuck
+Copyright (c) 2026 Internet Company BV and TameDuck contributors.
+
+Maintained by Internet Company BV · info@tameduck.com
+
+Original application code distributed in this repository is licensed under
+GNU Affero General Public License version 3 only (AGPL-3.0-only).
+
+The TameDuck name, logo and duck characters are trademarks of Internet
+Company BV. The license covers the code; it does not give permission to use
+these marks for your own product or service.
+
+Third-party libraries, fonts, icons, model data, and skill catalog entries
+retain their original licenses and copyright notices. The application license
+does not replace those licenses. See THIRD_PARTY_NOTICES.md, the per-entry
+skill catalog licenseText/resources records, public/third-party-notices.txt,
+and server/models/cursor/NOTICE.
+
+The source license does not imply endorsement by the TameDuck maintainers
+or by the publishers of included third-party material.

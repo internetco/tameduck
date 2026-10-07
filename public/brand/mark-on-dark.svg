@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The same mark with no tile, for the dark top bar: t in the wordmark's
+     white, bill in brand yellow. Not for light backgrounds. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path fill="#ffce32" d="M33.3 19.3H39.4C40.3 22.3 43.5 23.6 47.7 23.6C51.3 23.6 51.3 22.1 54.9 22.1C58.1 22.1 60 24.4 60 27.5C60 31.5 57.2 33.9 53.1 33.9H33.3Z"/>
+  <path fill="#ffffff" fill-rule="evenodd" d="M26.9 4A12.7 12.7 0 0 1 33.3 27.7V42.2A5.1 5.1 0 0 0 38.4 47.3H50.4A3.2 3.2 0 0 1 53.6 50.5V56.8A3.2 3.2 0 0 1 50.4 60H33.3A19.1 19.1 0 0 1 14.2 40.9V33.9H7.2A3.2 3.2 0 0 1 4 30.7V25A3.2 3.2 0 0 1 7.2 21.8H14.2V16.7A12.7 12.7 0 0 1 26.9 4ZM28.6 11.2A4.5 4.5 0 1 0 28.6 20.2A4.5 4.5 0 1 0 28.6 11.2Z"/>
+</svg>

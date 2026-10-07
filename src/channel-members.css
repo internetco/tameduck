@@ -1,0 +1,541 @@
+/* Members: one dialog for everything about a channel (src/ChannelMembers.jsx).
+
+   The anatomy is "What Sam may do" (member-permissions.css): a head with a
+   tile, a title and one grey line; the people and the ducks as two groups in
+   one bordered card, each under a --soft header; a --soft foot. Every colour
+   is a theme token or a mix of them. The product's --border is about 1.3:1 on
+   the paper, so edges that must be seen are drawn from --muted instead.
+
+   Rules that meet the app's own (.modal, .button, the Dark theme's inputs)
+   start from .modal.cm-dialog, because this file is bundled before
+   style.css and themes.css and cannot win by coming later. */
+.modal.cm-dialog {
+  width: min(600px, calc(100vw - 32px));
+  /* Held at the top rather than centred: typing in Add or opening a question
+     changes its height, and a centred dialog moved under the pointer. */
+  margin-top: max(24px, 7vh);
+  max-height: calc(100dvh - max(24px, 7vh) - 24px);
+  /* The rows fold by the dialog's width, not the window's. */
+  container-type: inline-size;
+  --cm-wall: color-mix(in srgb, var(--muted) 70%, var(--surface));
+  --cm-line: color-mix(in srgb, var(--muted) 30%, var(--surface));
+  --cm-dedge: color-mix(in srgb, var(--danger) 75%, var(--surface));
+  border-color: var(--cm-wall);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+/* ---- the head: which channel, and who made it ---- */
+.cm-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 15px 14px 15px 20px;
+  border-bottom: 1px solid var(--cm-line);
+  background: var(--surface);
+}
+.cm-tile {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+.cm-ht {
+  flex: 1;
+  min-width: 0;
+  padding-top: 1px;
+}
+.cm-ht h2 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.cm-ht h2:focus {
+  outline: none;
+}
+.cm-ht > p {
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.cm-hacts {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.cm-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: var(--muted);
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+.cm-x:hover {
+  background: var(--soft);
+  color: var(--ink);
+}
+.cm-rename-acts {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+/* The phone's own Rename, in the foot: the head has no room for it there. */
+.cm-foot .cm-phone-rename {
+  display: none;
+}
+
+/* ---- buttons: an edge you can see, and danger only where it is meant ---- */
+.cm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid var(--edge);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    transform 0.12s;
+}
+.cm-btn:hover:not(:disabled, [aria-disabled]) {
+  background: var(--soft);
+  border-color: var(--ink-2);
+}
+.cm-btn:active:not(:disabled, [aria-disabled]) {
+  transform: translateY(1px);
+}
+/* Somebody just added: the row stays, saying so, and pressing again does
+   nothing. It reads as a note, not as something to press. */
+.cm-btn.cm-added {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: default;
+}
+.cm-btn.cm-rename {
+  min-height: 36px;
+  padding: 6px 11px;
+}
+.cm-btn.cm-warn {
+  color: var(--danger);
+  border-color: var(--cm-dedge);
+}
+.cm-btn.cm-warn:hover:not(:disabled) {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+}
+.cm-btn.cm-stop {
+  background: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 78%, var(--ink));
+  color: var(--surface);
+}
+.cm-btn.cm-stop:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--danger) 84%, var(--ink));
+  border-color: color-mix(in srgb, var(--danger) 78%, var(--ink));
+}
+/* Save name is the product's own button. In Dark its violet sinks into the
+   card, so it gets a rim of the lighter accent. */
+.modal.cm-dialog .button.cm-go {
+  border-color: var(--blue);
+}
+
+/* ---- a field ---- */
+.cm-label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.cm-find {
+  position: relative;
+}
+.cm-find > svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  margin-top: -9px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.modal.cm-dialog .cm-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+}
+.modal.cm-dialog .cm-find .cm-input {
+  padding-left: 38px;
+}
+.modal.cm-dialog .cm-input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+.modal.cm-dialog .cm-input:focus-visible {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 30%, transparent);
+}
+.modal.cm-dialog .cm-input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+.cm-hint {
+  margin-top: 7px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.cm-hint.bad {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+  color: var(--danger);
+  font-weight: 600;
+}
+.cm-hint.bad > svg {
+  flex: none;
+  margin-top: 2px;
+}
+.cm-note {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.cm-note > svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--muted);
+}
+
+/* ---- the body, and the two groups ---- */
+.cm-body {
+  display: grid;
+  gap: 16px;
+  padding: 16px 20px 20px;
+}
+.cm-card {
+  border: 1px solid var(--cm-wall);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.cm-gh {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  padding: 9px 14px;
+  background: var(--soft);
+  border-bottom: 1px solid var(--cm-line);
+}
+.cm-grp + .cm-grp .cm-gh {
+  border-top: 1px solid var(--cm-line);
+}
+.cm-gh h3 {
+  flex: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.cm-gh h3 span {
+  font-weight: 600;
+  color: var(--muted);
+}
+.cm-gh p {
+  flex: 1 1 230px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.cm-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 8px 14px;
+}
+/* A question draws its own edges in the danger colour, above and below. */
+.cm-rows > .cm-row + .cm-row {
+  border-top: 1px solid var(--cm-line);
+}
+/* The letter on a person's square, at the size of the square. */
+.cm-dialog .cm-row > .avatar.human,
+.cm-dialog .cm-ask-in > .avatar.human {
+  font-size: 14px !important;
+}
+.cm-who {
+  flex: 1;
+  min-width: 0;
+}
+.cm-who > b {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px 8px;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.cm-who > span {
+  display: block;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.cm-tag {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.cm-end {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cm-empty,
+.cm-none {
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.cm-none {
+  padding: 0;
+}
+
+/* ---- the question, in the row it is about ---- */
+.cm-ask {
+  padding: 12px 14px;
+  background: var(--danger-soft);
+  border-top: 1px solid var(--cm-dedge);
+  border-bottom: 1px solid var(--cm-dedge);
+}
+.cm-ask-in {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+}
+.cm-grp:last-child .cm-rows > .cm-ask:last-child {
+  border-bottom: 0;
+}
+.cm-ask .cm-who {
+  flex: 1 1 220px;
+}
+.cm-ask .cm-who > span {
+  color: var(--ink-2);
+}
+.cm-ask .cm-end {
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
+  margin-left: auto;
+}
+/* "Remove Customer Care and Returns Duck" is longer than a phone is wide. */
+.cm-ask .cm-btn {
+  min-width: 0;
+  white-space: normal;
+  text-align: center;
+}
+
+/* ---- an archived channel: no way in ---- */
+.cm-band {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--soft);
+}
+.cm-band > svg {
+  flex: none;
+  color: var(--ink-2);
+}
+.cm-band > span {
+  flex: 1 1 220px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.cm-band b {
+  color: var(--ink);
+}
+
+/* ---- the foot: leave, archive ---- */
+.cm-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: 13px 20px;
+  border-top: 1px solid var(--cm-line);
+  background: var(--soft);
+}
+.cm-foot.asking {
+  border-top-color: var(--cm-dedge);
+  background: var(--danger-soft);
+}
+.cm-say {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  /* "Leave #" and a name of a hundred letters with no space in it. */
+  overflow-wrap: anywhere;
+}
+.cm-foot.asking .cm-say {
+  color: var(--ink-2);
+}
+.cm-say b {
+  color: var(--ink);
+}
+.cm-foot-acts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cm-leave {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  width: 100%;
+}
+
+/* ---- a phone: a finger, not a mouse ---- */
+@media (max-width: 640px) {
+  .modal.cm-dialog {
+    width: calc(100vw - 20px);
+    margin-top: 12px;
+    max-height: calc(100dvh - 24px);
+  }
+}
+@container (max-width: 520px) {
+  .cm-head {
+    padding: 12px 8px 12px 14px;
+    gap: 10px;
+  }
+  .cm-x {
+    width: 44px;
+    height: 44px;
+    margin: -2px 0;
+  }
+  .cm-hacts .cm-btn {
+    display: none;
+  }
+  .cm-foot .cm-phone-rename {
+    display: flex;
+  }
+  .cm-body {
+    padding: 14px;
+  }
+  .cm-foot {
+    padding: 12px 14px;
+  }
+  .cm-foot-acts {
+    flex: 1 1 100%;
+  }
+  .cm-foot-acts > .cm-btn {
+    flex: 1 1 auto;
+  }
+  .cm-btn,
+  .modal.cm-dialog .button.cm-go {
+    min-height: 44px;
+  }
+  .cm-rename-acts > * {
+    flex: 1 1 0;
+  }
+  .modal.cm-dialog .cm-input {
+    min-height: 44px;
+    font-size: 15px;
+  }
+  .cm-row {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+  .cm-gh {
+    padding: 9px 12px;
+  }
+  .cm-gh p {
+    flex-basis: 100%;
+  }
+  .cm-ask {
+    padding: 12px;
+  }
+  .cm-ask .cm-end {
+    flex: 1 1 100%;
+  }
+  .cm-ask .cm-end > .cm-btn {
+    flex: 1 1 0;
+  }
+  .cm-tag {
+    font-size: 13px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cm-btn,
+  .cm-x {
+    transition: none;
+  }
+  .cm-btn:active:not(:disabled) {
+    transform: none;
+  }
+}

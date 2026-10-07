@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Give a Duck its first task — TameDuck Help</title>
+<meta name="description" content="Open your Duck’s chat, ask for one clear thing, and send it.">
+<meta name="theme-color" content="#FBF8F1">
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/help/help.css">
+</head>
+<body class="guide-page">
+<a class="skip" href="#content">Skip to the guide</a>
+<header class="site-header">
+<div class="wrap nav">
+<a class="brand" href="/"><img class="brand-tile" src="/brand/mark.svg" width="36" height="36" alt=""><span class="brand-name">TameDuck</span></a>
+<a class="help-tag" href="/help"><span class="sr-only">TameDuck </span>Help</a>
+<button class="search-toggle" type="button" aria-label="Search help" aria-expanded="false" aria-controls="header-search"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+<form class="search search-sm" id="header-search" role="search" action="/help" data-search>
+<label class="search-box"><svg class="icon search-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="sr-only">Search help</span><input type="search" name="q" placeholder="Search help" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="header-search-results"><kbd aria-hidden="true">/</kbd></label>
+<div class="search-results" id="header-search-results" role="listbox" aria-label="Search results" hidden></div>
+</form>
+<nav class="nav-right" aria-label="Main">
+<a href="https://tameduck.com">TameDuck Cloud</a><a href="/help" aria-current="true">Help</a>
+<a href="/login">Sign in</a>
+<a class="btn" href="/">Open TameDuck <svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+</nav>
+</div>
+</header>
+<div class="wrap guide-layout">
+<nav class="guide-nav" aria-label="Help guides">
+<a class="back" href="/help"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>All guides</a>
+<p class="nav-group">Start here</p>
+<ol class="nav-guides"><li><a class="nav-guide" href="/help/connect-ai"><span class="nav-num">1</span><span>Connect an AI</span></a></li><li><a class="nav-guide" href="/help/create-first-duck"><span class="nav-num">2</span><span>Create your first Duck</span></a></li><li><a class="nav-guide" href="/help/first-task" aria-current="page"><span class="nav-num">3</span><span>Give a first task</span></a><ol class="nav-steps"><li><a href="#step-1" data-step="1">Open your Duck’s chat</a></li><li><a href="#step-2" data-step="2">Ask for one clear thing</a></li><li><a href="#step-3" data-step="3">Add what it needs</a></li><li><a href="#step-4" data-step="4">Send it</a></li><li><a href="#step-5" data-step="5">If the Duck can’t start</a></li></ol></li></ol>
+<p class="nav-group">Everyday work</p>
+<ol class="nav-guides"><li><a class="nav-guide" href="/help/needs-you"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><span>Needs you</span></a></li><li><a class="nav-guide" href="/help/task-board"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/></svg><span>Task board</span></a></li><li><a class="nav-guide" href="/help/files"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z"/><path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"/></svg><span>Files</span></a></li><li><a class="nav-guide" href="/help/computers"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg><span>Computers</span></a></li><li><a class="nav-guide" href="/help/team"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Team</span></a></li><li><a class="nav-guide" href="/help/webhooks"><svg class="icon" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8"/></svg><span>Webhooks</span></a></li></ol>
+<p class="nav-stuck"><strong>Still stuck?</strong> <a href="mailto:info@tameduck.com">Email info@tameduck.com</a></p>
+</nav>
+<main id="content" class="guide-main">
+<p class="crumbs"><a href="/help">Help</a><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg><span>Start here · Guide 3 of 3</span></p>
+<h1>Give a Duck its first task</h1>
+<p class="lead">Open your Duck’s chat, ask for one clear thing, and send it.</p>
+<p class="meta"><span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg>5 steps</span><span><svg class="icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Checked against the app on 5 October 2026</span></p>
+<nav class="step-strip" aria-label="Steps in this guide"><span>Step</span><a href="#step-1" data-step="1" aria-label="Step 1: Open your Duck’s chat">1</a><a href="#step-2" data-step="2" aria-label="Step 2: Ask for one clear thing">2</a><a href="#step-3" data-step="3" aria-label="Step 3: Add what it needs">3</a><a href="#step-4" data-step="4" aria-label="Step 4: Send it">4</a><a href="#step-5" data-step="5" aria-label="Step 5: If the Duck can’t start">5</a></nav>
+<section class="before" aria-label="Before you start">
+<h2>Before you start</h2>
+<ul><li><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span><strong>A Duck.</strong> No Duck yet? <a href="/help/create-first-duck">Create your first Duck</a></span></li><li><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span><strong>An AI connected to your company.</strong> <a href="/help/connect-ai">Connect an AI</a></span></li></ul>
+</section>
+<ol class="steps">
+<li class="step" id="step-1">
+<div class="step-rail" aria-hidden="true"><span class="step-num">1</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 1: </span>Open your Duck’s chat</h2>
+<p class="do">In the sidebar, click your Duck under <strong>Direct messages</strong>.</p>
+<p class="more"><strong>Messages</strong> is the chat. <strong>Files</strong> and <strong>Tasks</strong> show its files and work, and <strong>Duck profile</strong> shows its role and job. The message box is at the bottom.</p>
+<figure class="shot">
+<div class="shot-frame" style="width:861px;aspect-ratio:861 / 443"><img src="/help/screenshots/tutorial-first-task-empty-chat.png" width="861" height="443" alt="Research Duck’s chat, with Messages, Files and Tasks tabs and an empty message box." loading="lazy"><span class="mark" style="left:1.626%;top:71.783%;width:96.864%;height:24.379%"></span></div>
+<figcaption><span class="caption">The message box is at the bottom of the chat.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-first-task-empty-chat.png" data-alt="Research Duck’s chat, with Messages, Files and Tasks tabs and an empty message box."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+</div>
+</li>
+<li class="step" id="step-2">
+<div class="step-rail" aria-hidden="true"><span class="step-num">2</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 2: </span>Ask for one clear thing</h2>
+<p class="do">Click the message box and say what you want, and what the result should be.</p>
+<p class="more">For example a comparison, a draft or a short recommendation. Start with one focused task, so you can see whether it understood.</p>
+<figure class="shot">
+<div class="shot-frame" style="width:861px;aspect-ratio:861 / 141"><img src="/help/screenshots/tutorial-first-task-draft.png" width="861" height="141" alt="A first request typed in the message box, with Send ready." loading="lazy"></div>
+<figcaption><span class="caption">One focused request, ready to send.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-first-task-draft.png" data-alt="A first request typed in the message box, with Send ready."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+</div>
+</li>
+<li class="step" id="step-3">
+<div class="step-rail" aria-hidden="true"><span class="step-num">3</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 3: </span>Add what it needs to know</h2>
+<p class="do">Add the files, notes, audience or deadline it needs, and say when it must stop and ask you.</p>
+<p class="more">To attach something, click the paperclip, then <strong>A file from this computer</strong> or <strong>A company document</strong>. Up to 10 files per message, 25 MB each.</p>
+<blockquote class="example"><p class="example-label">For example</p><p>“Compare the three product ideas in the notes above. Give me a short recommendation with reasons and links. Ask me if a source is missing; do not contact anyone.”</p></blockquote>
+<aside class="note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg><p><strong>Good to know.</strong> Ask it to check with you before it contacts anyone or spends money. Press <strong>Shift+Enter</strong> for a new line; on a phone, Return starts a new line.</p></aside>
+</div>
+</li>
+<li class="step" id="step-4">
+<div class="step-rail" aria-hidden="true"><span class="step-num">4</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 4: </span>Send it</h2>
+<p class="do">Click <b class="ui">Send</b>.</p>
+<p class="more">Your message shows up in the chat, and the Duck starts working or replies when it can. Not quite right? Reply in the same chat with what to change.</p>
+<figure class="shot">
+<div class="shot-frame" style="width:861px;aspect-ratio:861 / 228"><img src="/help/screenshots/tutorial-first-task-sent.png" width="861" height="228" alt="The request now shows in the chat as a message from you." loading="lazy"><span class="mark" style="left:1.626%;top:2.632%;width:95.238%;height:34.211%"></span></div>
+<figcaption><span class="caption">Your message, in the chat.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-first-task-sent.png" data-alt="The request now shows in the chat as a message from you."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+</div>
+</li>
+<li class="step is-last" id="step-5">
+<div class="step-rail" aria-hidden="true"><span class="step-num">5</span></div>
+<div class="step-body">
+<h2><span class="sr-only">Step 5: </span>If the Duck can’t start</h2>
+<p class="do">If the chat says <strong>Ready when you are</strong>, click <b class="ui">Connect AI</b>, connect an AI, and send your message again.</p>
+<p class="more">It means no AI is connected yet. If an AI that worked before is down, a banner says who can fix it: an owner can try again in <strong>Settings → AI connection</strong>, and an admin can connect another one. Can’t manage AI connections? Ask your owner or admin.</p>
+<figure class="shot">
+<div class="shot-frame" style="width:861px;aspect-ratio:861 / 298"><img src="/help/screenshots/tutorial-first-task-recovery.png" width="861" height="298" alt="The chat says Ready when you are, with a Connect AI button." loading="lazy"><span class="mark" style="left:83.159%;top:36.913%;width:13.937%;height:13.423%"></span></div>
+<figcaption><span class="caption">No AI yet: Connect AI takes you to the AI settings.</span><button class="zoom" type="button" data-zoom="/help/screenshots/tutorial-first-task-recovery.png" data-alt="The chat says Ready when you are, with a Connect AI button."><svg class="icon" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" x2="14" y1="3" y2="10"/><line x1="3" x2="10" y1="21" y2="14"/></svg>Enlarge</button></figcaption>
+</figure>
+<aside class="note"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg><p><strong>Good to know.</strong> If the Duck asks you a question, answer it in the chat so it can carry on.</p></aside>
+</div>
+</li>
+</ol>
+<section class="done" aria-labelledby="done-title">
+<p class="done-head" id="done-title"><svg class="icon done-check" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Your Duck is on it.</p>
+<a class="next" href="/help/needs-you"><img src="/help/screenshots/tutorial-needs-you-overview.png" alt="" width="720" height="711" loading="lazy"><span class="next-text"><span class="next-eyebrow">Up next</span><span class="next-title">Handle something that needs you</span><span class="next-card">Answer questions, approve requests and clear what is waiting. 13 steps.</span></span><span class="next-go"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></a>
+</section>
+<div class="after">
+<div class="feedback" data-feedback><span class="feedback-q">Did this guide help?</span><button type="button" data-answer="yes"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>Yes</button><button type="button" data-answer="no"><svg class="icon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>Not really</button><p class="feedback-thanks" data-thanks="yes" hidden>Thanks for telling us.</p><p class="feedback-thanks" data-thanks="no" hidden>Sorry it didn’t. Tell us what was missing at <a href="mailto:info@tameduck.com">info@tameduck.com</a> and we’ll fix the guide.</p></div>
+<a class="stuck-link" href="mailto:info@tameduck.com"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>Still stuck? Email info@tameduck.com</a>
+</div>
+</main>
+</div>
+<footer class="site-footer">
+<div class="wrap">
+<div class="footer-grid">
+<div class="footer-about"><span class="footer-brand"><img class="brand-tile" src="/brand/mark.svg" width="34" height="34" alt=""><span>TameDuck</span></span><p>A company workspace where the AI teammates have faces, memories, and computers of their own.</p></div>
+<nav class="footer-cols" aria-label="Footer">
+<div class="footer-col"><span class="footer-head">TameDuck</span><a href="/">Open the app</a><a href="/about">About</a><a href="https://tameduck.com">TameDuck Cloud</a></div>
+<div class="footer-col"><span class="footer-head">Company</span><a class="here" href="/help">Help</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:info@tameduck.com">Contact</a><a href="https://github.com/internetco/tameduck" target="_blank" rel="noopener noreferrer">Open source ↗</a></div>
+</nav>
+</div>
+<div class="footer-bottom"><span>Some of your teammates are ducks.</span><span>tameduck.com · © 2026 TameDuck</span></div>
+</div>
+</footer>
+<dialog class="zoom-dialog" aria-label="Screenshot">
+<form method="dialog" class="zoom-bar"><span class="zoom-caption"></span><button type="submit">Close</button></form>
+<img class="zoom-img" alt="">
+</dialog>
+<script type="module" src="/help/help-search.js"></script>
+<script src="/help/help-guide.js" defer></script>
+</body>
+</html>

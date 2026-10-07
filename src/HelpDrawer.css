@@ -1,0 +1,155 @@
+/* The Help panel: it opens from the Help button at the right of the top bar
+   and sits under it, on the right. Colours come from the theme, so it looks
+   at home in every one of them, dark included. */
+.help-drawer[hidden] { display: none; }
+.help-drawer {
+  --help-tint: color-mix(in srgb, var(--purple, #5c35df) 9%, var(--surface, #fff));
+  --help-line: color-mix(in srgb, var(--purple, #5c35df) 22%, var(--surface, #fff));
+  position: fixed;
+  z-index: 60;
+  top: 44px;
+  right: 0;
+  bottom: 0;
+  width: min(400px, 100vw);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink, #202035);
+  background: var(--surface, #fff);
+  border-left: 1px solid var(--border, #e4e4ec);
+  box-shadow: -8px 0 30px #20124a29;
+}
+.help-drawer a { color: var(--purple, #5c35df); }
+.help-drawer button { font: inherit; color: inherit; }
+.help-drawer-head { display: flex; align-items: center; gap: 6px; padding: 12px 12px 10px 20px; }
+.help-drawer-head h2 { flex: 1; min-width: 0; margin: 0; font-size: 17px; font-weight: 650; }
+.help-drawer-mark { flex: none; margin-right: 4px; color: var(--purple, #5c35df); }
+.help-drawer-guide-title { font-size: 14.5px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.help-drawer-head:has(.help-drawer-guide-title) { padding-left: 10px; }
+.help-drawer-icon { flex: none; display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 8px; color: var(--muted, #626378) !important; background: transparent; cursor: pointer; }
+.help-drawer-icon:hover { background: var(--soft, #f5f5fa); }
+.help-drawer-search { display: flex; align-items: center; gap: 9px; margin: 0 20px; padding: 0 12px; border: 1px solid var(--border, #d8d2e6); border-radius: 10px; color: var(--muted, #626378); }
+.help-drawer-search:focus-within { border-color: var(--purple, #5c35df); box-shadow: 0 0 0 3px var(--help-line); }
+.help-drawer-search input { flex: 1; min-width: 0; height: 40px; padding: 0; color: var(--ink, #202035); border: 0; outline: 0; background: transparent; font: inherit; font-size: 13.5px; }
+.help-drawer .help-drawer-search input:focus-visible { outline: none; }
+.help-drawer-body { flex: 1; min-height: 0; overflow: auto; margin: 0; padding: 4px 20px 16px; overscroll-behavior: contain; }
+.help-drawer-eyebrow { margin: 20px 0 8px; color: var(--muted, #626378); font-size: 10.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+.help-drawer-list { margin: 0; padding: 0; list-style: none; }
+.help-drawer-row, .help-drawer-result { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 42px; padding: 6px 4px; border: 0; border-bottom: 1px solid var(--border, #f0eef5); background: transparent; text-align: left; font-size: 13.5px; cursor: pointer; }
+.help-drawer-list li:last-child > button { border-bottom: 0; }
+.help-drawer-row > span:not(.help-drawer-num) { flex: 1; }
+.help-drawer-row > svg:last-child { flex: none; color: var(--muted, #9b97ab); }
+.help-drawer-row:hover > span, .help-drawer-result:hover strong { color: var(--purple, #5c35df); }
+.help-drawer-row-icon { flex: none; margin: 0 2px; color: var(--purple, #5c35df); }
+.help-drawer-num { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #ffce32; color: #202035; font-size: 12px; font-weight: 700; }
+.help-drawer-num.is-small { width: 22px; height: 22px; font-size: 11.5px; }
+.help-drawer-num.is-quiet { background: transparent; color: var(--muted, #626378); border: 1px solid var(--border, #e4e4ec); }
+.help-drawer-result { align-items: flex-start; padding: 9px 4px; }
+.help-drawer-result-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.help-drawer-result-text strong { font-size: 13.5px; font-weight: 600; }
+.help-drawer-result-text small { color: var(--muted, #626378); font-size: 12px; }
+.help-drawer mark { padding: 0 1px; border-radius: 3px; background: #ffe08a; color: #202035; }
+.help-drawer-here { padding: 14px; border: 1px solid var(--help-line); border-radius: 12px; background: var(--help-tint); }
+.help-drawer-here-main { display: flex; align-items: center; gap: 12px; width: 100%; padding: 0; border: 0; background: transparent; text-align: left; cursor: pointer; }
+.help-drawer-here-main > span:nth-child(2) { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.help-drawer-here-main strong { font-size: 14px; font-weight: 650; }
+.help-drawer-here-main small { color: var(--muted, #626378); font-size: 12px; }
+.help-drawer-here-main > svg { flex: none; color: var(--purple, #5c35df); }
+.help-drawer-tile { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: color-mix(in srgb, var(--purple, #5c35df) 14%, var(--surface, #fff)); }
+.help-drawer-tile .help-drawer-row-icon { margin: 0; }
+.help-drawer-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.help-drawer-chips button { min-height: 30px; padding: 0 11px; border: 1px solid var(--help-line); border-radius: 999px; background: var(--surface, #fff); color: var(--purple, #3b1fa8); font-size: 12.5px; font-weight: 550; cursor: pointer; }
+.help-drawer-chips button:hover { border-color: var(--purple, #5c35df); }
+.help-drawer-message { margin: 14px 0; color: var(--muted, #626378); font-size: 13px; line-height: 1.55; }
+.help-drawer-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 12px 20px; border-top: 1px solid var(--border, #ece9f2); font-size: 13px; }
+.help-drawer-foot a { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; text-decoration: none; }
+.help-drawer-foot a:hover { text-decoration: underline; }
+.help-drawer-foot .help-drawer-quiet { color: var(--muted, #626378) !important; font-weight: 500; }
+.help-drawer-feedback { display: inline-flex; align-items: center; gap: 8px; color: var(--muted, #45455a); font-weight: 500; }
+.help-drawer-feedback button { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 1px solid var(--border, #e4e4ec); border-radius: 8px; background: var(--surface, #fff); cursor: pointer; }
+.help-drawer-feedback button:hover { border-color: var(--purple, #5c35df); }
+.help-drawer-thanks { margin: 0; color: var(--muted, #45455a); font-size: 13px; line-height: 1.5; }
+
+/* Reading a guide. */
+.help-drawer-progress { display: flex; align-items: center; gap: 12px; padding: 0 20px 12px; border-bottom: 1px solid var(--border, #ece9f2); color: var(--muted, #626378); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.help-drawer-bar { flex: 1; height: 5px; overflow: hidden; border-radius: 99px; background: var(--soft, #ece9f2); }
+.help-drawer-bar > span { display: block; height: 100%; border-radius: 99px; background: var(--purple, #5c35df); transition: width .2s; }
+.help-drawer-steps { list-style: none; padding: 8px 12px 16px; }
+.help-drawer-step { display: flex; align-items: center; gap: 11px; width: 100%; min-height: 38px; padding: 0 8px; border: 0; border-radius: 8px; background: transparent; color: var(--ink, #45455a); font-size: 13.5px; text-align: left; cursor: pointer; }
+.help-drawer-step > span:nth-child(2), .help-drawer-step h3 { flex: 1; min-width: 0; }
+.help-drawer-step > svg { flex: none; color: var(--muted, #9b97ab); }
+.help-drawer-step:hover { background: var(--soft, #f5f5fa); }
+.help-drawer-earlier { color: var(--muted, #626378); font-size: 13px; }
+.help-drawer-earlier-nums { display: flex; flex: none !important; }
+.help-drawer-earlier-nums span { display: grid; place-items: center; width: 22px; height: 22px; margin-left: -8px; border: 1px solid var(--border, #e4e4ec); border-radius: 50%; background: var(--surface, #fff); font-size: 10.5px; font-weight: 600; }
+.help-drawer-earlier-nums span:first-child { margin-left: 0; }
+.help-drawer-open { margin: 6px 0; padding: 4px 6px 14px; border: 1px solid var(--help-line); border-radius: 12px; background: color-mix(in srgb, var(--purple, #5c35df) 3%, var(--surface, #fff)); }
+.help-drawer-step.is-open { min-height: 42px; }
+.help-drawer-step.is-open:hover { background: transparent; }
+.help-drawer-step h3 { margin: 0; font-size: 15px; font-weight: 650; }
+.help-drawer-step.is-open > svg { color: var(--purple, #5c35df); }
+.help-drawer-step-body { padding: 0 8px; }
+.help-drawer-do { margin: 6px 0 0; font-size: 13.5px; line-height: 1.6; }
+.help-drawer-more { margin: 6px 0 0; color: var(--muted, #626378); font-size: 12.5px; line-height: 1.55; }
+.help-drawer-more strong, .help-drawer-points strong { color: var(--ink, #45455a); }
+.help-drawer-points { margin: 8px 0 0; padding-left: 18px; color: var(--muted, #626378); font-size: 12.5px; line-height: 1.55; }
+.help-drawer-points li + li { margin-top: 4px; }
+.help-ui { display: inline-block; padding: 0 6px; border: 1px solid var(--border, #d8d2e6); border-bottom-width: 2px; border-radius: 6px; background: var(--surface, #fff); color: var(--ink, #202035); font-size: 12.5px; font-weight: 600; line-height: 1.6; white-space: nowrap; }
+.help-drawer-example { margin: 10px 0 0; padding: 10px 12px; border: 1px dashed var(--border, #d8d2e6); border-radius: 10px; font-size: 12.5px; line-height: 1.55; }
+.help-drawer-example small { display: block; margin-bottom: 4px; color: var(--muted, #626378); font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.help-drawer-warn, .help-drawer-note { display: flex; gap: 9px; margin: 10px 0 0; padding: 10px 12px; border-radius: 10px; font-size: 12.5px; line-height: 1.55; }
+.help-drawer-warn { border: 1px solid #f0d98c; background: #fff5d6; color: #3d3115; }
+.help-drawer-warn svg { flex: none; margin-top: 1px; color: #8a5d00; }
+.help-drawer-note { background: var(--help-tint); }
+.help-drawer-note svg { flex: none; margin-top: 1px; color: var(--purple, #5c35df); }
+.help-drawer-stepnav { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; }
+.help-drawer-stepnav button { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 12px; border: 1px solid var(--border, #e4e4ec); border-radius: 8px; background: var(--surface, #fff); font-size: 13px; font-weight: 500; cursor: pointer; }
+.help-drawer-stepnav button.is-next { border-color: var(--blue, #3159ef); background: var(--blue, #3159ef); color: #fff; font-weight: 600; }
+
+/* A screenshot, with rings on what to click: the same layout as the Help pages. */
+.help-shot { margin: 12px 0 0; }
+.help-shot-frame { position: relative; display: block; overflow: hidden; border: 1px solid var(--border, #e4e4ec); border-radius: 10px; background: #fff; box-shadow: 0 8px 20px #20124a1a; cursor: zoom-in; }
+.help-shot-frame img { display: block; width: 100%; height: auto; }
+.help-shot-frame.is-cropped img { position: absolute; left: 0; max-width: none; }
+.help-mark { position: absolute; border: 2px solid #5c35df; border-radius: 7px; box-shadow: 0 0 0 3px #5c35df33; pointer-events: none; }
+.help-mark-num { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; background: #5c35df; color: #fff; font-size: 10.5px; font-weight: 700; }
+.help-shot-frame .help-mark-num { position: absolute; border: 2px solid #fff; box-shadow: 0 2px 5px #20124a59; }
+.help-mark-num.at-left { transform: translate(calc(-100% - 6px), -50%); }
+.help-mark-num.at-right { transform: translate(6px, -50%); }
+.help-mark-num.at-corner { transform: translate(-70%, -50%); }
+.help-shot figcaption { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px; color: var(--muted, #626378); font-size: 12px; }
+.help-legend { display: inline-flex; align-items: center; gap: 6px; }
+
+.help-drawer button:focus-visible, .help-drawer a:focus-visible, .help-drawer input:focus-visible { outline: 2px solid var(--purple, #8869ee); outline-offset: 2px; }
+@media (max-width: 640px) {
+  .help-drawer { top: 46px; width: 100vw; border-left: 0; box-shadow: none; }
+  .help-drawer-head { padding: 8px 8px 8px 18px; }
+  .help-drawer-icon { width: 44px; height: 44px; }
+  .help-drawer-search { margin: 0 18px; }
+  .help-drawer-search input { height: 46px; font-size: 16px; }
+  .help-drawer-body { padding: 0 18px calc(16px + env(safe-area-inset-bottom)); }
+  .help-drawer-row, .help-drawer-result { min-height: 48px; font-size: 15px; }
+  .help-drawer-chips button { min-height: 36px; font-size: 13px; }
+  .help-drawer-foot { padding: 6px 18px calc(10px + env(safe-area-inset-bottom)); font-size: 14px; }
+  .help-drawer-foot a { min-height: 44px; }
+  .help-drawer-step { min-height: 44px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .help-drawer { animation: help-drawer-in .16s ease-out both; }
+  @keyframes help-drawer-in { from { transform: translateX(12px); opacity: .7; } to { transform: translateX(0); opacity: 1; } }
+}
+
+/* The Help button, at the right end of the top bar on every screen. It is
+   white while the panel is open, so the two read as one. */
+.help-top-button { display: inline-flex; align-items: center; gap: 7px; height: 29px; padding: 0 12px 0 10px; border: 1px solid #ffffff33; border-radius: 6px; background: #ffffff1a; color: #fff; font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+.help-top-button:hover { border-color: #ffffff5c; background: #ffffff2e; }
+.help-top-button[aria-expanded="true"] { border-color: #fff; background: #fff; color: var(--nav-rail, #24165b); }
+.help-top-button:focus-visible { outline: 2px solid #ffce32; outline-offset: 2px; }
+/* A phone's top bar hides the theme button and the tagline beside Help
+   (style.css); Help itself stays, as a square next to search. */
+@media (max-width: 640px) {
+  .global-status:has(.help-top-button) { display: flex; flex: none; }
+  .global-status > :not(.help-top-button) { display: none; }
+  .help-top-button { flex: none; justify-content: center; width: 34px; height: 34px; padding: 0; border-radius: 8px; }
+  .help-top-button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}

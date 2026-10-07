@@ -1,0 +1,469 @@
+/* Team > a person > Permissions: what a teammate may do.
+
+   Settings > Ducks already answers this question about the ducks, so this
+   dialog is built out of the parts that shipped there - the switch, the word
+   beside it, the line that says what a press just did - and only the
+   arrangement is its own. Where a rule here has to beat one in style.css it is
+   written to outrank it: this file is bundled before that one, so coming later
+   is not something it can rely on.
+
+   Every colour is a token or a mix of tokens, so all five themes share one set
+   of rules bar the knob on a filled switch, which is the colour of the paper,
+   and Dark's paper is not white. */
+.member-perms {
+  /* The dialog is 540px at most whatever the window is, so the rows fold by
+     their own width rather than the viewport's. */
+  container-type: inline-size;
+  /* --edge is the app's own: a border that can be seen. These are the two
+     weights under it - the outside of the card, and the rule between two rows
+     inside it. --border is a 1.3:1 hairline and would draw neither. */
+  --mp-wall: color-mix(in srgb, var(--muted) 70%, var(--surface));
+  --mp-line: color-mix(in srgb, var(--muted) 34%, var(--surface));
+  /* The fill of a switch that is on, taken from the button fill the whole
+     product already uses, exactly as Settings > Ducks takes it. */
+  --mp-on: var(--green);
+  --mp-on-hover: var(--green-deep);
+  /* The rim of a filled switch: its own colour in the four light themes, where
+     the fill already stands out, and a lighter violet in Dark. */
+  --mp-on-edge: color-mix(in srgb, var(--blue) 55%, var(--green));
+  --mp-knob: var(--surface);
+}
+[data-theme="dark"] .member-perms {
+  /* Dark's paper is dark, so the knob borrows that theme's ink, the near-white
+     everything else is written in. */
+  --mp-knob: var(--ink);
+}
+
+/* ---- who this is about, in the dialog's own head ---- */
+.mp-who {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+.mp-who-lines {
+  min-width: 0;
+}
+.mp-who-name {
+  display: block;
+  font-size: 17px;
+  line-height: 1.25;
+}
+.mp-who small {
+  display: block;
+  margin-top: 1px;
+  /* The address is the one thing that tells two Sams apart, so it is read
+     whole rather than cut, even where there is no room for it on one line. */
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* ---- the role: a starting point, and it says so ---- */
+.mp-role {
+  margin-bottom: 15px;
+}
+.mp-label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.mp-seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mp-seg button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 96px;
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid var(--edge);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s,
+    transform 0.12s;
+}
+.mp-seg button svg {
+  color: var(--blue);
+}
+.mp-seg button:hover {
+  border-color: var(--blue);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+.mp-seg button:active {
+  transform: translateY(1px);
+}
+.mp-seg button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+/* The one that is on is the one with the tick in it. The inset shadow is the
+   second pixel of the border: a 1px rim alone reads as a hover. */
+.mp-seg button[aria-pressed="true"] {
+  border-color: var(--blue);
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--blue);
+  color: var(--blue);
+  font-weight: 700;
+}
+.mp-seg button[aria-pressed="true"]:hover {
+  background: color-mix(in srgb, var(--blue) 16%, var(--surface));
+}
+.mp-note {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* One press used to rewrite all eleven switches with nothing said and no way
+   back. This is what it did, and the way back. */
+.mp-undo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  margin-top: 10px;
+  padding: 2px 5px 2px 11px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  background: var(--soft);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.mp-undo svg {
+  flex-shrink: 0;
+  color: var(--ok);
+}
+.mp-undo > span {
+  flex: 1 1 180px;
+  padding: 7px 0;
+}
+.mp-undo button {
+  min-height: 36px;
+  padding: 0 8px;
+  border-radius: 6px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 650;
+  transition: background 0.15s;
+}
+.mp-undo button:hover {
+  background: var(--accent-soft);
+}
+.mp-undo button:active {
+  transform: translateY(1px);
+}
+.mp-undo button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ---- the eleven, in three named groups ---- */
+.mp-card {
+  border: 1px solid var(--mp-wall);
+  border-radius: 10px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.mp-group-head {
+  display: block;
+  padding: 8px 15px;
+  background: var(--soft);
+  border-bottom: 1px solid var(--mp-line);
+}
+.mp-group + .mp-group .mp-group-head {
+  border-top: 1px solid var(--mp-line);
+}
+.mp-group-head b {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.mp-group-head span {
+  display: block;
+  margin-top: 1px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.mp-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 6px 15px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.mp-row + .mp-row {
+  border-top: 1px solid var(--mp-line);
+}
+.mp-row:hover {
+  background: color-mix(in srgb, var(--soft) 55%, var(--surface));
+}
+.mp-row-text {
+  flex: 1;
+  min-width: 0;
+}
+.mp-row-text b {
+  display: block;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.mp-row-text span {
+  display: block;
+  margin-top: 1px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.mp-row-end {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+}
+/* The answer beside the switch, so that no line is a bare tick. It keeps the
+   room the longer of the two words needs, so the switches stay in a column. */
+.mp-word {
+  min-width: 52px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.mp-word.on {
+  color: var(--ink-2);
+}
+
+/* The switch itself, as Settings > Ducks draws it: a track and a knob over the
+   real tick box, which keeps the keyboard and the screen reader. */
+.mp-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 36px;
+}
+/* Written under .member-perms so that it beats style.css's own
+   input[type="checkbox"], which is 17 pixels square and is read later than
+   this file is. The box has to be the whole switch, or the thing a finger
+   lands on is a third of what it looks like. */
+.member-perms .mp-switch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  /* The track is drawn after the box and is positioned too, so without this it
+     sits on top and the pointer lands on a decoration. */
+  z-index: 1;
+}
+.mp-track {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 24px;
+  border: 1.5px solid var(--edge);
+  border-radius: 999px;
+  background: var(--surface);
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+.mp-track::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 15px;
+  height: 15px;
+  margin-top: -7.5px;
+  border-radius: 999px;
+  background: var(--edge);
+  transition:
+    transform 0.15s,
+    background 0.15s,
+    width 0.12s;
+}
+.mp-switch input:checked + .mp-track {
+  border-color: var(--mp-on-edge);
+  background: var(--mp-on);
+}
+.mp-switch input:checked + .mp-track::after {
+  background: var(--mp-knob);
+  transform: translateX(16px);
+}
+.mp-switch input:focus-visible {
+  outline: none;
+}
+.mp-switch input:focus-visible + .mp-track {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+.mp-row:hover .mp-track {
+  border-color: var(--blue);
+}
+.mp-row:hover .mp-track::after {
+  background: var(--blue);
+}
+.mp-row:hover input:checked + .mp-track {
+  background: var(--mp-on-hover);
+}
+.mp-row:hover input:checked + .mp-track::after {
+  background: var(--mp-knob);
+}
+.mp-row:active .mp-track::after {
+  width: 19px;
+}
+.mp-row:active input:checked + .mp-track::after {
+  transform: translateX(12px);
+}
+
+/* ---- a teammate who has lost their phone ---- */
+.mp-two-step {
+  margin-top: 14px;
+  padding: 11px 15px 13px;
+  border: 1px solid var(--mp-wall);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.mp-two-step > b {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.mp-two-step > span {
+  display: block;
+  margin: 1px 0 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.mp-two-step .confirm-box {
+  margin: 0;
+}
+.mp-two-step-sure {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+@media (pointer: coarse) {
+  .mp-two-step .button {
+    min-height: 44px;
+  }
+}
+
+/* ---- the bar at the bottom ---- */
+/* Taking somebody off the team and saving their switches are not a pair of
+   buttons, so they stand at opposite ends. .modal-actions puts both at the
+   right, and this has to outrank it rather than follow it. */
+.modal .mp-actions {
+  justify-content: space-between;
+}
+.mp-remove {
+  min-height: 36px;
+  padding: 0 5px;
+  border-radius: 5px;
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+.mp-remove:hover {
+  background: var(--danger-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.mp-remove:active {
+  opacity: 0.75;
+}
+.mp-remove:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* A phone leaves the dialog about 320px. The name and its switch keep one
+   line and the help runs the full width underneath, so a row is two lines
+   rather than a stack of three. */
+@container (max-width: 470px) {
+  .mp-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 0;
+    padding: 9px 13px;
+  }
+  .mp-row-text {
+    display: contents;
+  }
+  .mp-row-text b {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .mp-row-text span {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 2px;
+  }
+  .mp-row-end {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .mp-group-head {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-row,
+  .mp-track,
+  .mp-track::after,
+  .mp-seg button,
+  .mp-undo button {
+    transition: none;
+  }
+  .mp-seg button:active,
+  .mp-undo button:active {
+    transform: none;
+  }
+  .mp-row:active .mp-track::after {
+    width: 15px;
+  }
+  .mp-row:active input:checked + .mp-track::after {
+    transform: translateX(16px);
+  }
+}

@@ -1,0 +1,495 @@
+/* One card for the moment a duck needs a person. A band in the colours of the
+   sidebar's "Needs you" badge, the control on the plain surface where a button
+   is strongest in every theme, the wait and the way out in the foot.
+
+   Every colour is a theme token. This file used to ask for --text, --bg and
+   --surface-2, which nobody ever defined, so in Dark the title, the
+   instructions and the field labels were near-black on a near-black card. */
+.human-input-card {
+  margin: 10px 0 0;
+  max-width: 560px;
+  border: 1px solid var(--attn-line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent);
+  overflow: hidden;
+}
+.human-input-band {
+  margin: 0;
+  padding: 7px 16px;
+  background: var(--attn);
+  color: var(--attn-ink);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+/* Nobody is waiting any more, or the answer is on its way: it stops asking
+   for attention. */
+.human-input-card.over {
+  border-color: var(--edge);
+}
+.human-input-card.over .human-input-band {
+  background: var(--soft);
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--border);
+}
+.human-input-main {
+  padding: 14px 16px 16px;
+}
+.human-input-split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+}
+/* The words grow a thousand times faster than the picture, so beside them it
+   keeps its width; wrapped under them it has the row to itself and fills it. */
+.human-input-split-text {
+  flex: 999 1 210px;
+  min-width: 0;
+}
+.human-input-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.human-input-say {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+/* No last line of one word: "…then carries on without / it." */
+.human-input-say,
+.human-input-small,
+.human-input-notice,
+.human-input-foot > span {
+  text-wrap: pretty;
+}
+.human-input-small {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.human-input-small svg {
+  margin-top: 2px;
+}
+.human-input-say + .human-input-small {
+  margin-top: 4px;
+}
+.human-input-more {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.human-input-more summary {
+  width: fit-content;
+  padding: 9px 0;
+  margin: -9px 0;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.human-input-more summary:hover {
+  color: var(--ink);
+}
+.human-input-more summary:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+.human-input-more p {
+  margin: 4px 0 0;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.human-input-notice {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-radius: 7px;
+  background: var(--soft);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+.human-input-card form {
+  margin: 12px 0 0;
+}
+.human-input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.human-input-row .human-input-field {
+  flex: 1 1 150px;
+  width: 150px;
+  max-width: 230px;
+}
+.human-input-row .button {
+  flex: 0 0 auto;
+}
+.human-input-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+/* The edge of a field has to be seen (3:1), and the app's own hairline is not.
+   Two classes, so it outranks the Dark theme's rule for every input. */
+.human-input-card .human-input-field {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 12px;
+  border-color: var(--edge);
+  font-size: 14px;
+  transition: border-color 0.12s;
+}
+.human-input-card .human-input-field:hover {
+  border-color: var(--ink);
+}
+.human-input-card textarea.human-input-field {
+  min-height: 84px;
+}
+.human-input-card .human-input-field::placeholder {
+  color: var(--muted);
+  font-size: 13px;
+  opacity: 1;
+}
+.human-input-card .error-box {
+  margin: 12px 0 0;
+}
+.human-input-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+}
+.human-input-card .button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+/* A button has to be found by its edge (3:1) as well as by its words. In Dark
+   the violet button sinks into the violet-grey card (2.9:1), so it gets a rim
+   of the lighter accent; in the light themes that is the colour it already is.
+   The second button's own hairline is 1.5:1. Three classes, so they outrank
+   the Dark theme's rules, which come later in the bundle. */
+.human-input-card .button:not(.secondary) {
+  border-color: var(--blue);
+}
+.human-input-card .human-input-actions .button.secondary {
+  border-color: var(--edge);
+}
+.human-input-card .human-input-actions .button.secondary:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+/* The duck's screen, small, beside the button that opens it. */
+.human-input-picture {
+  flex: 1 1 176px;
+  min-width: 176px;
+}
+.human-input-picture .chat-screen-shot {
+  display: block;
+  max-width: none;
+  border-color: var(--edge);
+  border-radius: 8px;
+  background: var(--soft);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 8%, transparent);
+  transition:
+    border-color 0.12s,
+    transform 0.12s;
+}
+.human-input-picture .chat-screen-shot:hover {
+  border-color: var(--blue);
+  transform: translateY(-1px);
+}
+.human-input-picture .chat-screen-shot:active {
+  transform: translateY(0);
+}
+.human-input-picture .chat-screen-shot img,
+.human-input-picture .chat-screen-unavailable {
+  aspect-ratio: auto;
+  height: 110px;
+}
+.human-input-picture .chat-screen-unavailable {
+  background: var(--soft);
+}
+.human-input-picture .chat-screen-shot span {
+  left: 6px;
+  bottom: 6px;
+  max-width: calc(100% - 12px);
+  padding: 2px 7px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: var(--ink-2);
+  color: var(--surface);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.human-input-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 16px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--soft);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.human-input-outs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 16px;
+}
+/* The way out: a quiet underlined sentence. 18px of text, 36px to hit. The
+   extra is a layer over it rather than padding, so the focus ring hugs the
+   words and is not cut off by the card's rounded corner. */
+.human-input-out {
+  position: relative;
+  padding: 0;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-color: var(--edge);
+  text-underline-offset: 3px;
+  text-align: left;
+  transition: color 0.12s;
+}
+.human-input-out::after {
+  content: "";
+  position: absolute;
+  inset: -9px 0;
+}
+.human-input-out:hover:not(:disabled) {
+  color: var(--ink);
+  text-decoration-color: var(--ink);
+}
+/* The ring hugs the words. At the usual 3px it ran through the tails of the
+   sentence above, which then looked underlined. */
+.human-input-out:focus-visible {
+  outline-offset: 1px;
+}
+.human-input-out.stop:hover:not(:disabled) {
+  color: var(--danger);
+  text-decoration-color: var(--danger);
+}
+.human-input-out:active:not(:disabled) {
+  opacity: 0.7;
+}
+/* Afterwards: one line with a tick. */
+.human-input-done {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.human-input-done svg {
+  margin-top: 1.5px;
+  color: var(--ok);
+  stroke-width: 2.2;
+}
+.human-input-done.stopped svg {
+  color: var(--muted);
+}
+.human-input-done b {
+  font-weight: 600;
+  color: var(--ink-2);
+}
+/* What somebody had started writing when the wait ran out. The form is gone -
+   the duck has let the screen go - but the words are theirs and should not
+   disappear with it. */
+.human-input-kept {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+.human-input-kept p {
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+}
+.human-input-kept span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+.human-input-banner {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.human-input-banner button {
+  margin-left: auto;
+}
+/* The page has its own gutter and its own gap between things. A margin on top
+   of those set the card in from everything else on the page by 18px a side. */
+.human-desktop-page > .human-input-card {
+  margin: 0;
+  flex-shrink: 0;
+}
+.human-desktop-page {
+  overflow: auto;
+}
+@media (max-width: 600px) {
+  .human-input-card {
+    max-width: 100%;
+  }
+  .human-input-band {
+    padding-inline: 13px;
+  }
+  .human-input-main {
+    padding: 12px 13px 14px;
+  }
+  /* Each way out is 36px to hit, which is room enough around it. With the
+     foot's own 9px as well, a foot holding nothing but "Dismiss" stood 54px
+     tall around 18px of words. */
+  .human-input-foot {
+    padding: 3px 13px;
+  }
+  .human-input-foot > span:not(.human-input-outs) {
+    padding: 6px 0;
+  }
+  .human-input-foot > span:not(.human-input-outs):not(:last-child) {
+    padding-bottom: 0;
+  }
+  .human-input-row .human-input-field {
+    max-width: none;
+  }
+  .human-input-row .button {
+    flex: 1 1 auto;
+  }
+  .human-input-card form > .button,
+  .human-input-actions .button {
+    width: 100%;
+  }
+  /* One under the other, each with its own 36px to hit. Overlapping, a thumb
+     aiming for the screen could land on the one that stops the duck. */
+  .human-input-outs {
+    flex-direction: column;
+    gap: 0;
+  }
+  .human-input-out {
+    padding: 9px 0;
+  }
+  .human-input-out::after {
+    content: none;
+  }
+  .human-input-banner {
+    padding: 8px 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .human-input-card .human-input-field,
+  .human-input-out,
+  .human-input-picture .chat-screen-shot {
+    transition: none;
+  }
+  .human-input-card .button:active:not(:disabled),
+  .human-input-picture .chat-screen-shot:hover {
+    transform: none;
+  }
+}
+
+/* Saying no. The form takes the card's place: what is being said no to, a
+   few reasons that are one press each, and room to write one's own. */
+.human-input-decline {
+  margin: 0;
+}
+.human-input-reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 0;
+}
+.human-input-reason {
+  min-height: 34px;
+  padding: 5px 12px;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.human-input-reason:hover:not(:disabled) {
+  background: var(--soft);
+}
+.human-input-reason.on {
+  border-color: var(--blue);
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+/* One line: the card's form labels are columns, and "(optional)" fell under
+   the question on a line of its own. */
+.human-input-card .human-input-decline-label {
+  display: block;
+  margin: 14px 0 5px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ink-2);
+}
+.human-input-card .human-input-decline-label i {
+  display: inline;
+  margin-left: 2px;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--muted);
+}
+.human-input-decline textarea {
+  width: 100%;
+  resize: vertical;
+}
+.human-input-decline .human-input-decline-note {
+  margin: 0 0 0 auto;
+}
+@media (max-width: 640px) {
+  .human-input-decline .human-input-actions .button {
+    flex: 1 1 100%;
+    min-height: 44px;
+  }
+  .human-input-decline .human-input-decline-note {
+    margin: 0;
+  }
+}
+.human-input-declined-reason {
+  display: block;
+  margin: 2px 0 0;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,601 @@
+/* The Computers list and each computer's own page (src/Computers.jsx).
+
+   The theme's tokens only, so all five themes follow. The fixed colours are
+   the picture's box and the words over it, which stay dark in every theme like
+   a screen, and the app's own focus ring. The two panes are not .page: each
+   scrolls on its own, so a long list never moves the page beside it. */
+.computers-page {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 392px minmax(0, 1fr);
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--ink);
+}
+.computers-list,
+.computer-view {
+  min-height: 0;
+  overflow: auto;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+/* ---- the list ---------------------------------------------------------- */
+.computers-list {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 14px 14px;
+  border-right: 1px solid var(--border);
+}
+.computers-list-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 16px;
+}
+.computers-list-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
+  padding: 0 8px 6px;
+}
+.computers-list-head h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+.computers-list-head span {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.computers-list .info-box {
+  display: block;
+  margin: 2px 0 6px;
+}
+.computers-list h3 {
+  margin: 6px 0 2px;
+  padding: 0 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.computers-list h3 ~ h3 {
+  margin-top: 8px;
+}
+.computer-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.computer-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+/* Only a row that opens something lights up: one with no computer yet is not
+   a link, and lit up it looked like one. */
+.computer-row:has(a.computer-row-name):hover {
+  background: var(--soft);
+}
+.computer-row.selected {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+}
+.computer-row > .avatar {
+  border-radius: 7px;
+}
+.computer-row-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.computer-row-top {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.computer-row-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+/* The whole row is the link's to press; the button sits above it. */
+a.computer-row-name::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+a.computer-row-name:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+a.computer-row-name:focus-visible {
+  outline: none;
+}
+.computer-row:has(> .computer-row-text a:focus-visible) {
+  outline: 3px solid #4385ff;
+  outline-offset: 1px;
+}
+.computer-row-time {
+  flex: none;
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.computer-state {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+/* One line, like line 3: a long name wrapped it round its dot and made the
+   row taller than the rest. */
+.computer-state-words {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.computer-row-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.computer-row .button {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  min-height: 30px;
+  height: 30px;
+  padding: 0 10px;
+  gap: 6px;
+  font-size: 13px;
+}
+.computers-foot {
+  margin: auto 0 0;
+  padding: 12px 8px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.computers-foot svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+/* What a state line means at a glance. "Waiting" wears the Needs you colour
+   of each theme, as a dot: its dark ink is not readable on Dark's surface. */
+.computer-dot {
+  flex: none;
+  box-sizing: border-box;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.tone-wait {
+  color: var(--ink);
+}
+.tone-wait .computer-dot {
+  background: var(--attn);
+  box-shadow: 0 0 0 2px var(--attn-line);
+}
+/* In these three the badge colour is pale - the badge reads by its ink - so a
+   dot of it all but vanished, and the row that most needs somebody had the
+   faintest mark. Here the dot wears the badge's ink. */
+:is([data-theme="clean"], [data-theme="subtle"], [data-theme="calm"])
+  .tone-wait
+  .computer-dot {
+  background: var(--attn-ink);
+}
+.tone-work,
+.tone-idle {
+  color: var(--ok);
+}
+.tone-work .computer-dot {
+  background: var(--ok);
+  box-shadow: 0 0 0 3px var(--ok-soft);
+}
+.tone-idle .computer-dot {
+  border: 2px solid var(--ok);
+}
+.tone-off,
+.tone-busy {
+  color: var(--muted);
+}
+.tone-off .computer-dot {
+  border: 1.5px solid var(--muted);
+}
+.tone-busy svg {
+  flex: none;
+}
+.tone-danger {
+  color: var(--danger);
+}
+/* On a tint the green falls just short of 4.5:1 in the light themes, so there
+   it leans toward the ink. */
+.computer-row.selected .tone-work,
+.computer-row.selected .tone-idle,
+.computer-pill.on {
+  color: color-mix(in srgb, var(--ok) 85%, var(--ink));
+}
+.tone-danger .computer-dot {
+  background: var(--danger);
+}
+
+/* ---- a computer's page ------------------------------------------------- */
+.computer-view {
+  padding: 18px 24px 16px;
+}
+.computer-view-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.computer-view-body > * {
+  max-width: 720px;
+}
+/* Only when the page is alone, on a phone or a narrow window. */
+.computer-view .computer-view-back {
+  display: none;
+  margin: 0 0 12px -2px;
+}
+/* The face beside the name, even when a long name wraps. */
+.computer-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.computer-head > div {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.computer-head > .avatar {
+  border-radius: 9px;
+}
+.computer-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+}
+.computer-title h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.computer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.computer-pill.on {
+  background: var(--ok-soft);
+}
+.computer-pill.on .computer-dot {
+  background: var(--ok);
+}
+.computer-pill.off {
+  background: var(--soft);
+  color: var(--muted);
+}
+.computer-pill.off .computer-dot {
+  border: 1.5px solid var(--muted);
+}
+.computer-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.computer-why {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+.computer-why p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.computer-why .computer-why-head {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.computer-error-line {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--danger);
+}
+
+/* The last picture of its screen. The box is today's .computer-screen dark in
+   every theme; the picture is contained, never cropped. */
+.computer-picture {
+  position: relative;
+  display: block;
+  flex: none;
+  width: 100%;
+  height: clamp(176px, 30vh, 300px);
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #231841;
+  color: #fff;
+  text-align: center;
+}
+button.computer-picture {
+  cursor: pointer;
+}
+.computer-picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.computer-picture.grey img {
+  filter: grayscale(1);
+  opacity: 0.32;
+}
+.computer-picture-over {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 16px;
+  color: #fff;
+}
+.computer-picture-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff24;
+}
+.computer-picture-over .big {
+  font-size: 15px;
+  font-weight: 700;
+}
+.computer-picture-over .small {
+  font-size: 12px;
+  color: #ddd3f5;
+}
+.computer-picture-over > svg {
+  color: #ddd3f5;
+}
+.computer-picture .screen-label {
+  font-size: 11px;
+}
+
+.computer-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+.computer-buttons .button {
+  min-height: 36px;
+  height: 36px;
+  padding: 0 14px;
+  gap: 7px;
+  font-size: 13.5px;
+}
+.computer-hint {
+  flex: 1 1 220px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.computer-hint .text-button {
+  font-size: 13px;
+}
+
+.computer-part {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.computer-part h3 {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.computer-part-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.computer-part-head a,
+.computer-history a {
+  color: var(--blue);
+  text-decoration: none;
+}
+.computer-part-head a {
+  font-size: 12.5px;
+}
+.computer-part-head a:hover,
+.computer-history a:hover {
+  text-decoration: underline;
+}
+.computer-work {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+}
+a.computer-work:hover {
+  border-color: var(--edge);
+  text-decoration: none;
+}
+.computer-work-icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: var(--accent-soft);
+  color: var(--blue);
+}
+.computer-work-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.computer-work-title,
+.computer-work-sub {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.computer-work-title {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.computer-work-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+.computer-work-go {
+  flex: none;
+  color: var(--blue);
+}
+.computer-history {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.computer-history li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  height: 27px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.computer-history li:last-child {
+  border-bottom: 0;
+}
+.computer-history time {
+  flex: none;
+  min-width: 38px;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.computer-history svg {
+  flex: none;
+  color: var(--muted);
+}
+.computer-history li > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* Room inside the clipping for a link's focus ring, which was cut to a
+     sliver. The margin keeps the words where they were. */
+  padding: 3px;
+  margin: 0 -3px;
+}
+.computer-history a:focus-visible {
+  outline-offset: 0;
+}
+.computer-quiet,
+.computer-none {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.computer-none {
+  max-width: 420px;
+  line-height: 1.45;
+}
+
+/* One pane at a time below the app's own 1100px step: the list, or a
+   computer's page with Back. */
+@media (max-width: 1100px) {
+  .computers-page {
+    display: block;
+    overflow: auto;
+  }
+  .computers-list,
+  .computer-view {
+    overflow: visible;
+  }
+  .computers-list {
+    min-height: 100%;
+    border-right: 0;
+  }
+  .computers-page[data-view="list"] .computer-view,
+  .computers-page[data-view="page"] .computers-list {
+    display: none;
+  }
+  .computer-view .computer-view-back {
+    display: inline-flex;
+  }
+}
+@media (max-width: 640px) {
+  .computers-list {
+    padding: 12px;
+  }
+  .computer-view {
+    padding: 16px;
+  }
+}
